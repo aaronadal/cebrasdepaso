@@ -5,7 +5,8 @@
   --card-grid-areas: 'thumbnail title' 'thumbnail content';
   --card-grid-gap: 0 2rem;
   --card-thumbnail-size: 350px;
-  --card-thumbnail-number-size: 10rem;
+  --card-thumbnail-number-size: 8rem;
+  --card-thumbnail-title-size: 1.75rem;
 
   max-width: var(--card-max-width);
   margin-left: auto;
@@ -34,10 +35,12 @@
     > .thumbnail {
       grid-area: thumbnail;
       border-radius: .5rem;
-      padding: 1rem;
+      padding: 2rem;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 1rem;
 
       max-width: var(--card-thumbnail-size);
       width: 100%;
@@ -51,7 +54,15 @@
         @extend %typography-heading;
         @extend %zebra;
         font-size: var(--card-thumbnail-number-size);
+        line-height: 1;
         -webkit-text-stroke-width: 3px;
+      }
+
+      .text {
+        font-family: var(--font-family-logo);
+        font-weight: var(--font-weight-logo);
+        font-size: var(--card-thumbnail-title-size);
+        line-height: 1.15;
       }
     }
 
@@ -77,6 +88,7 @@
   .card {
     --card-thumbnail-size: 275px;
     --card-thumbnail-number-size: 7rem;
+    --card-thumbnail-title-size: 1.25rem;
   }
 }
 

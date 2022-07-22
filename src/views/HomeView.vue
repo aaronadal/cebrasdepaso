@@ -29,7 +29,7 @@ import Card from '@/components/Card.vue'
   </section>
 
   <section>
-      <Card v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" :key="i" :number="i" title="Recently with desktop publishing">
+      <Card v-for="(i, k) in ['De los pequeños placeres de la vida', 'De lo divino y lo humano', 'De comer, dormir y pensar', 'De la frugalidad de las cosas', 'De la felicidad y los pequeños detalles', 'De nuestra visión de nosotros mismos', 'De la vida; de la muerte', 'De la inmensidad de las cosas grandes', 'Del apreciar, del querer y el amar', 'Del éxito y las pruebas silencionas', 'De la vorágine y de las redes sociales', 'De la edad, la vejez y el adulterio']" :key="k" :number="k+1" :title="i">
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
               when an unknown printer took a galley of type and scrambled it to make a type
