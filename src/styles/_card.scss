@@ -1,5 +1,13 @@
 .card {
-  max-width: 1200px;
+  --card-max-width: 1200px;
+  --card-grid-columns: var(--card-thumbnail-size) 1fr;
+  --card-grid-rows: auto auto;
+  --card-grid-areas: 'thumbnail title' 'thumbnail content';
+  --card-grid-gap: 0 2rem;
+  --card-thumbnail-size: 350px;
+  --card-thumbnail-number-size: 10rem;
+
+  max-width: var(--card-max-width);
   margin-left: auto;
   margin-right: auto;
 
@@ -15,11 +23,11 @@
     border-radius: .5rem;
   
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: var(--card-grid-columns);
+    grid-template-rows: var(--card-grid-rows);
+    grid-template-areas: var(--card-grid-areas);;
     align-items: center;
-    grid-template-areas: 'thumbnail title' 'thumbnail content';
-    gap: 0 2rem;
+    gap: var(--card-grid-gap);
 
     transition: border-color ease .5s;
 
@@ -31,7 +39,10 @@
       align-items: center;
       justify-content: center;
 
+      max-width: var(--card-thumbnail-size);
+      width: 100%;
       aspect-ratio: 1;
+      justify-self: center;
 
       cursor: default;
       user-select: none;
@@ -39,7 +50,7 @@
       .number {
         @extend %typography-heading;
         @extend %zebra;
-        font-size: 10rem;
+        font-size: var(--card-thumbnail-number-size);
         -webkit-text-stroke-width: 3px;
       }
     }
@@ -58,6 +69,27 @@
   &:hover {
     > .inner {
       border-color: var(--text-color);
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  .card {
+    --card-thumbnail-size: 275px;
+    --card-thumbnail-number-size: 7rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .card {
+    --card-max-width: 800px;
+    --card-grid-columns: 1fr;
+    --card-grid-rows: auto auto auto;
+    --card-grid-areas: 'thumbnail' 'title' 'content';
+    --card-thumbnail-size: 300px;
+
+    .thumbnail {
+      margin-bottom: 2rem;
     }
   }
 }

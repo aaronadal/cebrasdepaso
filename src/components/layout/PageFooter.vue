@@ -3,17 +3,17 @@
 
 <template>
   <footer id="page-footer">
-    <div>
-    <address>
-      Información de contacto.
-    </address>
+    <div class="inner">
+      <div>
+      <address>
+        Información de contacto.
+      </address>
+      </div>
+      <nav class="legal-links">
+        <a href="">Aviso legal</a>
+        <a href="">Política de privacidad</a>
+        <a href="">Política de cookies</a>
+      </nav>
     </div>
-    <nav class="legal-links">
-      <a href="">Aviso legal</a>
-      &bull;
-      <a href="">Política de privacidad</a>
-      &bull;
-      <a href="">Política de cookies</a>
-    </nav>
   </footer>
 </template>
