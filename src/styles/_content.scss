@@ -1,0 +1,31 @@
+#page-content {
+  margin: 5rem 0;
+}
+
+section {
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  + section {
+    margin-top: 5rem;
+  }
+}
+
+article {
+  + article {
+    margin-top: 3rem;
+  }
+}
+
+.container {
+  max-width: 800px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  + p {
+    margin-top: 2rem;
+  }
+}

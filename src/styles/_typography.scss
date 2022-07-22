@@ -1,0 +1,101 @@
+@import url('https://api.fonts.coollabs.io/css2?family=Jost:wght@400;900&family=Oswald:wght@400;700&display=swap');
+
+:root {
+  --font-family-logo: Oswald, sans-serif;
+  --font-weight-logo: 400;
+
+  --font-family-text: Jost, sans-serif;
+  --font-weight-text: 400;
+  --font-weight-text-bold: 900;
+
+  --font-family-heading: Oswald, sans-serif;
+  --font-weight-heading: 700;
+}
+
+%typography-text {
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-text);
+}
+
+%typography-text-bold {
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-text-bold);
+}
+
+%typography-heading {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-heading);
+}
+
+html {
+  @extend %typography-text;
+  font-size: 130%;
+
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %typography-heading;
+  
+  line-height: 1.15;
+  margin-bottom: 0.25em;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+%link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+
+    transition: right cubic-bezier(0.215, 0.610, 0.355, 1) .15s;
+  }
+
+  &:hover {
+    &::after {
+      right: 0;
+    }
+  }
+}
+
+a.link {
+  @extend %typography-text-bold;
+  @extend %link;
+}
+
+@keyframes zebra-movement {
+  0%   {background-position: 8rem 0;}
+  100% {background-position: 0 0;}
+}
+
+%zebra {
+  //background-color: var(--body-color);
+  background-image: url(@/assets/cebra.svg);
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-color);
+  background-clip: text;
+  background-size: 8rem;
+
+  animation: zebra-movement 12s linear infinite;
+}
+
+.zebra {
+  @extend %zebra;
+}
