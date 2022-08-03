@@ -9,7 +9,9 @@ const route = useRoute()
   <PageLayout>
     <router-view v-slot="{ Component }">
       <transition name="fade">
-        <component :is="Component" :key="route.path" />
+        <keep-alive>
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
       </transition>
     </router-view>
   </PageLayout>

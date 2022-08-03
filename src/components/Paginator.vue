@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 import { ref, toRefs } from '@vue/reactivity'
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onActivated, onMounted } from '@vue/runtime-core'
 
 // eslint-disable-next-line
 const emit = defineEmits<{
@@ -53,6 +53,10 @@ function goTo (number: number) {
 }
 
 onMounted(() => emit('init', page.value, getSlicedItems()))
+onActivated(() => {
+  page.value = 1
+  emit('init', page.value, getSlicedItems())
+})
 </script>
 
 <template>

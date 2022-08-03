@@ -10,27 +10,26 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/podcast',
     name: 'podcast',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "podcast" */ '../views/PodcastView.vue')
   },
   {
     path: '/nosotros',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior () {
+    return { top: 0, behavior: 'smooth' }
+  }
 })
 
-router.afterEach((to) => {
+router.beforeEach((to, from) => {
+  console.log(from)
+
   if (to.name !== 'home') {
     document.getElementById('page-header')?.classList.add('collapsed')
   } else {

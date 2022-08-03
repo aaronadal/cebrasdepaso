@@ -41,11 +41,12 @@ $transition-ease: ease-in-out;
 
   #main-menu {
     position: absolute;
-    bottom: 1rem;
+    bottom: 0;
     right: 50%;
     transform: translateX(50%);
+    width: 400px;
 
-    transition: right $transition-time $transition-ease, transform $transition-time $transition-ease;
+    transition: width $transition-time $transition-ease, right $transition-time $transition-ease, transform $transition-time $transition-ease;
   }
 
   &.collapsed {
@@ -74,6 +75,46 @@ $transition-ease: ease-in-out;
     #main-menu {
       right: 0;
       transform: translateX(0);
+      width: 300px;
+      max-width: calc(100% - 2rem - 120px);
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  #page-header {
+    &,
+    &.collapsed {
+      #main-menu {
+        font-size: .8rem;
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  #page-header {
+    &,
+    &.collapsed {
+      #main-menu {
+        width: 300px;
+        max-width: 100%;
+      }
+    }
+
+    &.collapsed {
+      min-height: calc(1rem + (120px * 0.7) + 2rem + 2rem + 1rem);
+
+      .logo {
+        left: 50%;
+        transform: translateX(-50%) translateY(-1rem);
+      }
+
+      #main-menu {
+        right: 50%;
+        transform: translateX(50%);
+      }
     }
   }
 }
