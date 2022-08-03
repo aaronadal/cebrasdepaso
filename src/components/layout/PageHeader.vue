@@ -6,8 +6,10 @@ import Logo from '@/components/Logo.vue'
 <template>
   <header id="page-header">
     <div class="inner">
-      <Logo />
-      <MainMenu />
+      <div class="container">
+        <Logo />
+        <MainMenu />
+      </div>
     </div>
   </header>
 </template>

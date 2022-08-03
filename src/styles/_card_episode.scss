@@ -1,0 +1,49 @@
+.episode-card {
+  --card-grid-rows: min-content 1fr;
+
+  .episode-thumbnail {
+    border-radius: .5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    width: 100%;
+    aspect-ratio: 1;
+
+    .season {
+      line-height: 1;
+    }
+
+    .number {
+      @extend %typography-heading;
+      @extend %zebra;
+      font-size: var(--card-thumbnail-number-size);
+      line-height: 1;
+      -webkit-text-stroke-width: 3px;
+    }
+
+    .text {
+      font-family: var(--font-family-logo);
+      font-weight: var(--font-weight-logo);
+      font-size: var(--card-thumbnail-title-size);
+      line-height: 1.15;
+    }
+  }
+
+  p + p {
+    margin-top: 1rem;
+  }
+  
+  .audio-player {
+    margin-top: 2rem;
+  }
+
+  .content {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    height: 100%;
+  }
+}

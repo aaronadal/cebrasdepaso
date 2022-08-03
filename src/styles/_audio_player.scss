@@ -1,0 +1,42 @@
+.audio-player {
+  width: 100%;
+  background: var(--gradient-1);
+  border-radius: .5rem;
+  display: grid;
+  grid-template-columns: min-content min-content 1fr min-content;
+  grid-template-rows: min-content;
+  grid-template-areas: 'play current progress total';
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem 1rem;
+  font-size: .75rem;
+
+  .play {
+    background: none;
+    padding: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    grid-area: play;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .time {
+    @extend %typography-mono;
+  }
+
+  .current-time {
+    grid-area: current;
+  }
+
+  .total-time {
+    grid-area: total;
+  }
+
+  .progress-bar {
+    grid-area: progress;
+  }
+}

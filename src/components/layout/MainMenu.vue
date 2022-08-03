@@ -6,14 +6,14 @@
                  @click.prevent>
         Inicio
     </router-link>
-    <router-link href="/"
-                 :to="{name: 'home'}"
+    <router-link href="/podcast"
+                 :to="{name: 'podcast'}"
                  class="item"
                  @click.prevent>
         Podcast
     </router-link>
-    <router-link href="/"
-                 :to="{name: 'home'}"
+    <router-link href="/nosotros"
+                 :to="{name: 'about'}"
                  class="item"
                  @click.prevent>
         Nosotros

@@ -1,6 +1,5 @@
 #page-header,
 #page-footer {
-    min-height: 65vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -8,11 +7,18 @@
     @extend %full-gradient-animated;
 
     --border-style: solid 3px var(--text-color);
+    --xxxxer-max-width: 1200px;
 
     > .inner {
-      display: grid;
-      gap: 2rem 0;
       padding: 2rem 2rem 1rem;
+
+      > .container {
+        height: 100%;
+        display: grid;
+        gap: 2rem 0;
+        max-width: var(--xxxxer-max-width);
+        margin: 0 auto;
+      }
     }
 }
 
@@ -20,18 +26,20 @@
   border-bottom: var(--border-style);
 
   > .inner {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr min-content;
-    align-items: center;
-
     background-color: $body-color;
     transition: background-color ease-out .2s;
+
+    > .container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr min-content;
+      align-items: center;
+    }
   }
 
   &:hover {
     > .inner {
         background-color: transparent;
-        transition: background-color ease-in 1.5s;
+        transition: background-color ease-in 1s;
     }
   }
 
@@ -44,8 +52,10 @@
     border-top: var(--border-style);
     
     > .inner {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr min-content;
+      > .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr min-content;
+      }
     }
 
     .legal-links {
@@ -68,10 +78,9 @@
 
 #main-menu {
     display: flex;
-    justify-content: space-evenly;
-    max-width: 500px;
+    justify-content: space-between;
+    max-width: 400px;
     width: 100%;
-    margin: 0 auto;
     gap: 0 1rem;
 
     > .item {
@@ -81,6 +90,27 @@
         text-decoration: none;
         color: inherit;
     }
+}
+
+@media (max-width: 1350px) {
+  #page-header,
+  #page-footer {
+    --xxxxer-max-width: 1000px;
+  }
+}
+
+@media (max-width: 1150px) {
+  #page-header,
+  #page-footer {
+    --xxxxer-max-width: 800px;
+  }
+}
+
+@media (max-width: 860px) {
+  #page-header,
+  #page-footer {
+    --xxxxer-max-width: calc(100% - 2rem);
+  }
 }
 
 @media (max-width: 600px) {

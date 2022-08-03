@@ -8,7 +8,15 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/about',
+    path: '/podcast',
+    name: 'podcast',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "podcast" */ '../views/PodcastView.vue')
+  },
+  {
+    path: '/nosotros',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -20,6 +28,14 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.afterEach((to) => {
+  if (to.name !== 'home') {
+    document.getElementById('page-header')?.classList.add('collapsed')
+  } else {
+    document.getElementById('page-header')?.classList.remove('collapsed')
+  }
 })
 
 export default router

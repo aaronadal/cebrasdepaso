@@ -1,6 +1,5 @@
 <script setup lang="ts">
 declare interface Props {
-    number: number,
     title: string,
 }
 
@@ -11,9 +10,8 @@ defineProps<Props>()
 <template>
     <article class="card">
         <div class="inner">
-            <div class="thumbnail" :style="{background: `var(--gradient-${((number-1)%8)+1})`}">
-                <span class="number">#{{ number }}</span>
-                <span class="text">{{ title }}</span>
+            <div class="thumbnail">
+                <slot name="thumbnail" />
             </div>
             <h2 class="title">{{ title }}</h2>
             <div class="content">

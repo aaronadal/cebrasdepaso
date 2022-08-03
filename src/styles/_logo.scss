@@ -24,6 +24,13 @@
     line-height: 1;
     letter-spacing: .022em;
     text-align: center;
+    overflow: hidden;
+
+    span {
+      display: block;
+      line-height: inherit;
+      font-size: inherit;
+    }
   }
 
   > .bars {

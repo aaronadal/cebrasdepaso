@@ -5,7 +5,7 @@
   --card-grid-areas: 'thumbnail title' 'thumbnail content';
   --card-grid-gap: 0 2rem;
   --card-thumbnail-size: 350px;
-  --card-thumbnail-number-size: 8rem;
+  --card-thumbnail-number-size: 6rem;
   --card-thumbnail-title-size: 1.75rem;
 
   max-width: var(--card-max-width);
@@ -34,36 +34,13 @@
 
     > .thumbnail {
       grid-area: thumbnail;
-      border-radius: .5rem;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      gap: 1rem;
 
       max-width: var(--card-thumbnail-size);
       width: 100%;
-      aspect-ratio: 1;
       justify-self: center;
 
       cursor: default;
       user-select: none;
-
-      .number {
-        @extend %typography-heading;
-        @extend %zebra;
-        font-size: var(--card-thumbnail-number-size);
-        line-height: 1;
-        -webkit-text-stroke-width: 3px;
-      }
-
-      .text {
-        font-family: var(--font-family-logo);
-        font-weight: var(--font-weight-logo);
-        font-size: var(--card-thumbnail-title-size);
-        line-height: 1.15;
-      }
     }
 
     > .title {
@@ -84,17 +61,24 @@
   }
 }
 
+@media (max-width: 1350px) {
+  .card {
+    --card-max-width: 1000px;
+  }
+}
+
 @media (max-width: 1150px) {
   .card {
+    --card-max-width: 800px;
     --card-thumbnail-size: 275px;
-    --card-thumbnail-number-size: 7rem;
+    --card-thumbnail-number-size: 5rem;
     --card-thumbnail-title-size: 1.25rem;
   }
 }
 
 @media (max-width: 1000px) {
   .card {
-    --card-max-width: 800px;
+    --card-max-width: calc(100% - 4rem);
     --card-grid-columns: 1fr;
     --card-grid-rows: auto auto auto;
     --card-grid-areas: 'thumbnail' 'title' 'content';

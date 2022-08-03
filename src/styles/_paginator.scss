@@ -1,0 +1,23 @@
+.paginator {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+
+  .c-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .75rem;
+  }
+
+  a {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}

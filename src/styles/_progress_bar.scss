@@ -1,0 +1,26 @@
+.progress-bar {
+  width: 100%;
+  position: relative;
+  padding: .5em 0;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    display: block;
+    background-color: $text-color;
+    height: 2px;
+    width: 100%;
+  }
+
+  .value {
+    width: 1em;
+    height: 1em;
+    border: 2px solid $text-color;
+    background-color: $body-color;
+    border-radius: 50%;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    cursor: pointer;
+  }
+}
