@@ -44,7 +44,11 @@ function updateDuration () {
 }
 
 function updateProgress () {
-  progress.value = audioRef.value?.currentTime || 0
+  if (progress.value >= duration.value || (audioRef.value?.currentTime || 0) >= duration.value) {
+    stop()
+  } else {
+    progress.value = audioRef.value?.currentTime || 0
+  }
   updateMediaPositionState()
 }
 
@@ -70,6 +74,11 @@ function pause () {
   playing.value = false
 }
 
+function stop () {
+  pause()
+  progress.value = 0
+}
+
 function updateMediaPositionState () {
   navigator.mediaSession.setPositionState({
     duration: duration.value,
@@ -91,10 +100,7 @@ function updateMediaSession () {
     const actions: Record<MediaSessionAction, (details: MediaSessionActionDetails) => void> = {
       play: () => play(),
       pause: () => pause(),
-      stop: () => {
-        pause()
-        progress.value = 0
-      },
+      stop: () => stop(),
       previoustrack: () => pause(),
       nexttrack: () => pause(),
       seekbackward: (details) => {
