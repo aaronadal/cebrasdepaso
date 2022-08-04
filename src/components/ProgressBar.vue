@@ -38,7 +38,7 @@ const left = computed(() => {
   return (barWidth - valueWidth) * modelValue.value / max.value
 })
 
-function onDrag (evt: MouseEvent) {
+function onDrag (evt: MouseEvent|TouchEvent) {
   const barWidth = barRef.value?.offsetWidth
   const valueWidth = valueRef.value?.offsetWidth
   if (!barWidth || !valueWidth) {
@@ -46,7 +46,13 @@ function onDrag (evt: MouseEvent) {
   }
 
   const barStart = barRef.value?.offsetLeft || 0
-  const x = evt.clientX - barStart
+
+  let x
+  if (evt instanceof MouseEvent) {
+    x = evt.clientX - barStart
+  } else {
+    x = evt.touches[0].clientX
+  }
 
   let value = x * max.value / barWidth
 
@@ -72,7 +78,7 @@ function onMouseDown () {
   }, { once: true })
 }
 
-function onMouseUp (evt: MouseEvent) {
+function onMouseUp (evt: MouseEvent|TouchEvent) {
   if (!isDragging.value) {
     return
   }
@@ -84,7 +90,13 @@ function onMouseUp (evt: MouseEvent) {
   }
 
   const barStart = barRef.value?.offsetLeft || 0
-  const x = evt.clientX - barStart
+
+  let x
+  if (evt instanceof MouseEvent) {
+    x = evt.clientX - barStart
+  } else {
+    x = evt.touches[0].clientX
+  }
 
   let value = x * max.value / barWidth
 
@@ -99,10 +111,25 @@ function onMouseUp (evt: MouseEvent) {
   emit('update:modelValue', value)
   emit('dragend')
 }
+
+function onTouchStart () {
+  emit('dragstart')
+  isDragging.value = true
+
+  document.addEventListener('touchmove', onDrag)
+  document.addEventListener('touchend', () => {
+    isDragging.value = false
+    document.removeEventListener('touchmove', onDrag)
+  }, { once: true })
+}
+
+function onTouchEnd (evt: TouchEvent) {
+  onMouseUp(evt)
+}
 </script>
 
 <template>
-    <div ref="barRef" class="progress-bar" @mousedown="onMouseDown" @mouseup="onMouseUp">
+    <div ref="barRef" class="progress-bar" @mousedown="onMouseDown" @mouseup="onMouseUp" @touchstart="onTouchStart" @touchend="onTouchEnd">
         <div ref="valueRef" class="value" :style="{left: `${left}px`}" />
     </div>
 </template>
