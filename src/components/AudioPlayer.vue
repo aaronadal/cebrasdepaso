@@ -11,13 +11,15 @@ declare interface Props {
     artist: string,
     album: string,
     artworks: {src: string, sizes: string, type: string}[]
+    isMediaSessionDisabled?: boolean,
 }
 
 // eslint-disable-next-line no-undef
 const props = withDefaults(defineProps<Props>(), {
+  isMediaSessionDisabled: false
 })
 
-const { title, artist, album, artworks } = toRefs(props)
+const { title, artist, album, artworks, isMediaSessionDisabled } = toRefs(props)
 
 const audioRef = ref<HTMLAudioElement|null>()
 
@@ -80,6 +82,10 @@ function stop () {
 }
 
 function updateMediaPositionState () {
+  if (isMediaSessionDisabled.value) {
+    return
+  }
+
   navigator.mediaSession.setPositionState({
     duration: duration.value,
     playbackRate: 1.0,
@@ -88,6 +94,10 @@ function updateMediaPositionState () {
 }
 
 function updateMediaSession () {
+  if (isMediaSessionDisabled.value) {
+    return
+  }
+
   if ('mediaSession' in navigator && playing.value === true) {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: title.value,

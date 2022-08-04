@@ -83,6 +83,7 @@
     .link {
       @extend %typography-heading;
       @extend %link;
+      display: inline-block;
       text-transform: uppercase;
       text-decoration: none;
       color: inherit;

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Card from '@/components/Card.vue'
+import AudioPlayer from '@/components/AudioPlayer.vue'
+import IntroCebras from '@/assets/intro-cebras.mp3'
 </script>
 
 <template>
@@ -10,43 +11,25 @@ import Card from '@/components/Card.vue'
     </section>
 
     <section class="container">
-      <h2>Lorem ipsum dolor sit amet</h2>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also the leap into
-        electronic typesetting, <a class="link">remaining essentially</a> unchanged. It was popularised in
-        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-        and more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum.</p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also the leap into
-        electronic typesetting, <a class="link">remaining essentially</a> unchanged. It was popularised in
-        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-        and more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum.</p>
-    </section>
+      <h2>Si todavía no nos conoces</h2>
+      <p>Aquí tienes una breve introducción sobre quiénes somos y qué es esto de las cebras:</p>
 
-    <section>
-        <Card v-for="(i, k) in ['De los pequeños placeres de la vida', 'De lo divino y lo humano', 'De comer, dormir y pensar', 'De la frugalidad de las cosas', 'De la felicidad y los pequeños detalles', 'De nuestra visión de nosotros mismos', 'De la vida; de la muerte', 'De la inmensidad de las cosas grandes', 'Del apreciar, del querer y el amar', 'Del éxito y las pruebas silencionas', 'De la vorágine y de las redes sociales', 'De la edad, la vejez y el adulterio']" :key="k" :number="k+1" :title="i">
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also the leap into
-                electronic typesetting, <a class="link">remaining essentially</a> unchanged. It was popularised in
-                the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                and more recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.</p>
-        </Card>
-    </section>
+      <AudioPlayer
+          :style="{background: 'var(--gradient-1)'}"
+          :url="IntroCebras"
+          type="audio/mpeg"
+          title="Breve introducción a CEBRAS DE PASO"
+          artist=""
+          album=""
+          :artworks="[]"
+          is-media-session-disabled />
 
-    <section class="container">
-        <div :style="{display: 'flex', 'flex-direction': 'column', gap: '2rem', 'align-items': 'center'}">
-          <div v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="i" :style="{background: `var(--gradient-${i})`, width: '10rem', height: '10rem', 'border-radius': '.5rem'}">
-          </div>
-        </div>
+        <p>Además, en esta misma web puedes encontrar una sección con
+          <router-link href="/nosotros" :to="{name: 'about'}" class="link">información sobre nosotros</router-link>
+          y otra con todos los
+          <router-link href="/podcast" :to="{name: 'podcast'}" class="link">episodios que hemos publicado</router-link>
+          hasta ahora para que puedas ponerte al día.
+        </p>
     </section>
   </div>
 </template>
