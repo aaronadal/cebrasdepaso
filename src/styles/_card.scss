@@ -1,13 +1,13 @@
-.card {
+:root {
   --card-max-width: 1200px;
   --card-grid-columns: var(--card-thumbnail-size) 1fr;
   --card-grid-rows: auto auto;
   --card-grid-areas: 'thumbnail title' 'thumbnail content';
   --card-grid-gap: 0 2rem;
   --card-thumbnail-size: 350px;
-  --card-thumbnail-number-size: 6rem;
-  --card-thumbnail-title-size: 1.75rem;
+}
 
+.card {
   max-width: var(--card-max-width);
   margin-left: auto;
   margin-right: auto;
@@ -62,28 +62,28 @@
 }
 
 @media (max-width: 1350px) {
-  .card {
+  :root {
     --card-max-width: 1000px;
   }
 }
 
 @media (max-width: 1150px) {
-  .card {
+  :root {
     --card-max-width: 800px;
     --card-thumbnail-size: 275px;
-    --card-thumbnail-number-size: 5rem;
-    --card-thumbnail-title-size: 1.25rem;
   }
 }
 
 @media (max-width: 1000px) {
-  .card {
+  :root {
     --card-max-width: calc(100% - 4rem);
     --card-grid-columns: 1fr;
     --card-grid-rows: auto auto auto;
     --card-grid-areas: 'thumbnail' 'title' 'content';
     --card-thumbnail-size: 300px;
-
+  }
+  
+  .card {
     .thumbnail {
       margin-bottom: 2rem;
     }

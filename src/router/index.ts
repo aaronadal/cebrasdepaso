@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/nosotros',
     name: 'about',
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/generador-de-caratulas',
+    name: 'generator',
+    component: () => import(/* webpackChunkName: "about" */ '../views/GeneratorView.vue')
   }
 ]
 

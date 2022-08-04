@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import Card from '@/components/Card.vue'
+import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
 import { Episode, Podcast } from '@/rss'
 import { toRefs } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
@@ -15,41 +16,20 @@ const props = defineProps<Props>()
 
 const { episode } = toRefs(props)
 
-const episodeType = computed(() => {
-  if (episode.value.type === 'bonus') {
-    return 'Extra'
-  }
-
-  if (episode.value.type === 'trailer') {
-    return 'Avance'
-  }
-
-  return 'Episodio'
-})
-
-const episodeSymbol = computed(() => {
-  if (episode.value.type === 'bonus') {
-    return '*'
-  }
-
-  if (episode.value.type === 'trailer') {
-    return '»'
-  }
-
-  return '#'
-})
-
 const background = computed(() => `var(--gradient-${episode.value.number === 0 ? 'gray' : ((episode.value.number - 1) % 8) + 1})`)
 </script>
 
 <template>
     <Card class="episode-card" :title="episode.title">
       <template #thumbnail>
-        <div class="episode-thumbnail" :style="{background}">
-            <span class="season">{{ episodeType }} {{ episode.season }}x{{ `${episode.numberInSeason}`.padStart(2, '0') }}</span>
-            <span class="number">{{ episodeSymbol }}{{ `${episode.number}`.padStart(2, '0') }}</span>
-            <span class="text">{{ episode.title }}</span>
-        </div>
+        <EpisodeThumbnail
+          :background="background"
+          :type="episode.type"
+          :title="episode.title"
+          :number="episode.number"
+          :season="episode.season"
+          :numberInSeason="episode.numberInSeason"
+        />
       </template>
 
       <template #default>
