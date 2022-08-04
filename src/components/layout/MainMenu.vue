@@ -1,22 +1,28 @@
 <template>
   <header id="main-menu">
-    <router-link href="/"
-                 :to="{name: 'home'}"
-                 class="item"
-                 @click.prevent>
-        Inicio
-    </router-link>
-    <router-link href="/podcast"
-                 :to="{name: 'podcast'}"
-                 class="item"
-                 @click.prevent>
-        Podcast
-    </router-link>
-    <router-link href="/nosotros"
-                 :to="{name: 'about'}"
-                 class="item"
-                 @click.prevent>
-        Nosotros
-    </router-link>
+    <div class="item">
+      <router-link href="/"
+                  :to="{name: 'home'}"
+                  class="link"
+                  @click.prevent>
+          Inicio
+      </router-link>
+    </div>
+    <div class="item">
+      <router-link href="/podcast"
+                  :to="{name: 'podcast'}"
+                  class="link"
+                  @click.prevent>
+          Podcast
+      </router-link>
+    </div>
+    <div class="item">
+      <router-link href="/nosotros"
+                  :to="{name: 'about'}"
+                  class="link"
+                  @click.prevent>
+          Cebras
+      </router-link>
+    </div>
   </header>
 </template>

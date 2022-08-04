@@ -27,9 +27,7 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from) => {
-  console.log(from)
-
+router.afterEach((to) => {
   if (to.name !== 'home') {
     document.getElementById('page-header')?.classList.add('collapsed')
   } else {

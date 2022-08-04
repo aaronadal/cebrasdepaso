@@ -10,7 +10,7 @@
     --xxxxer-max-width: 1200px;
 
     > .inner {
-      padding: 2rem 2rem 1rem;
+      padding: 2rem 0 1rem;
 
       > .container {
         height: 100%;
@@ -27,7 +27,6 @@
 
   > .inner {
     background-color: $body-color;
-    transition: background-color ease-out .2s;
 
     > .container {
       grid-template-columns: 1fr;
@@ -39,7 +38,6 @@
   &:hover {
     > .inner {
         background-color: transparent;
-        transition: background-color ease-in 1s;
     }
   }
 
@@ -80,13 +78,18 @@
     display: flex;
     justify-content: space-between;
     gap: 0 1em;
+    max-width: 100%;
 
-    > .item {
-        @extend %typography-heading;
-        @extend %link;
-        text-transform: uppercase;
-        text-decoration: none;
-        color: inherit;
+    .link {
+      @extend %typography-heading;
+      @extend %link;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: inherit;
+
+      &::after {
+        bottom: -4px;
+      }
     }
 }
 

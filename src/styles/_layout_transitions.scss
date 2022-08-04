@@ -1,31 +1,41 @@
 $transition-time: .5s;
-$transition-ease: ease-in-out;
+$transition-ease: cubic-bezier(0.65, 0, 0.076, 1);
 
 #page-header {
+  --header-font-size: 1rem;
+  --header-logo-width: 220px;
+  --header-menu-width: 380px;
+  --header-menu-item-padding-y: .125rem;
+  --header-menu-item-height: calc(1rem + var(--header-menu-item-padding-y) * 2);
+  --header-menu-height: 1rem;
+
   min-height: 65vh;
   
   transition: min-height $transition-time $transition-ease;
 
   > .inner {
-    transition: padding $transition-time $transition-ease;
+    transition: background-color ease-out 1s, padding $transition-time $transition-ease;
 
     > .container {
       position: relative;
+      font-size: var(--header-font-size);
+
+      transition: margin $transition-time $transition-ease;
     }
   }
 
   .logo {
     position: absolute;
-    width: 220px;
+    width: var(--header-logo-width);
     gap: 1rem;
     left: 50%;
-    transform: translateX(-50%);
+    top: calc(50% - var(--header-menu-height) / 2 - 1rem);
+    transform: translateX(-50%) translateY(-50%);
 
-    transition: width $transition-time $transition-ease, gap $transition-time $transition-ease, left $transition-time $transition-ease, transform $transition-time $transition-ease;
+    transition: width $transition-time $transition-ease, height $transition-time $transition-ease, gap $transition-time $transition-ease, left $transition-time $transition-ease, right $transition-time $transition-ease, top $transition-time $transition-ease, transform $transition-time $transition-ease;
 
     .text {
       height: 1em;
-      font-size: 1.6rem;
 
       transition: font-size $transition-time $transition-ease, height $transition-time $transition-ease;
 
@@ -44,26 +54,75 @@ $transition-ease: ease-in-out;
     bottom: 0;
     right: 50%;
     transform: translateX(50%);
-    width: 400px;
+    width: var(--header-menu-width);
+    height: var(--header-menu-height);
 
-    transition: width $transition-time $transition-ease, right $transition-time $transition-ease, transform $transition-time $transition-ease;
+    transition: width $transition-time $transition-ease, height $transition-time $transition-ease, font-size $transition-time $transition-ease, right $transition-time $transition-ease, bottom $transition-time $transition-ease, transform $transition-time $transition-ease;
+
+    .item {
+      position: absolute;
+      width: 31%;
+      height: var(--header-menu-item-height);
+      padding: var(--header-menu-item-padding-y) 0;
+
+      &,
+      .link {
+        position: absolute;
+        line-height: 1;
+
+        transition: width $transition-time $transition-ease, left $transition-time $transition-ease, right $transition-time $transition-ease, top $transition-time $transition-ease, transform $transition-time $transition-ease;
+      }
+
+      &:nth-child(1) {
+        right: 100%;
+        transform: translateX(100%);
+
+        .link {
+          right: 0;
+          transform: translateX(0);
+        }
+      }
+
+      &:nth-child(2) {
+        right: 50%;
+        transform: translateX(50%);
+
+        .link {
+          right: 50%;
+          transform: translateX(50%);
+        }
+      }
+
+      &:nth-child(3) {
+        right: 0;
+        transform: translateX(0);
+
+        .link {
+          right: 100%;
+          transform: translateX(100%);
+        }
+      }
+    }
   }
 
   &.collapsed {
-    min-height: calc(1rem + (120px * 0.7) + 1rem);
+    --header-logo-width: 100px;
+    --header-menu-width: 300px;
+
+    min-height: calc(1rem + (var(--header-logo-width) * 0.59) + 1rem);
 
     > .inner {
       padding-top: 1rem;
     }
 
     .logo {
-      width: 120px;
+      --logo-font-size: 15px;
       gap: 0;
       left: 0;
+      top: 0;
       transform: translateX(0);
 
       .text {
-        font-size: 0.7rem;
         height: 0;
 
         span {
@@ -75,46 +134,60 @@ $transition-ease: ease-in-out;
     #main-menu {
       right: 0;
       transform: translateX(0);
-      width: 300px;
-      max-width: calc(100% - 2rem - 120px);
     }
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 575px) {
   #page-header {
-    &,
     &.collapsed {
+      --header-font-size: 14px;
+      --header-menu-width: 220px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  #page-header {
+    &.collapsed {
+      --header-menu-width: 80px;
+      --header-menu-height: calc(3rem + .75rem);
+
       #main-menu {
-        font-size: .8rem;
-        width: 250px;
+        bottom: 50%;
+        right: 0;
+        transform: translateY(50%);
+
+        .item {
+          width: 100%;
+          right: 50%;
+          transform: translateX(50%);
+          top: 0;
+    
+          &:nth-child(1) {
+            transform: translateX(50%) translateY(0);
+          }
+    
+          &:nth-child(2) {
+            transform: translateX(50%) translateY(100%);
+          }
+    
+          &:nth-child(3) {
+            transform: translateX(50%) translateY(200%);
+          }
+
+          .link {
+            right: 0;
+            transform: translateX(0);
+          }
+        }
       }
     }
   }
 }
 
-@media (max-width: 500px) {
+@media (max-height: 567px) {
   #page-header {
-    &,
-    &.collapsed {
-      #main-menu {
-        width: 300px;
-        max-width: 100%;
-      }
-    }
-
-    &.collapsed {
-      min-height: calc(1rem + (120px * 0.7) + 2rem + 2rem + 1rem);
-
-      .logo {
-        left: 50%;
-        transform: translateX(-50%) translateY(-1rem);
-      }
-
-      #main-menu {
-        right: 50%;
-        transform: translateX(50%);
-      }
-    }
+    min-height: 100vh;
   }
 }

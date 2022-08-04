@@ -7,6 +7,8 @@
 }
 
 .logo {
+  --logo-font-size: 33.25px;
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -20,7 +22,7 @@
     width: 100%;
     font-family: var(--font-family-logo);
     font-weight: var(--font-weight-logo);
-    font-size: 1.6rem;
+    font-size: var(--logo-font-size);
     line-height: 1;
     letter-spacing: .022em;
     text-align: center;
@@ -44,11 +46,11 @@
       display: block;
       width: 9.09%;
       height: 100%;
-      background-color: var(--body-color);
+      // background-color: var(--body-color);
       background-image: url(@/assets/cebra.svg);
       background-size: 8rem;
 
-      animation-play-state: paused !important;
+      // animation-play-state: paused !important;
 
       @for $i from 1 through 6 {
         &:nth-child(#{$i}) {
@@ -59,12 +61,12 @@
     }
   }
 
-  @at-root #page-header:hover & {
-    > .bars {
-      > .bar {
-        background-color: transparent;
-        animation-play-state: running !important;
-      }
-    }
-  }
+  // @at-root #page-header:hover & {
+  //   > .bars {
+  //     > .bar {
+  //       // background-color: transparent;
+  //       // animation-play-state: running !important;
+  //     }
+  //   }
+  // }
 }
