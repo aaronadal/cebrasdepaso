@@ -38,6 +38,8 @@ const left = computed(() => {
   return (barWidth - valueWidth) * modelValue.value / max.value
 })
 
+const lastDragValue = ref(0)
+
 function onDrag (evt: MouseEvent|TouchEvent) {
   const barWidth = barRef.value?.offsetWidth
   const valueWidth = valueRef.value?.offsetWidth
@@ -51,7 +53,7 @@ function onDrag (evt: MouseEvent|TouchEvent) {
   if (evt instanceof MouseEvent) {
     x = evt.clientX - barStart
   } else {
-    x = evt.touches[0].clientX
+    x = evt.touches[0].clientX - barStart
   }
 
   let value = x * max.value / barWidth
@@ -64,6 +66,7 @@ function onDrag (evt: MouseEvent|TouchEvent) {
     value = max.value
   }
 
+  lastDragValue.value = value
   emit('drag', value)
 }
 
@@ -73,42 +76,19 @@ function onMouseDown () {
 
   document.addEventListener('mousemove', onDrag)
   document.addEventListener('mouseup', () => {
-    isDragging.value = false
+    onMouseUp()
     document.removeEventListener('mousemove', onDrag)
   }, { once: true })
 }
 
-function onMouseUp (evt: MouseEvent|TouchEvent) {
+function onMouseUp () {
   if (!isDragging.value) {
     return
   }
 
-  const barWidth = barRef.value?.offsetWidth
-  const valueWidth = valueRef.value?.offsetWidth
-  if (!barWidth || !valueWidth) {
-    return 0
-  }
+  isDragging.value = false
 
-  const barStart = barRef.value?.offsetLeft || 0
-
-  let x
-  if (evt instanceof MouseEvent) {
-    x = evt.clientX - barStart
-  } else {
-    x = evt.touches[0].clientX
-  }
-
-  let value = x * max.value / barWidth
-
-  if (value <= 0) {
-    value = 0
-  }
-
-  if (value >= max.value) {
-    value = max.value
-  }
-
-  emit('update:modelValue', value)
+  emit('update:modelValue', lastDragValue.value)
   emit('dragend')
 }
 
@@ -118,18 +98,18 @@ function onTouchStart () {
 
   document.addEventListener('touchmove', onDrag)
   document.addEventListener('touchend', () => {
-    isDragging.value = false
+    onTouchEnd()
     document.removeEventListener('touchmove', onDrag)
   }, { once: true })
 }
 
-function onTouchEnd (evt: TouchEvent) {
-  onMouseUp(evt)
+function onTouchEnd () {
+  onMouseUp()
 }
 </script>
 
 <template>
-    <div ref="barRef" class="progress-bar" @mousedown="onMouseDown" @mouseup="onMouseUp" @touchstart="onTouchStart" @touchend="onTouchEnd">
+    <div ref="barRef" class="progress-bar" @mousedown="onMouseDown" @touchstart="onTouchStart">
         <div ref="valueRef" class="value" :style="{left: `${left}px`}" />
     </div>
 </template>

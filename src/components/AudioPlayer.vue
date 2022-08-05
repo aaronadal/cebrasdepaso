@@ -54,6 +54,15 @@ function updateProgress () {
   updateMediaPositionState()
 }
 
+function updateCurrentTime () {
+  const audio = audioRef.value
+  if (!audio) {
+    return
+  }
+
+  audio.currentTime = progress.value
+}
+
 function play () {
   document.dispatchEvent(new CustomEvent('pause'))
 
@@ -79,6 +88,7 @@ function pause () {
 function stop () {
   pause()
   progress.value = 0
+  updateCurrentTime()
 }
 
 function updateMediaPositionState () {
@@ -158,12 +168,8 @@ function onDrag (value: number) {
 }
 
 function onDragEnd () {
-  const audio = audioRef.value
-  if (!audio) {
-    return
-  }
-
-  audio.currentTime = progress.value
+  updateCurrentTime()
+  updateProgress()
 
   if (wasPlayingBeforeDragStart.value) {
     play()
