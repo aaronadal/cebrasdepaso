@@ -20,6 +20,12 @@
     display: grid;
     grid-template-rows: 1fr min-content;
     height: 100%;
+
+    > .summary {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
   }
 }
 

@@ -33,7 +33,7 @@ const background = computed(() => `var(--gradient-${episode.value.number === 0 ?
       </template>
 
       <template #default>
-        <div v-html="episode.summary" />
+        <div class="summary" v-html="episode.summary" />
 
         <AudioPlayer
           :style="{background}"
