@@ -1,5 +1,9 @@
 #page-content {
   margin: 5rem 0;
+
+  &:empty {
+    margin: 2rem 0;
+  }
 }
 
 section {
@@ -24,8 +28,37 @@ article {
   margin-right: auto;
 }
 
-p {
-  + p {
+%p {
+  + %p {
     margin-top: 2rem;
+  }
+
+  + h3 {
+    margin-top: 2rem;
+  }
+}
+
+p, ul {
+  @extend %p;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+ul.list {
+  list-style: square;
+  margin-left: 2rem;
+
+  li {
+    padding-left: .5rem;
+
+    + li {
+      margin-top: .5rem;
+    }
   }
 }

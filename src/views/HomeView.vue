@@ -7,7 +7,7 @@ import IntroCebras from '@/assets/intro-cebras.mp3'
   <div class="page">
     <section class="container">
       <h1>Esto es CEBRAS DE PASO</h1>
-      <p>El pódcast donde hablamos (con poco criterio, pero mucha voluntad) de las cosas de la vida.</p>
+      <p>El pódcast donde hablamos —con poco criterio, pero mucha voluntad— de las cosas de la vida.</p>
     </section>
 
     <section class="container">
@@ -15,7 +15,6 @@ import IntroCebras from '@/assets/intro-cebras.mp3'
       <p>Aquí tienes una breve introducción sobre quiénes somos y qué es esto de las cebras:</p>
 
       <AudioPlayer
-          :style="{background: 'var(--gradient-1)'}"
           :url="IntroCebras"
           type="audio/mpeg"
           title="Breve introducción a CEBRAS DE PASO"

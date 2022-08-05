@@ -1,3 +1,9 @@
+:root {
+  --episode-thumbnail-season-size: 18px;
+  --episode-thumbnail-number-size: 125px;
+  --episode-thumbnail-title-size: 33px;
+}
+
 .episode-card {
   --card-grid-rows: min-content 1fr;
 
@@ -6,7 +12,7 @@
   }
   
   .audio-player {
-    margin-top: 2rem;
+    margin: 2rem 0 0;
   }
 
   .content {
@@ -17,11 +23,8 @@
 }
 
 .episode-thumbnail {
-  --episode-thumbnail-number-size: 6em;
-  --episode-thumbnail-title-size: 1.75em;
-
-  border-radius: .5rem;
-  padding: 2rem;
+  border-radius: 10px;
+  padding: 42px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -31,7 +34,7 @@
   aspect-ratio: 1;
 
   .season {
-    font-size: .85rem;
+    font-size: var(--episode-thumbnail-season-size);
     line-height: 1;
     opacity: .5;
   }
@@ -42,7 +45,7 @@
     font-size: var(--episode-thumbnail-number-size);
     line-height: 1;
     -webkit-text-stroke-width: 3px;
-    padding-bottom: .5rem;
+    padding-bottom: 7px;
   }
 
   .text {
@@ -53,15 +56,10 @@
   }
 }
 
-@media (max-width: 1350px) {
-  :root {
-    --card-max-width: 1000px;
-  }
-}
-
 @media (max-width: 1150px) {
   :root {
-    --episode-thumbnail-number-size: 5em;
-    --episode-thumbnail-title-size: 1.25em;
+    --episode-thumbnail-season-size: 14px;
+    --episode-thumbnail-number-size: 98px;
+    --episode-thumbnail-title-size: 25px;
   }
 }

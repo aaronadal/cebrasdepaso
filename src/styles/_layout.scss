@@ -1,3 +1,16 @@
+html,
+body,
+#app,
+#page-layout {
+    height: 100%;
+}
+
+#page-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
 #page-header,
 #page-footer {
     display: grid;
@@ -58,14 +71,15 @@
 
     .legal-links {
         display: flex;
-        gap: 1rem;
+        gap: .25rem 1rem;
         justify-content: center;
         font-size: 0.65rem;
         text-transform: uppercase;
-        padding: 1rem 1rem .5rem;
+        padding: 0;
 
-        > a {
+         a {
             @extend %link;
+            font-weight: var(--font-weight-text);
             
             &::after {
                 height: 2px;
@@ -116,7 +130,11 @@
 }
 
 @media (max-width: 600px) {
-  .legal-links {
-    flex-direction: column;
+  #page-footer {
+    text-align: center;
+
+    .legal-links {
+      flex-direction: column;
+    }
   }
 }

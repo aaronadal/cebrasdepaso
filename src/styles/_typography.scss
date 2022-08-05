@@ -63,6 +63,10 @@ h2 {
   font-size: 1.5rem;
 }
 
+b {
+    font-weight: var(--font-weight-text-bold);
+}
+
 %link {
   cursor: pointer;
   text-decoration: none;
@@ -88,6 +92,10 @@ h2 {
       right: 0;
     }
   }
+}
+
+a {
+  color: var(--text-color);
 }
 
 a.link {

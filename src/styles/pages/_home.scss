@@ -1,0 +1,5 @@
+#page-layout[data-page="home"] {
+  .audio-player {
+    @extend %full-gradient-animated;
+  }
+}

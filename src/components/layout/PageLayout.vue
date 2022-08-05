@@ -4,7 +4,7 @@ import PageHeader from '@/components/layout/PageHeader.vue'
 </script>
 
 <template>
-  <div id="page">
+  <div id="page-layout">
     <PageHeader />
 
     <main id="page-content">
