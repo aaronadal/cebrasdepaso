@@ -76,7 +76,7 @@
 
 @media (max-width: 1000px) {
   :root {
-    --card-max-width: calc(100% - 4rem);
+    --card-max-width: 100%;
     --card-grid-columns: 1fr;
     --card-grid-rows: auto auto auto;
     --card-grid-areas: 'thumbnail' 'title' 'content';
@@ -86,5 +86,19 @@
     .thumbnail {
       margin-bottom: 2rem;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    > .inner {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --card-thumbnail-size: 225px;
   }
 }

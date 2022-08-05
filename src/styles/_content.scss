@@ -1,3 +1,19 @@
+#page-header > .inner,
+#page-footer > .inner,
+#page-content {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 500px) {
+  #page-header > .inner,
+  #page-footer > .inner,
+  #page-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 #page-content {
   margin: 5rem 0;
 

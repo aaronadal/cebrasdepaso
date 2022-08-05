@@ -167,8 +167,8 @@ body,
 @media (max-width: 860px) {
   #page-header,
   #page-footer {
-    --header-max-width: calc(100% - 2rem);
-    --footer-max-width: calc(100% - 2rem);
+    --header-max-width: 100%;
+    --footer-max-width: 100%;
   }
 }
 
