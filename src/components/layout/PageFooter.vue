@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Icon from '@/components/Icon.vue'
+import { CONTACT_EMAIL } from '@/config'
 </script>
 
 <template>
@@ -7,11 +9,27 @@
       <div class="container">
         <div class="info">
           <div>
-            CEBRAS DE PASO
+            <h2>¡Escúchanos!</h2>
+            <div>En tu plataforma favorita</div>
+            <div class="icon-items">
+              <Icon class="icon-item icon" weight="light" icon="spotify-logo" />
+              <Icon class="icon-item icon" weight="light" icon="google-podcasts-logo" />
+              <Icon class="icon-item icon" weight="light" icon="apple-podcasts-logo" />
+              <Icon class="icon-item icon" weight="light" icon="rss" />
+              <Icon class="icon-item icon" weight="light" icon="globe" />
+            </div>
           </div>
-          <address>
-            Información de contacto.
-          </address>
+          <div class="separator" />
+          <div>
+            <h2>¡Hablemos!</h2>
+            <address><a :href="`mailto:${CONTACT_EMAIL}`">{{ CONTACT_EMAIL }}</a></address>
+            <div class="icon-items">
+              <Icon class="icon-item icon" weight="light" icon="facebook-logo" />
+              <Icon class="icon-item icon" weight="light" icon="instagram-logo" />
+              <Icon class="icon-item icon" weight="light" icon="twitter-logo" />
+              <Icon class="icon-item icon" weight="light" icon="tiktok-logo" />
+            </div>
+          </div>
         </div>
         <nav class="legal-links">
           <div>

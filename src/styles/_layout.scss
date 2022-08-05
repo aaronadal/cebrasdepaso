@@ -20,7 +20,8 @@ body,
     @extend %full-gradient-animated;
 
     --border-style: solid 3px var(--text-color);
-    --xxxxer-max-width: 1200px;
+    --header-max-width: 1200px;
+    --footer-max-width: 800px;
 
     > .inner {
       padding: 2rem 0 1rem;
@@ -29,7 +30,7 @@ body,
         height: 100%;
         display: grid;
         gap: 2rem 0;
-        max-width: var(--xxxxer-max-width);
+        max-width: var(--header-max-width);
         margin: 0 auto;
       }
     }
@@ -66,6 +67,47 @@ body,
       > .container {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr min-content;
+
+        max-width: var(--footer-max-width);
+      }
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      grid-template-rows: auto;
+
+      > div {
+        &:nth-child(1) {
+          text-align: left;
+
+          .icon-items {
+            justify-content: start;
+          }
+        }
+
+        &:nth-child(2) {
+          background: var(--text-color);
+        }
+
+        &:nth-child(3) {
+          text-align: right;
+
+          .icon-items {
+            justify-content: end;
+          }
+        }
+      }
+
+      h2 {
+        margin-bottom: .5rem;
+      }
+
+      .icon-items {
+        margin-top: .5rem;
+        font-size: 1.5rem;
+        display: flex;
+        gap: .5rem;
       }
     }
 
@@ -111,27 +153,49 @@ body,
 @media (max-width: 1350px) {
   #page-header,
   #page-footer {
-    --xxxxer-max-width: 1000px;
+    --header-max-width: 1000px;
   }
 }
 
 @media (max-width: 1150px) {
   #page-header,
   #page-footer {
-    --xxxxer-max-width: 800px;
+    --header-max-width: 800px;
   }
 }
 
 @media (max-width: 860px) {
   #page-header,
   #page-footer {
-    --xxxxer-max-width: calc(100% - 2rem);
+    --header-max-width: calc(100% - 2rem);
+    --footer-max-width: calc(100% - 2rem);
   }
 }
 
 @media (max-width: 600px) {
   #page-footer {
     text-align: center;
+
+    .info {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 2rem auto;
+
+      > div {
+        &:nth-child(1),
+        &:nth-child(3) {
+          text-align: center;
+
+          .icon-items {
+            justify-content: center;
+          }
+        }
+
+        &:nth-child(2) {
+          background: none;
+        }
+      }
+    }
+      
 
     .legal-links {
       flex-direction: column;
