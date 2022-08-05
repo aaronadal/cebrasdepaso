@@ -17,7 +17,7 @@
   }
 
   > .inner {
-    margin: -1rem;
+    margin: 0;
     padding: 1rem;
 
     border: solid 3px transparent;
@@ -85,14 +85,6 @@
   .card {
     .thumbnail {
       margin-bottom: 2rem;
-    }
-  }
-}
-
-@media (max-width: 500px) {
-  .card {
-    > .inner {
-      margin: 0;
     }
   }
 }
