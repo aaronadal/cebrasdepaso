@@ -47,7 +47,7 @@ import LaiaAvatar from '@/assets/placeholder-laia.png'
         casi nunca llegamos a profundizar lo suficiente.</p>
       <p>Grabar un pódcast es la excusa perfecta para charlar sobre una temática concreta durante
         un tiempo suficiente y alcanzar cierto grado de profundidad. Y, como punto a favor adicional,
-        queda grabado para volver a escucharnos en el futuro. ¡Si es que todo son ventajas!</p>
+        queda grabado para que podamos volver a escucharnos en el futuro. ¡Si es que todo son ventajas!</p>
       <p>Además, tenemos la certeza de que sois muchísima más gente con intereses similares a los nuestros
         ahí fuera en la vasta infinidad del Internet y, oye, nos parece una magnífica idea poder conoceros.</p>
     </section>
