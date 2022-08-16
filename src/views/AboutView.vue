@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import AudioPlayer from '@/components/AudioPlayer.vue'
+import TeamMember from '@/components/TeamMember.vue'
 import Cebra from '@/assets/cebra.mp3'
+import AaronAvatar from '@/assets/placeholder-aaron.png'
+import LaiaAvatar from '@/assets/placeholder-laia.png'
 </script>
 
 <template>
@@ -46,6 +49,23 @@ import Cebra from '@/assets/cebra.mp3'
     </section>
     <section class="container">
       <h2>¿Quiénes conforman la manada?</h2>
+      <div class="team">
+        <TeamMember :avatar="AaronAvatar" name="Aarón Nadal">
+          <p><b>Desarrollador, diseñador y, en ocasiones, tremendamente disperso.</b></p>
+          <p>Le encanta el olor que se produce al abrir un libro por primera vez, la luz al incidir
+            sobre las cosas, la luna y las duchas de agua fría en días de calor.</p>
+          <p>En cambio, le disgustan los ambientes ruidosos, los días de viento y
+            las cosas que se quedan a mitad hacer.</p>
+        </TeamMember>
+        <TeamMember :avatar="LaiaAvatar" name="Laia López">
+          <p><b>Teacher a tiempo completo (excepto en verano) y cabecita loca.</b></p>
+          <p>Le encanta fijarse en los detalles que nadie más ve, las sombras y los reflejos, el mar
+            y el ronroneo de su gata cuando ambas se quedan dormidas en el sofá.</p>
+          <p>En cambio, le disgustan las personas que no son lo que parecen, lo superficial
+            y las cosas que no están en su lugar.
+          </p>
+        </TeamMember>
+      </div>
     </section>
   </div>
 </template>

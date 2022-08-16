@@ -16,7 +16,6 @@ import { CONTACT_EMAIL } from '@/config'
               <Icon class="icon-item icon" weight="light" icon="google-podcasts-logo" />
               <Icon class="icon-item icon" weight="light" icon="apple-podcasts-logo" />
               <Icon class="icon-item icon" weight="light" icon="rss" />
-              <Icon class="icon-item icon" weight="light" icon="globe" />
             </div>
           </div>
           <div class="separator" />
