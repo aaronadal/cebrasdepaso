@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -34,7 +35,22 @@ const router = createRouter({
   routes,
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' }
+      if (from.name !== 'home') {
+        return { el: to.hash, behavior: 'smooth' }
+      }
+
+      return new Promise((resolve) => {
+        window.scrollTo({ top: 0 })
+
+        setTimeout(() => {
+          const id = to.hash.substring(1)
+          const element = document.getElementById(id)
+
+          nextTick(() => {
+            resolve({ top: element?.offsetTop || 0, behavior: 'smooth' })
+          })
+        }, 700)
+      })
     }
 
     if (savedPosition) {
