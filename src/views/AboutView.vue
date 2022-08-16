@@ -19,7 +19,8 @@ import LaiaAvatar from '@/assets/placeholder-laia.png'
       <p>Bueno, pues muy sencillo: lo de "CEBRAS" es porque nos gusta rayarnos la cabeza. Y todos
         sabemos que, si algún animal se caracteriza por sus rayas, este es la cebra. Además,
         ¡las cebras molan!</p>
-      <p>Por cierto, ¿sabías que este es el sonido que hacen las cebras? (Igualito a nosotros, ¿a que sí?)</p>
+      <p>Por cierto, ¿sabías que este es el sonido que hacen las cebras? (Igualito a nosotros, ¿a que sí?)
+        ¡Si es que no podríamos haber elegido un nombre mejor!</p>
 
       <AudioPlayer
           :url="Cebra"
@@ -33,8 +34,10 @@ import LaiaAvatar from '@/assets/placeholder-laia.png'
       <p>Lo de "DE PASO" es un poco más complejo. La versión corta (y que, probablemente, se aproxima
         más a la realidad) es que somos unos adictos a los juegos de palabras. La versión oficial,
         por su parte, dice que es porque somos unos nómadas del intelecto (o unos dispersos de manual,
-        en términos menos llamativos). No nos centramos en una única temática, sino que vamos "pasando"
-        de la una a la otra sin detenernos demasiado en cada una de ellas.</p>
+        en términos de andar por casa): no nos centramos en una única temática, sino que vamos "pasando"
+        de la una a la otra sin detenernos demasiado. Por último, está la versión antropológica y existencial,
+        que dice todos estamos aquí de paso, algún día nosotros no estaremos y serán otras CEBRAS las que ocupen
+        nuestro lugar. Puedes quedarte con la que más te guste de las tres.</p>
     </section>
     <section class="container">
       <h2>¿Por qué un pódcast?</h2>
@@ -43,9 +46,10 @@ import LaiaAvatar from '@/assets/placeholder-laia.png'
         que, unas veces porque no tenemos tiempo y otras porque divagamos y nos pasamos de CEBRAS,
         casi nunca llegamos a profundizar lo suficiente.</p>
       <p>Grabar un pódcast es la excusa perfecta para charlar sobre una temática concreta durante
-        un tiempo suficiente y alcanzar cierto grado de profundidad.</p>
-      <p>Además, tenemos la certeza de que sois mucha más gente con intereses similares a los nuestros
-        ahí fuera en la infinidad del Internet y, oye, nos parece una buena idea poder conoceros.</p>
+        un tiempo suficiente y alcanzar cierto grado de profundidad. Y, como punto a favor adicional,
+        queda grabado para volver a escucharnos en el futuro. ¡Si es que todo son ventajas!</p>
+      <p>Además, tenemos la certeza de que sois muchísima más gente con intereses similares a los nuestros
+        ahí fuera en la vasta infinidad del Internet y, oye, nos parece una magnífica idea poder conoceros.</p>
     </section>
     <section class="container">
       <h2>¿Quiénes conforman la manada?</h2>

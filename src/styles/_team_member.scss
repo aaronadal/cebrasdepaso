@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 0;
   gap: 2rem;
 
@@ -31,7 +31,7 @@
     }
 
     .avatar {
-      align-self: start;
+      align-self: flex-start;
       width: 100%;
       grid-area: avatar;
     }
