@@ -6,7 +6,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <PageLayout :data-page="route.name || 'not-found'">
+  <PageLayout :data-page="route.name || 'notfound'">
     <router-view v-slot="{ Component }">
       <transition name="fade">
         <keep-alive>
