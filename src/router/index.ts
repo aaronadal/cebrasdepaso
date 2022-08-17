@@ -21,12 +21,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/generador-de-caratulas',
     name: 'generator',
-    component: () => import(/* webpackChunkName: "about" */ '../views/GeneratorView.vue')
+    component: () => import(/* webpackChunkName: "generator" */ '../views/GeneratorView.vue')
   },
   {
     path: '/aviso-legal',
     name: 'legal',
-    component: () => import(/* webpackChunkName: "about" */ '../views/LegalView.vue')
+    component: () => import(/* webpackChunkName: "legal" */ '../views/LegalView.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notfound',
+    component: () => import(/* webpackChunkName: "notfound" */ '../views/NotFoundView.vue')
   }
 ]
 

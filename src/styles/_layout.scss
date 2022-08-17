@@ -1,7 +1,6 @@
 html,
 body,
-#app,
-#page-layout {
+#app {
     height: 100%;
 }
 
@@ -9,6 +8,9 @@ body,
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+
+  color: var(--text-color);
 }
 
 #page-header,

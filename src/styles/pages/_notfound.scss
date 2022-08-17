@@ -1,0 +1,115 @@
+#page-layout[data-page="notfound"] {
+  --color-depth-1: #090101;
+  --color-depth-2: #150202;
+  --color-depth-3: #491E0F;
+  --color-depth-4: #6C321E;
+  --color-depth-5: #753823;
+  --color-depth-6: #A85432;
+  --color-depth-7: #BC5C36;
+  --color-depth-8: #D67540;
+  --color-depth-9: #EA934C;
+  --color-depth-10: #FFE67D;
+
+  --text-color: var(--color-depth-3);
+
+  background: radial-gradient(var(--color-depth-10) 0%, var(--color-depth-9) 55%);
+
+  #page-header,
+  #page-header > .inner {
+    background: none;
+    border-color: transparent;
+
+    .logo {
+      > .bars {
+        > .bar {
+          background-image: url(@/assets/cebra-safari.svg);
+        }
+      }
+    }
+  }
+
+  #page-footer,
+  #page-footer > .inner {
+    background: var(--color-depth-1);
+    border-color: var(--color-depth-1);
+
+    color: var(--color-depth-8);
+
+    a {
+      color: var(--color-depth-9);
+    }
+  }
+
+  #page-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  .svg-wrapper {
+    margin-top: 2rem;
+    height: calc(100%);
+    width: calc(100%);
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .text {
+      font-size: 1.5rem;
+      max-width: 450px;
+      margin: 0 2rem;
+      text-align: center;
+
+      h1 {
+        margin-bottom: 1rem;
+      }
+    }
+
+    svg {
+      margin: -2px;
+      display: block;
+
+      .depth-1 {
+        fill: var(--color-depth-1)
+      }
+
+      .depth-2 {
+        fill: var(--color-depth-2)
+      }
+
+      .depth-3 {
+        fill: var(--color-depth-3)
+      }
+
+      .depth-4 {
+        fill: var(--color-depth-4)
+      }
+
+      .depth-5 {
+        fill: var(--color-depth-5)
+      }
+
+      .depth-6 {
+        fill: var(--color-depth-6)
+      }
+
+      .depth-7 {
+        fill: var(--color-depth-7)
+      }
+
+      .depth-8 {
+        fill: var(--color-depth-8)
+      }
+
+      .depth-9 {
+        fill: var(--color-depth-9)
+      }
+
+      .depth-10 {
+        fill: var(--color-depth-10)
+      }
+    }
+  }
+}
