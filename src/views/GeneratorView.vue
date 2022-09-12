@@ -12,6 +12,17 @@ const numberInSeason = ref(0)
 const background = computed(() => `var(--gradient-${number.value === 0 ? 'gray' : ((number.value - 1) % 8) + 1})`)
 
 const targetRef = ref()
+
+const showFullsize = ref(false)
+
+const scale = computed(() => {
+  const target = targetRef.value
+  if (!target) {
+    return 1
+  }
+
+  return 3000 / parseInt(getComputedStyle(target).getPropertyValue('--card-thumbnail-size'))
+})
 </script>
 
 <template>
@@ -43,7 +54,22 @@ const targetRef = ref()
       </label>
     </section>
     <section class="container" style="width: var(--card-thumbnail-size); padding: 0;">
-      <div ref="targetRef">
+      <EpisodeThumbnail
+          :background="background"
+          :type="type"
+          :title="title.replace(/\r?\n/g, '<br />')"
+          :number="number"
+          :season="season"
+          :numberInSeason="numberInSeason"
+          is-title-html
+        />
+    </section>
+    <section class="container">
+      <button @click="showFullsize = true">Ver a tamaño completo</button>
+    </section>
+    <section class="modal" style="width: 3000px; padding: 0; position: absolute;" v-if="showFullsize">
+      <div class="close"><span @click="showFullsize = false">&times;</span></div>
+      <div ref="targetRef" :style="`width: var(--card-thumbnail-size); transform: scale(${scale}); transform-origin: 0 0;`">
         <EpisodeThumbnail
             :background="background"
             :type="type"
@@ -53,7 +79,7 @@ const targetRef = ref()
             :numberInSeason="numberInSeason"
             is-title-html
           />
-        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -88,5 +114,29 @@ textarea {
   border-radius: .5rem;
   font-family: var(--font-family-mono);
   font-weight: var(--font-weight-mono);
+}
+
+.modal {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+
+  .close {
+    background: white;
+    z-index: 10;
+
+    span {
+      cursor: pointer;
+      display: inline-block;
+      padding: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  .episode-thumbnail {
+    border-radius: 0;
+  }
 }
 </style>
