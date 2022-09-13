@@ -4,7 +4,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import { ref, toRefs } from '@vue/reactivity'
 import { computed, onMounted, onUnmounted } from '@vue/runtime-core'
 
-declare interface Props {
+interface Props {
     url: string,
     type: string
     title: string,

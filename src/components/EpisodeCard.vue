@@ -6,7 +6,7 @@ import { Episode, Podcast } from '@/rss'
 import { toRefs } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
 
-declare interface Props {
+interface Props {
     podcast: Podcast;
     episode: Episode;
 }

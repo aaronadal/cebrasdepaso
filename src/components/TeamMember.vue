@@ -1,5 +1,5 @@
 <script setup lang="ts">
-declare interface Props {
+interface Props {
     avatar: string,
     name: string,
 }

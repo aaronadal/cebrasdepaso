@@ -2,7 +2,7 @@
 import { toRefs } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
 
-declare interface Props {
+interface Props {
     background: string;
     type: 'full'|'bonus'|'trailer';
     title: string,

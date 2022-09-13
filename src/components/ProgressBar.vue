@@ -10,7 +10,7 @@ const emit = defineEmits<{
   (e: 'dragend'): void
 }>()
 
-declare interface Props {
+interface Props {
     modelValue?: number,
     max?: number
 }

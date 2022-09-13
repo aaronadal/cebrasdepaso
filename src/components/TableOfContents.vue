@@ -2,11 +2,11 @@
 import { ref, toRefs } from '@vue/reactivity'
 import { watch } from '@vue/runtime-core'
 
-declare interface Props {
+interface Props {
   target: HTMLElement | undefined;
 }
 
-declare interface TocItem {
+interface TocItem {
     title: string;
     anchor: string;
 }

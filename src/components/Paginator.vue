@@ -9,7 +9,7 @@ const emit = defineEmits<{
   (e: 'paginate', page: number, items: unknown[]): void,
 }>()
 
-declare interface Props {
+interface Props {
     items: unknown[],
     itemsPerPage: number,
 }
