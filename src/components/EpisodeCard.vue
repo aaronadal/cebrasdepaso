@@ -15,7 +15,6 @@ interface Props {
 defineProps<Props>()
 
 const episodeRef = ref()
-
 </script>
 
 <template>
