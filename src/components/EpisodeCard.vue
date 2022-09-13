@@ -3,7 +3,7 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
 import Card from '@/components/Card.vue'
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
 import { Episode, Podcast } from '@/rss'
-import { toRefs } from '@vue/reactivity'
+import { ref, toRefs } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
 
 interface Props {
@@ -12,18 +12,16 @@ interface Props {
 }
 
 // eslint-disable-next-line no-undef
-const props = defineProps<Props>()
+defineProps<Props>()
 
-const { episode } = toRefs(props)
-
-const background = computed(() => `var(--gradient-${episode.value.number === 0 ? 'gray' : ((episode.value.number - 1) % 8) + 1})`)
+const episodeRef = ref()
 </script>
 
 <template>
     <Card class="episode-card" :title="episode.title">
       <template #thumbnail>
         <EpisodeThumbnail
-          :background="background"
+          ref="episodeRef"
           :type="episode.type"
           :title="episode.title"
           :number="episode.number"
@@ -36,7 +34,7 @@ const background = computed(() => `var(--gradient-${episode.value.number === 0 ?
         <div class="summary" v-html="episode.summary" />
 
         <AudioPlayer
-          :style="{background}"
+          :style="{background: episodeRef?.background}"
           :url="episode.mediaUrl"
           :type="episode.mediaType"
           :title="episode.title"
