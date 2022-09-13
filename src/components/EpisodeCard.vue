@@ -12,11 +12,7 @@ interface Props {
 }
 
 // eslint-disable-next-line no-undef
-const props = defineProps<Props>()
-
-const { episode } = toRefs(props)
-
-const background = computed(() => `var(--gradient-${episode.value.number === 0 ? 'gray' : ((episode.value.number - 1) % 8) + 1})`)
+defineProps<Props>()
 </script>
 
 <template>

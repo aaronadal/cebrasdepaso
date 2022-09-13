@@ -9,8 +9,6 @@ const number = ref(0)
 const season = ref(0)
 const numberInSeason = ref(0)
 
-const background = computed(() => `var(--gradient-${number.value === 0 ? 'gray' : ((number.value - 1) % 8) + 1})`)
-
 const targetRef = ref()
 
 const showFullsize = ref(false)
@@ -55,7 +53,6 @@ const scale = computed(() => {
     </section>
     <section class="container" style="width: var(--card-thumbnail-size); padding: 0;">
       <EpisodeThumbnail
-          :background="background"
           :type="type"
           :title="title.replace(/\r?\n/g, '<br />')"
           :number="number"
@@ -71,7 +68,6 @@ const scale = computed(() => {
       <div class="close"><span @click="showFullsize = false">&times;</span></div>
       <div ref="targetRef" :style="`width: var(--card-thumbnail-size); transform: scale(${scale}); transform-origin: 0 0;`">
         <EpisodeThumbnail
-            :background="background"
             :type="type"
             :title="title.replace(/\r?\n/g, '<br />')"
             :number="number"
