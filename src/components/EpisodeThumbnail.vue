@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { toRefs } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
+import EpisodeNumber from '@/components/EpisodeNumber.vue'
 
 interface Props {
     type: 'full'|'bonus'|'trailer';
@@ -28,18 +29,6 @@ const episodeType = computed(() => {
   }
 
   return 'Episodio'
-})
-
-const episodeSymbol = computed(() => {
-  if (type.value === 'bonus') {
-    return '*'
-  }
-
-  if (type.value === 'trailer') {
-    return '»'
-  }
-
-  return '#'
 })
 
 const background = computed(() => {
@@ -71,9 +60,7 @@ defineExpose({
           {{ season }}x{{ `${numberInSeason}`.padStart(2, '0') }}
         </template>
       </span>
-      <span class="number">
-        {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
-      </span>
+      <EpisodeNumber :number="number" :type="type" />
       <span v-if="isTitleHtml" class="text" v-html="title"></span>
       <span v-else class="text">{{ title }}</span>
   </div>
