@@ -7,14 +7,20 @@
   gap: 2rem;
 
   .avatar {
-    width: 200px;
+    width: 250px;
     max-width: 100%;
-    aspect-ratio: 1;
-    border-radius: 50%;
+    border-radius: .5rem;
+    transition: transform cubic-bezier(0.215, 0.610, 0.355, 1) .15s;
   }
-  
+
   .name {
     text-transform: uppercase;
+  }
+
+  &:hover {
+    .avatar {
+      transform: scale(1.1);
+    }
   }
 }
 

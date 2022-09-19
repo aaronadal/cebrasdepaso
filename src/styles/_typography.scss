@@ -3,7 +3,7 @@
 :root {
   --font-family-logo: Oswald, sans-serif;
   --font-weight-logo: 400;
-  
+
   --font-family-mono: Inconsolata, monospace;
   --font-weight-mono: 400;
 
@@ -50,7 +50,7 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
   @extend %typography-heading;
-  
+
   line-height: 1.15;
   margin-bottom: 0.25em;
 }
@@ -87,6 +87,7 @@ b {
     transition: right cubic-bezier(0.215, 0.610, 0.355, 1) .15s;
   }
 
+  &.router-link-active,
   &:hover {
     &::after {
       right: 0;

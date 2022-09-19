@@ -64,7 +64,7 @@ body,
 
 #page-footer {
     border-top: var(--border-style);
-    
+
     > .inner {
       > .container {
         grid-template-columns: 1fr;
@@ -124,7 +124,7 @@ body,
          a {
             @extend %link;
             font-weight: var(--font-weight-text);
-            
+
             &::after {
                 height: 2px;
             }
@@ -133,23 +133,23 @@ body,
 }
 
 #main-menu {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 1em;
-    max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 1em;
+  max-width: 100%;
 
-    .link {
-      @extend %typography-heading;
-      @extend %link;
-      display: inline-block;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: inherit;
+  .link {
+    @extend %typography-heading;
+    @extend %link;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
 
-      &::after {
-        bottom: -4px;
-      }
+    &::after {
+      bottom: -4px;
     }
+  }
 }
 
 @media (max-width: 1350px) {
@@ -197,7 +197,7 @@ body,
         }
       }
     }
-      
+
 
     .legal-links {
       flex-direction: column;

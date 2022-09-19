@@ -5,7 +5,7 @@
                   :to="{name: 'home'}"
                   class="link"
                   @click.prevent>
-          Inicio
+          Nosotros
       </router-link>
     </div>
     <div class="item">
@@ -17,11 +17,11 @@
       </router-link>
     </div>
     <div class="item">
-      <router-link href="/nosotros"
-                  :to="{name: 'about'}"
+      <router-link href="/contacto"
+                  :to="{name: 'contact'}"
                   class="link"
                   @click.prevent>
-          Cebras
+          Contacto
       </router-link>
     </div>
   </header>
