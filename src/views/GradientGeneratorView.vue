@@ -68,7 +68,7 @@ function download() {
     <section class="container" style="width: var(--card-thumbnail-size); padding: 0">
       <div ref="targetRef" :style="{
         width: '100%',
-        aspectRatio: width/height,
+        aspectRatio: `${width/height}`,
         background: `var(${gradient})`,
       }" />
     </section>
