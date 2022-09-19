@@ -12,7 +12,9 @@ import {PODCAST_INTRODUCTION_EPISODE} from "@/config";
       <h1>Esto es CEBRAS DE PASO</h1>
       <p>El pódcast donde hablamos —con poco criterio, pero mucha voluntad— de las cosas de la vida. Si todavía
         no nos conoces, aquí tienes una breve introducción:</p>
+    </section>
 
+    <section>
       <EpisodeCard
         :episode="PODCAST_INTRODUCTION_EPISODE"
         class="bordered"
