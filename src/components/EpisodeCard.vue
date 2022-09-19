@@ -8,17 +8,19 @@ import {ref} from '@vue/reactivity'
 interface Props {
     podcast?: Podcast|null;
     episode: Episode;
+    fullBackground?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
   podcast: null,
+  fullBackground: false,
 })
 
 const episodeRef = ref()
 </script>
 
 <template>
-    <Card class="episode-card" :title="episode.title.replace('<br/>', ' ')">
+    <Card class="episode-card" :class="{'full-background': fullBackground}" :title="episode.title.replace('<br/>', ' ')">
       <template #thumbnail>
         <EpisodeThumbnail
           ref="episodeRef"
@@ -28,6 +30,7 @@ const episodeRef = ref()
           :season="episode.season"
           :numberInSeason="episode.numberInSeason"
           is-title-html
+          :full-background="fullBackground"
         />
       </template>
 
@@ -35,7 +38,7 @@ const episodeRef = ref()
         <div class="summary" v-html="episode.summary" />
 
         <AudioPlayer
-          :style="{background: episodeRef?.background}"
+          :style="{backgroundImage: episodeRef?.background}"
           :url="episode.mediaUrl"
           :type="episode.mediaType"
           :title="episode.title"

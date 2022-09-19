@@ -19,6 +19,7 @@ import {PODCAST_INTRODUCTION_EPISODE} from "@/config";
         :episode="PODCAST_INTRODUCTION_EPISODE"
         class="bordered"
         style="margin-top: 2rem;"
+        full-background
       />
     </section>
 

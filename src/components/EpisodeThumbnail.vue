@@ -11,15 +11,16 @@ interface Props {
     numberInSeason: number,
     isTitleHtml?: boolean
     disableAnimations?: boolean;
+    fullBackground?: boolean;
 }
 
-// eslint-disable-next-line no-undef
 const props = withDefaults(defineProps<Props>(), {
   isTitleHtml: false,
   disableAnimations: false,
+  fullBackground: false,
 })
 
-const { type, number } = toRefs(props)
+const { type, number, fullBackground } = toRefs(props)
 
 const episodeType = computed(() => {
   if (type.value === 'bonus') {
@@ -34,6 +35,10 @@ const episodeType = computed(() => {
 })
 
 const background = computed(() => {
+  if(fullBackground.value) {
+    return 'var(--full-gradient)';
+  }
+
   if(type.value === 'trailer') {
     return 'var(--gradient-gray)';
   }
@@ -58,7 +63,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="element" class="episode-thumbnail" :style="{background}">
+  <div ref="element" class="episode-thumbnail" :style="{backgroundImage: background}">
       <span class="season">
         {{ episodeType }}
         <template v-if="type !== 'trailer'">
