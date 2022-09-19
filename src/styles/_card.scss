@@ -22,7 +22,7 @@
 
     border: solid 3px transparent;
     border-radius: .5rem;
-  
+
     display: grid;
     grid-template-columns: var(--card-grid-columns);
     grid-template-rows: var(--card-grid-rows);
@@ -54,7 +54,7 @@
     }
   }
 
-  &:hover {
+  &.bordered {
     > .inner {
       border-color: var(--text-color);
     }
@@ -81,7 +81,7 @@
     --card-grid-rows: auto auto auto;
     --card-grid-areas: 'thumbnail' 'title' 'content';
   }
-  
+
   .card {
     .thumbnail {
       margin-bottom: 2rem;

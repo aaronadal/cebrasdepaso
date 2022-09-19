@@ -78,6 +78,7 @@ body,
       display: grid;
       grid-template-columns: 1fr 1px 1fr;
       grid-template-rows: auto;
+      gap: 1rem;
 
       > div {
         &:nth-child(1) {
@@ -108,8 +109,15 @@ body,
       .icon-items {
         margin-top: .5rem;
         font-size: 1.75rem;
-        display: flex;
+        display: inline-flex;
+        flex-wrap: wrap;
         gap: 1rem;
+        max-width: 10rem;
+
+        a {
+          @extend %link;
+          display: block;
+        }
       }
     }
 

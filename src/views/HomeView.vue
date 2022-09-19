@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import AudioPlayer from '@/components/AudioPlayer.vue'
-import IntroCebras from '@/assets/intro-cebras.mp3'
 import TeamMember from "@/components/TeamMember.vue";
 import Cebra from '@/assets/cebra.mp3'
+import EpisodeCard from "@/components/EpisodeCard.vue";
+import {PODCAST_INTRODUCTION_EPISODE} from "@/config";
 </script>
 
 <template>
@@ -12,14 +13,11 @@ import Cebra from '@/assets/cebra.mp3'
       <p>El pódcast donde hablamos —con poco criterio, pero mucha voluntad— de las cosas de la vida. Si todavía
         no nos conoces, aquí tienes una breve introducción:</p>
 
-      <AudioPlayer
-          :url="IntroCebras"
-          type="audio/mpeg"
-          title="Breve introducción a CEBRAS DE PASO"
-          artist=""
-          album=""
-          :artworks="[]"
-          is-media-session-disabled />
+      <EpisodeCard
+        :episode="PODCAST_INTRODUCTION_EPISODE"
+        class="bordered"
+        style="margin-top: 2rem;"
+      />
     </section>
 
     <section class="container">

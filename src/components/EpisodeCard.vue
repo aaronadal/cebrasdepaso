@@ -2,17 +2,17 @@
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import Card from '@/components/Card.vue'
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
-import { Episode, Podcast } from '@/rss'
-import { ref, toRefs } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import {Episode, Podcast} from '@/rss'
+import {ref} from '@vue/reactivity'
 
 interface Props {
-    podcast: Podcast;
+    podcast?: Podcast|null;
     episode: Episode;
 }
 
-// eslint-disable-next-line no-undef
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  podcast: null,
+})
 
 const episodeRef = ref()
 </script>
@@ -27,6 +27,7 @@ const episodeRef = ref()
           :number="episode.number"
           :season="episode.season"
           :numberInSeason="episode.numberInSeason"
+          is-title-html
         />
       </template>
 
@@ -38,13 +39,14 @@ const episodeRef = ref()
           :url="episode.mediaUrl"
           :type="episode.mediaType"
           :title="episode.title"
-          :artist="podcast.author"
-          :album="podcast.title"
-          :artworks="[{
+          :is-media-session-disabled="podcast === null"
+          :artist="podcast === null ? 'Cebras de paso' : podcast.author"
+          :album="podcast === null ? 'Cebras de paso' : podcast.title"
+          :artworks="episode.imageSrc ? [{
             src: episode.imageSrc,
             sizes: `${episode.imageWidth}x${episode.imageHeight}`,
             type: episode.imageType
-          }]" />
+          }] : []" />
       </template>
     </Card>
 </template>

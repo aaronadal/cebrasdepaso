@@ -63,7 +63,7 @@ function download() {
         <span>Alto</span>
         <input type="number" min="1" max="8192" v-model="height" />
       </label>
-      <button @click="toggle">Alternar ancho y alto</button>
+      <a class="button" @click="toggle" style="margin: .5rem 0 0;">Alternar ancho y alto</a>
     </section>
     <section class="container" style="width: var(--card-thumbnail-size); padding: 0">
       <div ref="targetRef" :style="{
@@ -72,8 +72,8 @@ function download() {
         background: `var(${gradient})`,
       }" />
     </section>
-    <section class="container">
-      <button @click="download">Descargar</button>
+    <section class="container" style="text-align:center;">
+      <a class="button" @click="download">Descargar</a>
     </section>
   </div>
 </template>

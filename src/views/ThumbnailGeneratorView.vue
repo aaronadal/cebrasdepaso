@@ -72,8 +72,8 @@ function download() {
           disable-animations
         />
     </section>
-    <section class="container">
-      <button @click="download">Descargar</button>
+    <section class="container" style="text-align:center;">
+      <a class="button" @click="download">Descargar</a>
     </section>
   </div>
 </template>

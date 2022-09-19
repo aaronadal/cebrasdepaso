@@ -1,21 +1,21 @@
 export declare interface Episode {
-    guid: string;
-    date: Date;
+    guid?: string;
+    date?: Date;
     title: string;
     summary: string;
     type: 'full'|'bonus'|'trailer';
     number: number;
     season: number;
     numberInSeason: number;
-    duration: number;
-    url: string;
+    duration?: number;
+    url?: string;
     mediaUrl: string;
     mediaType: string;
-    embedUrl: string;
-    imageSrc: string;
-    imageType: string;
-    imageWidth: number;
-    imageHeight: number;
+    embedUrl?: string;
+    imageSrc?: string;
+    imageType?: string;
+    imageWidth?: number;
+    imageHeight?: number;
 }
 
 export declare interface Podcast {
