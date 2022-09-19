@@ -2,6 +2,7 @@
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
 import { ref } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
+import html2canvas from "html2canvas";
 
 const type = ref<"full" | "bonus" | "trailer">('full')
 const title = ref('')
@@ -11,16 +12,24 @@ const numberInSeason = ref(0)
 
 const targetRef = ref()
 
-const showFullsize = ref(false)
-
 const scale = computed(() => {
   const target = targetRef.value
   if (!target) {
     return 1
   }
 
-  return 3000 / parseInt(getComputedStyle(target).getPropertyValue('--card-thumbnail-size'))
+  return 3000 / parseInt(getComputedStyle(target.element).getPropertyValue('--card-thumbnail-size'))
 })
+
+function download() {
+  html2canvas(targetRef.value.element, {
+    backgroundColor: null,
+    scale: scale.value,
+  })
+      .then((canvas) => {
+        window.location.href = canvas.toDataURL("image/png");
+      });
+}
 </script>
 
 <template>
@@ -36,7 +45,7 @@ const scale = computed(() => {
       </label>
       <label>
         <span>Título</span>
-        <textarea type="text" v-model="title" />
+        <textarea v-model="title" />
       </label>
       <label>
         <span>Número</span>
@@ -53,29 +62,18 @@ const scale = computed(() => {
     </section>
     <section class="container" style="width: var(--card-thumbnail-size); padding: 0;">
       <EpisodeThumbnail
+          ref="targetRef"
           :type="type"
           :title="title.replace(/\r?\n/g, '<br />')"
           :number="number"
           :season="season"
           :numberInSeason="numberInSeason"
           is-title-html
+          disable-animations
         />
     </section>
     <section class="container">
-      <button @click="showFullsize = true">Ver a tamaño completo</button>
-    </section>
-    <section class="modal" style="width: 3000px; padding: 0; position: absolute;" v-if="showFullsize">
-      <div class="close"><span @click="showFullsize = false">&times;</span></div>
-      <div ref="targetRef" :style="`width: var(--card-thumbnail-size); transform: scale(${scale}); transform-origin: 0 0;`">
-        <EpisodeThumbnail
-            :type="type"
-            :title="title.replace(/\r?\n/g, '<br />')"
-            :number="number"
-            :season="season"
-            :numberInSeason="numberInSeason"
-            is-title-html
-          />
-      </div>
+      <button @click="download">Descargar</button>
     </section>
   </div>
 </template>
@@ -110,29 +108,5 @@ textarea {
   border-radius: .5rem;
   font-family: var(--font-family-mono);
   font-weight: var(--font-weight-mono);
-}
-
-.modal {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999999;
-
-  .close {
-    background: white;
-    z-index: 10;
-
-    span {
-      cursor: pointer;
-      display: inline-block;
-      padding: 1rem;
-      font-size: 2rem;
-    }
-  }
-
-  .episode-thumbnail {
-    border-radius: 0;
-  }
 }
 </style>

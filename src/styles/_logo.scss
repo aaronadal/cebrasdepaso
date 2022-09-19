@@ -40,33 +40,5 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
-
-    > .bar {
-      border: solid 2px var(--text-color);
-      display: block;
-      width: 9.09%;
-      height: 100%;
-      // background-color: var(--body-color);
-      background-image: url(@/assets/cebra.svg);
-      background-size: 8rem;
-
-      // animation-play-state: paused !important;
-
-      @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          background-position: 24.6%*$i;
-          animation: zebra-movement-#{$i} 12s linear infinite;
-        }
-      }
-    }
   }
-
-  // @at-root #page-header:hover & {
-  //   > .bars {
-  //     > .bar {
-  //       // background-color: transparent;
-  //       // animation-play-state: running !important;
-  //     }
-  //   }
-  // }
 }

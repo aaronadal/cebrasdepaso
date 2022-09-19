@@ -20,8 +20,13 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/generador-de-caratulas',
-    name: 'generator',
-    component: () => import(/* webpackChunkName: "generator" */ '../views/GeneratorView.vue')
+    name: 'thumbnail-generator',
+    component: () => import(/* webpackChunkName: "thumbnail-generator" */ '../views/ThumbnailGeneratorView.vue')
+  },
+  {
+    path: '/generador-de-degradados',
+    name: 'gradient-generator',
+    component: () => import(/* webpackChunkName: "gradient-generator" */ '../views/GradientGeneratorView.vue')
   },
   {
     path: '/aviso-legal',

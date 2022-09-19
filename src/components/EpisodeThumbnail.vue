@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toRefs } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import {computed, ref} from '@vue/runtime-core'
 import EpisodeNumber from '@/components/EpisodeNumber.vue'
 
 interface Props {
@@ -10,11 +10,13 @@ interface Props {
     season: number,
     numberInSeason: number,
     isTitleHtml?: boolean
+    disableAnimations?: boolean;
 }
 
 // eslint-disable-next-line no-undef
 const props = withDefaults(defineProps<Props>(), {
-  isTitleHtml: false
+  isTitleHtml: false,
+  disableAnimations: false,
 })
 
 const { type, number } = toRefs(props)
@@ -47,20 +49,23 @@ const background = computed(() => {
   return `var(--gradient-${((number.value - 1) % 8) + 1})`
 })
 
+const element = ref();
+
 defineExpose({
+  element,
   background,
 })
 </script>
 
 <template>
-  <div class="episode-thumbnail" :style="{background}">
+  <div ref="element" class="episode-thumbnail" :style="{background}">
       <span class="season">
         {{ episodeType }}
         <template v-if="type !== 'trailer'">
           {{ season }}x{{ `${numberInSeason}`.padStart(2, '0') }}
         </template>
       </span>
-      <EpisodeNumber :number="number" :type="type" />
+      <EpisodeNumber :number="number" :type="type" :disable-animations="disableAnimations" />
       <span v-if="isTitleHtml" class="text" v-html="title"></span>
       <span v-else class="text">{{ title }}</span>
   </div>

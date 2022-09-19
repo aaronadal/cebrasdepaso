@@ -5,10 +5,13 @@ import {computed, ref} from '@vue/runtime-core'
 
 interface Props {
   type: 'full'|'bonus'|'trailer';
-  number: number,
+  number: number;
+  disableAnimations?: boolean;
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  disableAnimations: false,
+})
 const {type} = toRefs(props)
 
 const episodeSymbol = computed(() => {
@@ -48,6 +51,7 @@ const textVerticalPosition = computed(() => viewBoxHeight.value - 4);
         <ZebraPattern x="0" y="0" transform="scale(1.5)" />
         <ZebraPattern x="0" y="0" transform="scale(1.5) translate(138)" />
         <animateTransform
+          v-if="!disableAnimations"
           attributeName="transform"
           attributeType="XML"
           dur="12s"

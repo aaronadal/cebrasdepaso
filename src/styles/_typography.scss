@@ -103,23 +103,3 @@ a.link {
   @extend %typography-text-bold;
   @extend %link;
 }
-
-@keyframes zebra-movement {
-  0%   {background-position: 8rem 0;}
-  100% {background-position: 0 0;}
-}
-
-%zebra {
-  //background-color: var(--body-color);
-  background-image: url(@/assets/cebra.svg);
-  color: transparent;
-  -webkit-text-stroke: 1px var(--text-color);
-  background-clip: text;
-  background-size: 8rem;
-
-  animation: zebra-movement 12s linear infinite;
-}
-
-.zebra {
-  @extend %zebra;
-}
