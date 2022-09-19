@@ -18,7 +18,7 @@ const episodeRef = ref()
 </script>
 
 <template>
-    <Card class="episode-card" :title="episode.title">
+    <Card class="episode-card" :title="episode.title.replace('<br/>', ' ')">
       <template #thumbnail>
         <EpisodeThumbnail
           ref="episodeRef"
