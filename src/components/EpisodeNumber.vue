@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ZebraPattern from '@/components/ZebraPattern.vue'
 import { toRefs } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import {computed, ref} from '@vue/runtime-core'
 
 interface Props {
   type: 'full'|'bonus'|'trailer';
@@ -22,13 +22,23 @@ const episodeSymbol = computed(() => {
 
   return '#'
 })
+
+const viewBoxHeight = ref(0);
+function updateViewBoxHeight() {
+  viewBoxHeight.value = parseInt(getComputedStyle(document.body).getPropertyValue('--episode-thumbnail-number-size'));
+}
+
+window.addEventListener('resize', () => updateViewBoxHeight());
+updateViewBoxHeight();
+
+const textVerticalPosition = computed(() => viewBoxHeight.value - 4);
 </script>
 
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265 125" class="episode-number">
+  <svg xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 265 ${viewBoxHeight}`" class="episode-number">
     <mask :id="`episode-number-${number}`">
       <rect x="0" y="0" width="100" height="100" fill="black" />
-      <text class="title" x="0" y="119" fill="white">
+      <text class="title" x="0" :y="textVerticalPosition" fill="white">
         {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
       </text>
     </mask>
@@ -37,17 +47,17 @@ const episodeSymbol = computed(() => {
       <g>
         <ZebraPattern x="0" y="0" transform="scale(1.5)" />
         <ZebraPattern x="0" y="0" transform="scale(1.5) translate(138)" />
-        <animateTransform 
-          attributeName="transform" 
-          attributeType="XML" 
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
           dur="12s"
-          repeatCount="indefinite" 
-          type="translate" 
-          values="0;-207" 
+          repeatCount="indefinite"
+          type="translate"
+          values="0;-207"
           calcMode="linear" />
       </g>
     </g>
-    <text class="title text-border" x="0" y="119">
+    <text class="title text-border" x="0" :y="textVerticalPosition">
       {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
     </text>
   </svg>
