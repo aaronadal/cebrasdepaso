@@ -45,7 +45,7 @@ const episodeRef = ref()
           :artworks="episode.imageSrc ? [{
             src: episode.imageSrc,
             sizes: `${episode.imageWidth}x${episode.imageHeight}`,
-            type: episode.imageType
+            type: episode?.imageType || 'image/jpg',
           }] : []" />
       </template>
     </Card>
