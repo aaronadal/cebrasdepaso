@@ -19,19 +19,19 @@
 
       &:nth-child(1) {
         .button {
-          background-image: var(--gradient-4);
+          background-image: var(--gradient-1);
         }
       }
 
       &:nth-child(2) {
         .button {
-          background-image: var(--gradient-1);
+          background-image: var(--gradient-7);
         }
       }
 
       &:nth-child(3) {
         .button {
-          background-image: var(--gradient-7);
+          background-image: var(--gradient-4);
         }
       }
     }

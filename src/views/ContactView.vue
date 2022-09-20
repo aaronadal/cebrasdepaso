@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Icon from "@/components/Icon.vue";
-import {CONTACT_EMAIL, INSTAGRAM_URL, TELEGRAM_URL} from "@/config";
+import {CONTACT_EMAIL, INSTAGRAM_URL} from "@/config";
 </script>
 
 <template>
@@ -10,15 +10,10 @@ import {CONTACT_EMAIL, INSTAGRAM_URL, TELEGRAM_URL} from "@/config";
       <p>¿Quieres contarnos algo? ¿Decírnos que nos quieres? ¿Que nos odias, tal vez? ¿Que te gusta el pódcast?
         ¿Quieres hacernos saber que te caemos bien? ¿Que te gustaría ser nuestro amigo? ¿Quieres proponer algún tema?
         ¿Puntualizar alguna cosa que hayamos dicho? ¿Darnos tu opinión?</p>
-      <p>Pues para eso y todo lo que se te ocurra, nos ponemos a tu disposición a través de estos tres canales:</p>
+      <p>Pues para eso y todo lo que se te ocurra, nos ponemos a tu disposición a través de estos dos canales:</p>
     </section>
     <section class="container">
       <div class="contact-channels">
-        <div>
-          <Icon icon="telegram-logo" weight="light" />
-          <p>Abre un chat de Telegram con nosotros y cuéntanos lo que te apetezca. </p>
-          <a class="button" :href="TELEGRAM_URL" target="_blank">Ir a Telegram</a>
-        </div>
         <div>
           <Icon icon="instagram-logo" weight="light" />
           <p>También puedes enviarnos un mensaje a nuestra cuenta de Instagram. </p>

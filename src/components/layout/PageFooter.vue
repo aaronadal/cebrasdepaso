@@ -2,6 +2,7 @@
 import Icon from '@/components/Icon.vue'
 import {
   CONTACT_EMAIL,
+  INSTAGRAM_URL,
   PODCAST_AMAZON_MUSIC_URL,
   PODCAST_APPLE_PODCASTS_URL,
   PODCAST_GOOGLE_PODCASTS_URL,
@@ -97,14 +98,7 @@ const showMoreAudioSources = ref(false);
             <div>Por donde tú quieras</div>
             <div class="icon-items">
               <div>
-                <a href="https://cebrasdepaso.t.me" target="_blank">
-                  <Tooltip message="Por Telegram">
-                    <Icon class="icon-item icon" weight="light" icon="telegram-logo" />
-                  </Tooltip>
-                </a>
-              </div>
-              <div>
-                <a href="https://instagram.com/cebrasdepaso" target="_blank">
+                <a :href="INSTAGRAM_URL" target="_blank">
                   <Tooltip message="Por Instagram">
                     <Icon class="icon-item icon" weight="light" icon="instagram-logo" />
                   </Tooltip>
