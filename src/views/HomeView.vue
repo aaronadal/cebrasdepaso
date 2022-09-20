@@ -66,7 +66,7 @@ import {PODCAST_INTRODUCTION_EPISODE} from "@/config";
         un tiempo suficiente y alcanzar cierto grado de profundidad. Y, como punto a favor,
         queda la conversación grabada para la posteridad. ¡Si es que son todo ventajas!</p>
       <p>Además, tenemos la certeza de que <b>sois muchísima más gente con intereses similares a los nuestros</b>
-        ahí fuera en la vasta infinidad del Internet y, oye, nos parece una magnífica idea poder conoceros.
+        ahí afuera en la vasta infinidad del Internet y, oye, nos parece una magnífica idea poder conoceros.
         (Si eres una de estas personas, por favor,
         <router-link href="/contacto" :to="{name: 'contact'}" class="link">contacta con nosotros</router-link>)</p>
     </section>
