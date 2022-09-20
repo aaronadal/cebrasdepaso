@@ -87,8 +87,15 @@ b {
     transition: right cubic-bezier(0.215, 0.610, 0.355, 1) .15s;
   }
 
-  &.router-link-active,
   &:hover {
+    &::after {
+      right: 0;
+    }
+  }
+}
+
+%router-link {
+  &.router-link-active {
     &::after {
       right: 0;
     }

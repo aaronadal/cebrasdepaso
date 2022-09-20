@@ -7,7 +7,7 @@ import {CONTACT_EMAIL, INSTAGRAM_URL} from "@/config";
   <div class="page">
     <section class="container">
       <h1>¡Contacta con nosotros!</h1>
-      <p>¿Quieres contarnos algo? ¿Decírnos que nos quieres? ¿Que nos odias, tal vez? ¿Que te gusta el pódcast?
+      <p>¿Quieres contarnos algo? ¿Decirnos que nos quieres? ¿Que nos odias, tal vez? ¿Que te gusta el pódcast?
         ¿Quieres hacernos saber que te caemos bien? ¿Que te gustaría ser nuestro amigo? ¿Quieres proponer algún tema?
         ¿Puntualizar alguna cosa que hayamos dicho? ¿Darnos tu opinión?</p>
       <p>Pues para eso y todo lo que se te ocurra, nos ponemos a tu disposición a través de estos dos canales:</p>
@@ -16,12 +16,12 @@ import {CONTACT_EMAIL, INSTAGRAM_URL} from "@/config";
       <div class="contact-channels">
         <div>
           <Icon icon="instagram-logo" weight="light" />
-          <p>También puedes enviarnos un mensaje a nuestra cuenta de Instagram. </p>
+          <p>Envíanos un mensaje<br />a nuestra cuenta<br />de Instagram.</p>
           <a class="button" :href="INSTAGRAM_URL" target="_blank">Ir a Instagram</a>
         </div>
         <div>
           <Icon icon="envelope-simple" weight="light" />
-          <p>O, si lo prefieres, puedes contactarnos a través de nuestro email. </p>
+          <p>O, si lo prefieres,<br />contacta con nosotros<br />por email.</p>
           <a class="button" :href="`mailto:${CONTACT_EMAIL}`">Enviar email</a>
         </div>
       </div>

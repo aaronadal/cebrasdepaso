@@ -149,6 +149,7 @@ body,
   .link {
     @extend %typography-heading;
     @extend %link;
+    @extend %router-link;
     display: inline-block;
     text-transform: uppercase;
     text-decoration: none;

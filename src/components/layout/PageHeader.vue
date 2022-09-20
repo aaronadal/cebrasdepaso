@@ -4,6 +4,14 @@ import Logo from '@/components/Logo.vue'
 import { ref } from '@vue/runtime-core'
 import { useRoute, useRouter } from 'vue-router'
 
+interface Props {
+  collapsed?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  collapsed: false,
+})
+
 const route = useRoute()
 const router = useRouter()
 
@@ -26,7 +34,7 @@ function onClickLogo () {
 </script>
 
 <template>
-  <header id="page-header">
+  <header id="page-header" :class="{collapsed}">
     <div class="inner">
       <div class="container">
         <Logo :style="logoStyle" @click="onClickLogo" />

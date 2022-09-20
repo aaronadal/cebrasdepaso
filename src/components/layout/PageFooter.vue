@@ -111,6 +111,13 @@ const showMoreAudioSources = ref(false);
                   </Tooltip>
                 </a>
               </div>
+              <div>
+                <router-link href="/contacto" :to="{name: 'contact'}">
+                  <Tooltip message="Contacto">
+                    <Icon class="icon-item icon" weight="light" icon="arrow-square-out" />
+                  </Tooltip>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>

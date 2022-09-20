@@ -1,3 +1,11 @@
+.team {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
 .team-member {
   display: flex;
   flex-direction: column;
@@ -20,6 +28,22 @@
   &:hover {
     .avatar {
       transform: scale(1.1);
+    }
+  }
+}
+@media (max-width: 886px) {
+  .team {
+    margin-top: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0;
+
+    .team-member {
+      + .team-member {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--text-color);
+      }
     }
   }
 }
@@ -48,6 +72,20 @@
 
     .content {
       grid-area: content;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .team {
+    gap: 4rem;
+
+    .team-member {
+      + .team-member {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
     }
   }
 }

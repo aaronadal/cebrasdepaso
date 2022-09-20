@@ -71,12 +71,12 @@ const router = createRouter({
   }
 })
 
-router.afterEach((to) => {
-  if (to.name !== 'home') {
-    document.getElementById('page-header')?.classList.add('collapsed')
-  } else {
-    document.getElementById('page-header')?.classList.remove('collapsed')
-  }
-})
+// router.afterEach((to) => {
+//   if (to.name !== 'home') {
+//     document.getElementById('page-header')?.classList.add('collapsed')
+//   } else {
+//     document.getElementById('page-header')?.classList.remove('collapsed')
+//   }
+// })
 
 export default router
