@@ -1,9 +1,86 @@
 .fade-enter-active,
 .fade-leave-active {
+  > .page {
+    position: absolute;
+    left: 0; 
+    right: 0;
+    width: 100%;
+  }
+
+  min-height: 100vh;
   transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
-.fade-leave-to {
+.fade-leave-to {  
   opacity: 0;
+  min-height: 0;
+}
+
+@keyframes loading-ellipsis-1 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loading-ellipsis-2 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loading-ellipsis-3 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.loading-ellipsis {
+  > span:nth-child(1) {
+    animation: loading-ellipsis-1 infinite 1s;
+  }
+
+  > span:nth-child(2) {
+    animation: loading-ellipsis-2 infinite 1s;
+  }
+
+  > span:nth-child(3) {
+    animation: loading-ellipsis-3 infinite 1s;
+  }
 }

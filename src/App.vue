@@ -14,9 +14,11 @@ const layoutCollapsed = computed(() => {
   <PageLayout :collapsed="layoutCollapsed" :data-page="route.name || 'none'">
     <router-view v-slot="{ Component }">
       <transition name="fade">
-        <keep-alive>
-          <component :is="Component" :key="route.path" />
-        </keep-alive>
+        <div class="inner" :key="route.path">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </div>
       </transition>
     </router-view>
   </PageLayout>

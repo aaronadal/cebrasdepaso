@@ -3,18 +3,18 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
 import TeamMember from "@/components/TeamMember.vue";
 import Cebra from '@/assets/cebra.mp3'
 import EpisodeCard from "@/components/EpisodeCard.vue";
-import {PODCAST_INTRODUCTION_EPISODE} from "@/config";
+import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
 </script>
 
 <template>
   <div class="page">
     <section class="container">
-      <h1>Esto es CEBRAS DE PASO</h1>
-      <p>El pódcast donde hablamos —con poco criterio, pero mucha voluntad— de las cosas de la vida. Si todavía
-        no nos conoces, aquí tienes una breve introducción:</p>
+      <h1>¡Esto es CEBRAS DE PASO!</h1>
+      <p>El pódcast donde hablamos —con poco criterio, pero mucha voluntad— de las cosas de la vida.
+        Si todavía no nos conoces, aquí tienes una breve introducción:</p>
     </section>
 
-    <section>
+    <section v-if="PUBLISHED">
       <EpisodeCard
         :episode="PODCAST_INTRODUCTION_EPISODE"
         class="bordered"
@@ -24,7 +24,6 @@ import {PODCAST_INTRODUCTION_EPISODE} from "@/config";
     </section>
 
     <section class="container">
-      <h2>¿Qué es CEBRAS DE PASO?</h2>
       <p>CEBRAS DE PASO es lo que acontece cuando se juntan dos mentes quizá no del todo sanas y
         una frase cuyo poder es casi ilimitado. Las dos mentes son las nuestras
         (más adelante te contamos en detalle quiénes somos exactamente), y la frase es "¡Puede ser divertido!".</p>

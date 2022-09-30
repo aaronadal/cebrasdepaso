@@ -1,0 +1,11 @@
+.icon-items {
+  font-size: 1.75rem;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  a {
+    @extend %link;
+    display: block;
+  }
+}
