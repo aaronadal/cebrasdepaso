@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
 import {
+  PUBLISHED,
   PODCAST_AMAZON_MUSIC_URL,
   PODCAST_APPLE_PODCASTS_URL,
   PODCAST_GOOGLE_PODCASTS_URL,
@@ -25,7 +26,7 @@ const showMore = ref(!props.more);
 </script>
 
 <template>
-  <div class="icon-items">
+  <div v-if="PUBLISHED" class="icon-items">
     <div>
       <a :href="PODCAST_SPOTIFY_URL" target="_blank">
         <Tooltip message="En Spotify">
@@ -89,5 +90,8 @@ const showMore = ref(!props.more);
         <Icon style="cursor:pointer;" class="icon-item icon" weight="light" icon="dots-three" @click="showMore = true" />
       </Tooltip>
     </div>
+  </div>
+  <div v-else :style="{fontSize: '1.5rem', marginTop: '.25rem', lineHeight: '1'}">
+    Próximamente<span class="loading-ellipsis"><span>.</span><span>.</span><span>.</span></span>
   </div>
 </template>
