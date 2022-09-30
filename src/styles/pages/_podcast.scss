@@ -1,4 +1,4 @@
-#page-layout[data-page="podcast"] {
+#page-layout[data-page="podcast"] #page-content {
   .icon-items {
     display: flex;
     width: auto;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 650px) {
-  #page-layout[data-page="podcast"] {
+  #page-layout[data-page="podcast"] #page-content {
     .icon-items {
       width: 10rem;
     }
