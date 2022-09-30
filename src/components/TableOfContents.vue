@@ -44,16 +44,21 @@ watch(target, (newTarget) => {
   const tocItems: TocItem[] = []
   const items = newTarget.querySelectorAll('h2')
   items.forEach((item, index) => {
-    const numeral = index + 1
-    const title = `${numeral}. ${item.textContent || ''}`
-    const anchor = `toc-${strToSlug(item.textContent || '')}`
+    if(!item.dataset['toc_numeral']) {
+      item.dataset['toc_numeral'] = (index + 1).toString();
+      item.dataset['toc_title'] = `${item.dataset['toc_numeral']}. ${item.textContent || ''}`;
+      item.dataset['toc_anchor'] = `toc-${strToSlug(item.textContent || '')}`;
+    }
 
-    item.textContent = title
+    const title = item.dataset['toc_title'] || ''
+    const anchor = item.dataset['toc_anchor'] || ''
+
+    item.textContent = title;
     item.parentElement ? item.parentElement.id = anchor : item.id = anchor
 
     tocItems.push({
       title,
-      anchor
+      anchor,
     })
   })
 

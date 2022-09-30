@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 const route = useRoute()
 const router = useRouter()
 
-const logoStyle = ref('')
+const logoStyle = ref(route.name === 'home' ? '' : 'cursor: pointer')
 router.beforeEach((to) => {
   if (to.name === 'home') {
     logoStyle.value = ''

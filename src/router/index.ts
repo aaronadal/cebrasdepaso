@@ -46,7 +46,12 @@ const router = createRouter({
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
       if (from.name !== 'home') {
-        return { el: to.hash, behavior: 'smooth' }
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            
+            resolve({ el: to.hash, behavior: 'smooth' })
+          }, 300)
+        })
       }
 
       return new Promise((resolve) => {

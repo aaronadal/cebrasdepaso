@@ -2,6 +2,7 @@
 import PlatformLinks from '@/components/PlatformLinks.vue'
 import EpisodeCard from '@/components/EpisodeCard.vue'
 import Paginator from '@/components/Paginator.vue'
+import Hourglass from '@/components/Hourglass.vue'
 import { PUBLISHED, PODCAST_RSS_URL } from '@/config'
 import { Episode, parsePodcastFromFeed, Podcast } from '@/rss'
 import { ref } from '@vue/reactivity'
@@ -42,7 +43,7 @@ function onPaginate (page: number, items: unknown[]) {
 
 <template>
   <div class="page">
-    <template v-if="!PUBLISHED">
+    <template v-if="PUBLISHED">
       <section class="container">
         <h1>¡Escucha CEBRAS DE PASO!</h1>
         <p>En esta página puedes acceder a todos nuestros episodios. Sin embargo, como sabemos que tener que acceder
@@ -59,11 +60,12 @@ function onPaginate (page: number, items: unknown[]) {
       </section>
     </template>
     <template v-else>
-      <section class="container">
+      <section class="container" style="text-align: center;">
         <h1>Próximamente... ¡Esto será CEBRAS DE PASO!</h1>
-        <p>Todavía estamos preparándolo todo para que puedas escucharnos en tu plataforma favorita.</p>
-        <p>¡En breve podrás consultar aquí todos los episodios que vayamos publicando!</p>
+        <p>En esta página podrás acceder a todos nuestros episodios. Sin embargo, todavía estamos preparándolo todo
+          para que puedas escucharnos tanto aquí como en tu plataforma favorita.</p>
         <p>Muchas gracias por la paciencia.</p>
+        <p style="text-align:center;"><Hourglass /></p>
       </section>
     </template>
   </div>
