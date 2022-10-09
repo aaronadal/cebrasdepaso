@@ -24,6 +24,7 @@ import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
     </section>
 
     <section class="container">
+      <h2>¿Qué es CEBRAS DE PASO?</h2>
       <p>CEBRAS DE PASO es lo que acontece cuando se juntan dos mentes quizá no del todo sanas y
         una frase cuyo poder es casi ilimitado. Las dos mentes son las nuestras
         (más adelante te contamos en detalle quiénes somos exactamente), y la frase es "¡Puede ser divertido!".</p>
