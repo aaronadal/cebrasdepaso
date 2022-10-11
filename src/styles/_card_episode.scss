@@ -40,13 +40,12 @@
   }
 
   .episode-thumbnail {
-    aspect-ratio: unset;
     height: 100%;
   }
 }
 
 .episode-thumbnail {
-  border-radius: 10px;
+  border-radius: 1rem;
   padding: var(--episode-thumbnail-padding);
   display: flex;
   flex-direction: column;

@@ -6,7 +6,8 @@ import Hourglass from '@/components/Hourglass.vue'
 import { PUBLISHED, PODCAST_RSS_URL } from '@/config'
 import { Episode, parsePodcastFromFeed, Podcast } from '@/rss'
 import { ref } from '@vue/reactivity'
-import { computed, nextTick } from '@vue/runtime-core'
+import { computed, nextTick, watch } from '@vue/runtime-core'
+import { currentPlaylist, currentTrack } from '@/media'
 
 const podcast = ref<Podcast|null>(null)
 parsePodcastFromFeed(PODCAST_RSS_URL)
@@ -14,8 +15,8 @@ parsePodcastFromFeed(PODCAST_RSS_URL)
     podcast.value = p
   })
 
-const allEpisodes = computed(() => {
-  return podcast.value?.episodes || []
+const allEpisodes = computed<Episode[]>(() => {
+  return podcast.value?.episodes || [];
 })
 
 const episodes = ref<Episode[]>([])
@@ -39,6 +40,15 @@ function onPaginate (page: number, items: unknown[]) {
     window.scrollTo({ top: scrollTop, behavior: 'smooth' })
   })
 }
+
+watch(currentTrack, () => {
+  if(allEpisodes.value.includes(currentTrack.value)) {
+    currentPlaylist.value = allEpisodes.value;
+  }
+  else {
+    currentPlaylist.value = [];
+  }
+});
 </script>
 
 <template>
@@ -46,10 +56,12 @@ function onPaginate (page: number, items: unknown[]) {
     <template v-if="PUBLISHED">
       <section class="container">
         <h1>¡Escucha CEBRAS DE PASO!</h1>
-        <p>En esta página puedes acceder a todos nuestros episodios. Sin embargo, como sabemos que tener que acceder
-          aquí cada vez que quieras escucharnos es un rollazo, quizá prefieras suscribirte en
-          cualquiera de estas plataformas:</p>
+        <p>Como sabemos que tener que acceder a esta página cada vez que quieras escucharnos es un rollazo,
+          quizá prefieras suscribirte en cualquiera de estas plataformas:</p>
         <PlatformLinks />
+        <p>Y si no te mola eso de suscribirte o simplemente quieres saber a qué sonamos antes de hacerlo, a continuación
+          te dejamos la lista de episodios. ¡Buen provecho!
+        </p>
       </section>
       <section v-if="podcast !== null" ref="episodesSectionRef">
         <EpisodeCard v-for="episode in episodes" :key="episode.guid" :podcast="podcast" :episode="episode" />

@@ -2,9 +2,10 @@
 import { toRefs } from '@vue/reactivity'
 import {computed, ref} from '@vue/runtime-core'
 import EpisodeNumber from '@/components/EpisodeNumber.vue'
+import { EpisodeType, getEpisodeTypeLabel } from '@/media'
 
 interface Props {
-    type: 'full'|'bonus'|'trailer';
+    type: EpisodeType;
     title: string,
     number: number,
     season: number,
@@ -22,17 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { type, number, fullBackground } = toRefs(props)
 
-const episodeType = computed(() => {
-  if (type.value === 'bonus') {
-    return 'Extra'
-  }
-
-  if (type.value === 'trailer') {
-    return 'Avance'
-  }
-
-  return 'Episodio'
-})
+const episodeType = computed(() => getEpisodeTypeLabel(type.value))
 
 const background = computed(() => {
   if(fullBackground.value) {

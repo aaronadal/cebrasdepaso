@@ -39,13 +39,14 @@ import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
         ¡Si es que no podríamos haber elegido un nombre mejor!</p>
 
       <AudioPlayer
-          :url="Cebra"
-          type="audio/mpeg"
-          title="¿Qué sonido hacen las cebras?"
-          artist=""
-          album=""
-          :artworks="[]"
-          is-media-session-disabled />
+          :track="{
+            mediaUrl:  Cebra,
+            mediaType: 'audio/mpeg',
+            title:     '¿Qué sonido hacen las cebras?',
+            artist:    '',
+            album:     '',
+            artworks:  '[]',
+          }" />
 
       <p>Lo de "DE PASO" es un poco más complejo. La versión corta (y que, probablemente, se aproxima
         más a la realidad) es que somos unos adictos a los juegos de palabras. La versión oficial,

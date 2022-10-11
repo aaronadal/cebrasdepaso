@@ -1,4 +1,4 @@
-import {Episode} from "@/rss";
+import {Episode} from "@/media";
 
 export const PUBLISHED = false;
 
@@ -17,8 +17,7 @@ export const PODCAST_RSS_URL = 'https://anchor.fm/s/a4e7fe88/podcast/rss' // La 
 
 export const PODCAST_INTRODUCTION_EPISODE = {
     title: 'Esto es...<br/>CEBRAS DE PASO',
-    summary: 'Breve introducción',
-    type: 'trailer',
+    episodeType: 'trailer',
     number: 0,
     season: 0,
     numberInSeason: 0,

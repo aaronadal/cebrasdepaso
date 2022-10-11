@@ -105,7 +105,7 @@ textarea {
   background: none;
   outline: none;
   border: solid 2px var(--text-color);
-  border-radius: .5rem;
+  border-radius: 1rem;
   font-family: var(--font-family-mono);
   font-weight: var(--font-weight-mono);
 }

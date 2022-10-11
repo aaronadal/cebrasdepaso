@@ -1,0 +1,55 @@
+#main-player {
+  @extend %full-gradient-animated;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: .5rem 2rem;
+
+  border-top: solid 3px var(--text-color);
+
+  > .inner {
+    display: grid;
+    grid-template-columns: auto 1fr min-content;
+    grid-template-rows: min-content;
+    grid-template-areas: 'info player close';
+    align-items: center;
+    gap: 0 2rem;
+
+    > .close {
+      grid-area: close;
+    }
+
+    > .track-info {
+      grid-area: info;
+    }
+
+    > .audio-player {
+      grid-area: player;
+    }
+  }
+
+  .close {
+    cursor: pointer;
+  }
+
+  .track-info {
+    display: flex;
+    flex-direction: column;
+    font-size: .9rem;
+
+    .season {
+      font-size: .8em;
+      line-height: 1;
+      opacity: .5;
+    }
+  }
+
+  .audio-player {
+    background: none !important;
+    margin: 0;
+    border: solid 2px var(--text-color);
+  }
+}

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import ZebraPattern from '@/components/ZebraPattern.vue'
+import { EpisodeType, getEpisodeTypeSymbol } from '@/media'
 import { toRefs } from '@vue/reactivity'
 import {computed, ref} from '@vue/runtime-core'
 
 interface Props {
-  type: 'full'|'bonus'|'trailer';
+  type: EpisodeType;
   number: number;
   disableAnimations?: boolean;
 }
@@ -14,17 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const {type} = toRefs(props)
 
-const episodeSymbol = computed(() => {
-  if (type.value === 'bonus') {
-    return '*'
-  }
-
-  if (type.value === 'trailer') {
-    return '»'
-  }
-
-  return '#'
-})
+const episodeSymbol = computed(() => getEpisodeTypeSymbol(type.value))
 
 const viewBoxHeight = ref(0);
 function updateViewBoxHeight() {
@@ -50,6 +41,7 @@ const textVerticalPosition = computed(() => viewBoxHeight.value - 4);
       <g>
         <ZebraPattern x="0" y="0" transform="scale(1.5)" />
         <ZebraPattern x="0" y="0" transform="scale(1.5) translate(138)" />
+        <ZebraPattern x="0" y="0" transform="scale(1.5) translate(276)" />
         <animateTransform
           v-if="!disableAnimations"
           attributeName="transform"

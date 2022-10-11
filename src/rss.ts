@@ -1,30 +1,4 @@
-export declare interface Episode {
-    guid?: string;
-    date?: Date;
-    title: string;
-    summary: string;
-    type: 'full'|'bonus'|'trailer';
-    number: number;
-    season: number;
-    numberInSeason: number;
-    duration?: number;
-    url?: string;
-    mediaUrl: string;
-    mediaType: string;
-    embedUrl?: string;
-    imageSrc?: string;
-    imageType?: string;
-    imageWidth?: number;
-    imageHeight?: number;
-}
-
-export declare interface Podcast {
-    title: string,
-    author: string;
-    summary: string;
-    lastBuildDate: Date;
-    episodes: Episode[];
-}
+import { Track, Episode, Podcast } from "./media";
 
 function parseDate (date: string): Date {
   return new Date(date)
@@ -45,33 +19,33 @@ function parseEpisodes (data: Document): Episode[] {
   for (let i = items.length - 1; i >= 0; i--) {
     const item = items[i]
 
-    const type = (item.getElementsByTagNameNS(itunesNS, 'episodeType')?.[0]?.textContent || 'full') as 'full'|'bonus'|'trailer'
-    const url = item.querySelector('link')?.textContent || ''
+    const episodeType = (item.getElementsByTagNameNS(itunesNS, 'episodeType')?.[0]?.textContent || 'full') as 'full'|'bonus'|'trailer'
+    const relatedUrl = item.querySelector('link')?.textContent || ''
     const media = item.querySelector('enclosure')
-    const imageSrc = item.getElementsByTagNameNS(itunesNS, 'image')?.[0]?.getAttribute('href') || ''
-    const imageExt = imageSrc.split('.').slice(-1)[0]?.toLowerCase() || ''
+    const artworkSrc = item.getElementsByTagNameNS(itunesNS, 'image')?.[0]?.getAttribute('href') || ''
+    const artworkExt = artworkSrc.split('.').slice(-1)[0]?.toLowerCase() || ''
 
-    counts[type]++
+    counts[episodeType]++
 
     episodes[i] = {
       guid: item.querySelector('guid')?.textContent || '',
       date: parseDate(item.querySelector('pubDate')?.textContent || ''),
       title: item.querySelector('title')?.textContent || '',
       summary: item.querySelector('description')?.textContent || '',
-      type,
-      number: counts[type],
+      episodeType,
+      number: counts[episodeType],
       season: parseInt(item.getElementsByTagNameNS(itunesNS, 'season')?.[0]?.textContent || '0'),
       numberInSeason: parseInt(item.getElementsByTagNameNS(itunesNS, 'episode')?.[0]?.textContent || '0'),
       duration: parseInt(item.getElementsByTagNameNS(itunesNS, 'duration')?.[0]?.textContent || '0'),
-      url,
       mediaUrl: media?.getAttribute('url') || '',
       mediaType: media?.getAttribute('type') || '',
-      embedUrl: url.split('/episodes/').join('/embed/episodes/'),
-      imageSrc,
-      imageType: imageExt === 'png' ? 'image/png' : 'image/jpeg',
-      imageWidth: 400,
-      imageHeight: 400
-    }
+      relatedUrl,
+      embedUrl: relatedUrl.split('/episodes/').join('/embed/episodes/'),
+      artworkSrc,
+      artworkType: artworkExt === 'png' ? 'image/png' : 'image/jpeg',
+      artworkWidth: 3000,
+      artworkHeight: 3000,
+    } as Episode;
   }
 
   return episodes

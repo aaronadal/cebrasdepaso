@@ -70,7 +70,7 @@ function onDrag (evt: MouseEvent|TouchEvent) {
   emit('drag', value)
 }
 
-function onMouseDown () {
+function onMouseDown (evt: MouseEvent) {
   emit('dragstart')
   isDragging.value = true
 
@@ -79,6 +79,8 @@ function onMouseDown () {
     onMouseUp()
     document.removeEventListener('mousemove', onDrag)
   }, { once: true })
+
+  onDrag(evt)
 }
 
 function onMouseUp () {

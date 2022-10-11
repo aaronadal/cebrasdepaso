@@ -24,7 +24,7 @@ const episodeRef = ref()
       <template #thumbnail>
         <EpisodeThumbnail
           ref="episodeRef"
-          :type="episode.type"
+          :type="episode.episodeType"
           :title="episode.title"
           :number="episode.number"
           :season="episode.season"
@@ -39,17 +39,7 @@ const episodeRef = ref()
 
         <AudioPlayer
           :style="{backgroundImage: episodeRef?.background}"
-          :url="episode.mediaUrl"
-          :type="episode.mediaType"
-          :title="episode.title"
-          :is-media-session-disabled="podcast === null"
-          :artist="podcast === null ? 'Cebras de paso' : podcast.author"
-          :album="podcast === null ? 'Cebras de paso' : podcast.title"
-          :artworks="episode.imageSrc ? [{
-            src: episode.imageSrc,
-            sizes: `${episode.imageWidth}x${episode.imageHeight}`,
-            type: episode?.imageType || 'image/jpg',
-          }] : []" />
+          :track="episode" />
       </template>
     </Card>
 </template>
