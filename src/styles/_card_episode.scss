@@ -8,6 +8,10 @@
 .episode-card {
   --card-grid-rows: min-content 1fr;
 
+  > .inner {
+    align-items: initial;
+  }
+
   p + p {
     margin-top: 1rem;
   }
@@ -33,6 +37,11 @@
     .audio-player {
       @extend %full-gradient-animated;
     }
+  }
+
+  .episode-thumbnail {
+    aspect-ratio: unset;
+    height: 100%;
   }
 }
 
