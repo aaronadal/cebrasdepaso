@@ -18,14 +18,23 @@ watch(player, () => {
   mainPlayer.value = player.value;});
 
 const paddingBottom = ref(0);
-watch(currentTrack, () => {
+function calculatePaddingBottom() {
   const mainPlayerElement = player.value?.element as HTMLElement|undefined;
   nextTick(() => {
     if(mainPlayerElement) {
-      paddingBottom.value = mainPlayerElement.offsetHeight;
+      if(player.value?.isCollapsed) {
+        paddingBottom.value = 0;
+      }
+      else {
+        paddingBottom.value = mainPlayerElement.offsetHeight;
+      }
     }
   });
-});
+}
+
+watch(() => player.value?.isCollapsed, () => calculatePaddingBottom());
+watch(currentTrack, () => calculatePaddingBottom());
+window.addEventListener('resize', () => calculatePaddingBottom());
 </script>
 
 <template>

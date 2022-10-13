@@ -12,14 +12,21 @@ const isEpisode = computed(() => currentTrack.value && 'number' in currentTrack.
 const typeLabel = computed(() => currentTrack.value && 'number' in currentTrack.value ? getEpisodeTypeLabel(currentTrack.value.episodeType) : null)
 const typeSymbol = computed(() => currentTrack.value && 'number' in currentTrack.value ? getEpisodeTypeSymbol(currentTrack.value.episodeType) : null)
 
+const isCollapsed = ref(false);
+
 defineExpose({
   element,
   audioPlayer,
+  isCollapsed,
 });
 </script>
 
 <template>
-  <aside ref="element" v-show="currentTrack !== null" id="main-player">
+  <aside ref="element" v-show="currentTrack !== null" id="main-player" :class="{collapsed: isCollapsed}">
+    <div class="toggle">
+      <Icon class="icon hidden" icon="music-note-simple" @click="isCollapsed = !isCollapsed" />
+      <Icon class="icon visible" icon="caret-down" @click="isCollapsed = !isCollapsed" />
+    </div>
     <div class="inner" v-if="currentTrack !== null">
       <Icon class="close" icon="x" weight="bold" @click="stop()" />
       <div class="track-info">

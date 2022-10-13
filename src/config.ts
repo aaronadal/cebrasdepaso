@@ -26,5 +26,4 @@ export const PODCAST_INTRODUCTION_EPISODE = {
 } as Episode;
 
 export const CONTACT_EMAIL = 'somos@cebrasdepaso.es'
-export const TELEGRAM_URL = 'https://cebrasdepaso.t.me'
 export const INSTAGRAM_URL = 'https://instagram.com/cebrasdepaso'
