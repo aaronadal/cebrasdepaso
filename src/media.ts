@@ -63,7 +63,7 @@ const currentIndex = computed(() => {
 });
 
 export const nextTrackIndex = computed(() => {
-  if(currentIndex.value >= (currentPlaylist.value.length - 1)) {
+  if(currentIndex.value >= currentPlaylist.value.length) {
     return null;
   } 
 
@@ -79,7 +79,7 @@ export const previousTrackIndex = computed(() => {
 });
 
 export const nextTrack = computed(() => {
-  if(!nextTrackIndex.value) {
+  if(nextTrackIndex.value === null) {
     return null;
   } 
 
@@ -87,7 +87,7 @@ export const nextTrack = computed(() => {
 });
 
 export const previousTrack = computed(() => {
-  if(!previousTrackIndex.value) {
+  if(previousTrackIndex.value === null) {
     return null;
   } 
 
