@@ -2,7 +2,7 @@
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import Card from '@/components/Card.vue'
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
-import {Episode, Podcast} from '@/rss'
+import {Episode, Podcast} from '@/media'
 import {ref} from '@vue/reactivity'
 
 interface Props {

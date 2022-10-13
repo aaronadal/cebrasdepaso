@@ -4,7 +4,8 @@ import EpisodeCard from '@/components/EpisodeCard.vue'
 import Paginator from '@/components/Paginator.vue'
 import Hourglass from '@/components/Hourglass.vue'
 import { PUBLISHED, PODCAST_RSS_URL } from '@/config'
-import { Episode, parsePodcastFromFeed, Podcast } from '@/rss'
+import { Episode, Podcast, Track } from '@/media'
+import { parsePodcastFromFeed } from '@/rss'
 import { ref } from '@vue/reactivity'
 import { computed, nextTick, watch } from '@vue/runtime-core'
 import { currentPlaylist, currentTrack } from '@/media'
@@ -41,8 +42,8 @@ function onPaginate (page: number, items: unknown[]) {
   })
 }
 
-watch(currentTrack, () => {
-  if(allEpisodes.value.includes(currentTrack.value)) {
+watch(currentTrack, (newTrack: Track|Episode|null) => {
+  if(newTrack && 'number' in newTrack && allEpisodes.value.includes(newTrack)) {
     currentPlaylist.value = allEpisodes.value;
   }
   else {

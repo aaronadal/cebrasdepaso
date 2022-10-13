@@ -8,7 +8,6 @@ import { computed, watch } from "@vue/runtime-core";
 const element = ref();
 const audioPlayer = ref();
 
-const isEpisode = computed(() => currentTrack.value && 'number' in currentTrack.value)
 const typeLabel = computed(() => currentTrack.value && 'number' in currentTrack.value ? getEpisodeTypeLabel(currentTrack.value.episodeType) : null)
 const typeSymbol = computed(() => currentTrack.value && 'number' in currentTrack.value ? getEpisodeTypeSymbol(currentTrack.value.episodeType) : null)
 
@@ -30,11 +29,11 @@ defineExpose({
     <div class="inner" v-if="currentTrack !== null">
       <Icon class="close" icon="x" weight="bold" @click="stop()" />
       <div class="track-info">
-        <div class="season" v-if="isEpisode">
+        <div class="season" v-if="'number' in currentTrack">
           {{ typeLabel }} {{ currentTrack.season }}x{{ currentTrack.numberInSeason.toString().padStart(2, '0') }}
         </div>
         <div class="title">
-          <template v-if="isEpisode">
+          <template v-if="'number' in currentTrack">
             [{{ typeSymbol }}{{ currentTrack.number.toString().padStart(2, '0') }}]
           </template>
           {{ currentTrack.title.replace('<br/>', ' ') }}

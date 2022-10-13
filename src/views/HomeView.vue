@@ -45,7 +45,6 @@ import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
             title:     '¿Qué sonido hacen las cebras?',
             artist:    '',
             album:     '',
-            artworks:  '[]',
           }" />
 
       <p>Lo de "DE PASO" es un poco más complejo. La versión corta (y que, probablemente, se aproxima
