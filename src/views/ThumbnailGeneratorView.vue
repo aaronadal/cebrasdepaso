@@ -27,7 +27,13 @@ function download() {
     scale: scale.value,
   })
       .then((canvas) => {
-        window.location.href = canvas.toDataURL("image/png");
+        const w = window.open("");
+        if(w === null) {
+          window.location.href = canvas.toDataURL("image/png");
+          return;
+        }
+
+        w.document.write(canvas.toDataURL("image/png"));
       });
 }
 </script>
