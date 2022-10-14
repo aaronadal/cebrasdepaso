@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
 import { ref } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core'
+import { computed, nextTick } from '@vue/runtime-core'
 import html2canvas from "html2canvas";
 
 const type = ref<"full" | "bonus" | "trailer">('full')
@@ -9,8 +9,11 @@ const title = ref('')
 const number = ref(0)
 const season = ref(0)
 const numberInSeason = ref(0)
+const size = ref(3000)
 
 const targetRef = ref()
+const generating = ref(false)
+const generatedImage = ref<string|null>(null)
 
 const scale = computed(() => {
   const target = targetRef.value
@@ -18,28 +21,40 @@ const scale = computed(() => {
     return 1
   }
 
-  return 3000 / parseInt(getComputedStyle(target.element).getPropertyValue('--card-thumbnail-size'))
+  return size.value / parseInt(getComputedStyle(target.element).getPropertyValue('--card-thumbnail-size'))
 })
 
 function download() {
-  html2canvas(targetRef.value.element, {
-    backgroundColor: null,
-    scale: scale.value,
-  })
-      .then((canvas) => {
-        const w = window.open("");
-        if(w === null) {
-          window.location.href = canvas.toDataURL("image/png");
-          return;
-        }
+  if(generating.value) {
+    return;
+  }
 
-        w.document.write(canvas.toDataURL("image/png"));
-      });
+  generating.value = true
+
+  setTimeout(() => {
+    html2canvas(targetRef.value.element, {
+      backgroundColor: null,
+      scale: scale.value,
+    })
+        .then((canvas) => {
+          generatedImage.value = canvas.toDataURL("image/png")
+          generating.value = false
+        });
+  }, 100)
 }
 </script>
 
 <template>
-  <div class="page">
+  <div class="page" v-if="generatedImage">
+    <section class="container" style="width: var(--card-thumbnail-size); padding: 0;">
+      <img :src="generatedImage" style="width: 100%;" />
+    </section>
+    <section class="container" style="text-align:center;">
+      <a class="button" @click="generatedImage = null">Volver</a>
+    </section>
+  </div>
+
+  <div class="page" v-else>
     <section class="container">
       <label>
         <span>Tipo</span>
@@ -79,7 +94,7 @@ function download() {
         />
     </section>
     <section class="container" style="text-align:center;">
-      <a class="button" @click="download">Descargar</a>
+      <a class="button" @click="download">{{ generating ? 'Generando...' : 'Descargar' }}</a>
     </section>
   </div>
 </template>

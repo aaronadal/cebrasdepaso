@@ -12,6 +12,8 @@ const displayText = ref('1')
 const radius = ref(0)
 
 const targetRef = ref()
+const generating = ref(false)
+const generatedImage = ref<string|null>(null)
 
 const scale = computed(() => {
   const target = targetRef.value
@@ -23,24 +25,34 @@ const scale = computed(() => {
 })
 
 function download() {
+  if(generating.value) {
+    return;
+  }
+
+  generating.value = true
+
   html2canvas(targetRef.value, {
     backgroundColor: null,
     scale: scale.value,
   })
       .then((canvas) => {
-        const w = window.open("");
-        if(w === null) {
-          window.location.href = canvas.toDataURL("image/png");
-          return;
-        }
-
-        w.document.write(canvas.toDataURL("image/png"));
+          generatedImage.value = canvas.toDataURL("image/png")
+          generating.value = false
       });
 }
 </script>
 
 <template>
-  <div class="page">
+  <div class="page" v-if="generatedImage">
+    <section class="container" style="width: var(--card-thumbnail-size); padding: 0;">
+      <img :src="generatedImage" style="width: 100%;" />
+    </section>
+    <section class="container" style="text-align:center;">
+      <a class="button" @click="generatedImage = null">Volver</a>
+    </section>
+  </div>
+
+  <div class="page" v-else>
     <section class="container">
       <label>
         <span>Color de fondo</span>
@@ -107,7 +119,7 @@ function download() {
       </div>
     </section>
     <section class="container" style="text-align:center;">
-      <a class="button" @click="download">Descargar</a>
+      <a class="button" @click="download">{{ generating ? 'Generando...' : 'Descargar' }}</a>
     </section>
   </div>
 </template>
