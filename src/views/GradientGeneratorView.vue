@@ -42,17 +42,31 @@ function download() {
       <label>
         <span>Degradado</span>
         <select v-model="gradient">
-          <option value="--gradient-gray">Neutro</option>
-          <option value="--gradient-1">Orange/Pink</option>
-          <option value="--gradient-2">Red/Purple</option>
-          <option value="--gradient-3">Pink/Blue</option>
-          <option value="--gradient-4">Purple/Cyan</option>
-          <option value="--gradient-5">Blue/Teal</option>
-          <option value="--gradient-6">Cyan/Green</option>
-          <option value="--gradient-7">Teal/Yellow</option>
-          <option value="--gradient-8">Green/Orange</option>
-          <option value="--gradient-9">Yellow/Red</option>
-          <option value="--full-gradient">Completo</option>
+          <optgroup label="Degradados">
+            <option value="--gradient-gray">Neutro</option>
+            <option value="--full-gradient">Completo</option>
+            <option value="--gradient-1">Orange/Pink</option>
+            <option value="--gradient-2">Red/Purple</option>
+            <option value="--gradient-3">Pink/Blue</option>
+            <option value="--gradient-4">Purple/Cyan</option>
+            <option value="--gradient-5">Blue/Teal</option>
+            <option value="--gradient-6">Cyan/Green</option>
+            <option value="--gradient-7">Teal/Yellow</option>
+            <option value="--gradient-8">Green/Orange</option>
+            <option value="--gradient-9">Yellow/Red</option>
+          </optgroup>
+
+          <optgroup label="Colores sólidos">
+            <option value="--color-orange">Orange</option>
+            <option value="--color-red">Red</option>
+            <option value="--color-pink">Pink</option>
+            <option value="--color-purple">Purple</option>
+            <option value="--color-blue">Blue</option>
+            <option value="--color-cyan">Cyan</option>
+            <option value="--color-teal">Teal</option>
+            <option value="--color-green">Green</option>
+            <option value="--color-yellow">Yellow</option>
+          </optgroup>
         </select>
       </label>
       <label>

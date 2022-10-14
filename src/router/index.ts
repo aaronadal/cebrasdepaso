@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "thumbnail-generator" */ '../views/ThumbnailGeneratorView.vue')
   },
   {
+    path: '/generador-de-logotipos',
+    name: 'logo-generator',
+    component: () => import(/* webpackChunkName: "logo-generator" */ '../views/LogoGeneratorView.vue')
+  },
+  {
     path: '/generador-de-degradados',
     name: 'gradient-generator',
     component: () => import(/* webpackChunkName: "gradient-generator" */ '../views/GradientGeneratorView.vue')
