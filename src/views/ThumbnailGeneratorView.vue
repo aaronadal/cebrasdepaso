@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
 import { ref } from '@vue/reactivity'
-import { computed, nextTick } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import html2canvas from "html2canvas";
 
 const type = ref<"full" | "bonus" | "trailer">('full')

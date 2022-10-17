@@ -26,37 +26,45 @@ window.addEventListener('resize', () => updateViewBoxHeight());
 updateViewBoxHeight();
 
 const textVerticalPosition = computed(() => viewBoxHeight.value - 4);
+
+const element = ref();
+
+defineExpose({
+  element,
+})
 </script>
 
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 265 ${viewBoxHeight}`" class="episode-number">
-    <mask :id="`episode-number-${number}`">
-      <rect x="0" y="0" width="100" height="100" fill="black" />
-      <text class="title" x="0" :y="textVerticalPosition" fill="white">
+  <div ref="element">
+    <svg xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 265 ${viewBoxHeight}`" class="episode-number">
+      <mask :id="`episode-number-${number}`">
+        <rect x="0" y="0" width="100" height="100" fill="black" />
+        <text class="title" x="0" :y="textVerticalPosition" fill="white">
+          {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
+        </text>
+      </mask>
+
+      <g :mask="`url(#episode-number-${number})`" fill="var(--text-color)">
+        <g>
+          <ZebraPattern x="0" y="0" transform="scale(1.5)" />
+          <ZebraPattern x="0" y="0" transform="scale(1.5) translate(138)" />
+          <ZebraPattern x="0" y="0" transform="scale(1.5) translate(276)" />
+          <animateTransform
+            v-if="!disableAnimations"
+            attributeName="transform"
+            attributeType="XML"
+            dur="12s"
+            repeatCount="indefinite"
+            type="translate"
+            values="0;-207"
+            calcMode="linear" />
+        </g>
+      </g>
+      <text class="title text-border" x="0" :y="textVerticalPosition">
         {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
       </text>
-    </mask>
-
-    <g :mask="`url(#episode-number-${number})`" fill="var(--text-color)">
-      <g>
-        <ZebraPattern x="0" y="0" transform="scale(1.5)" />
-        <ZebraPattern x="0" y="0" transform="scale(1.5) translate(138)" />
-        <ZebraPattern x="0" y="0" transform="scale(1.5) translate(276)" />
-        <animateTransform
-          v-if="!disableAnimations"
-          attributeName="transform"
-          attributeType="XML"
-          dur="12s"
-          repeatCount="indefinite"
-          type="translate"
-          values="0;-207"
-          calcMode="linear" />
-      </g>
-    </g>
-    <text class="title text-border" x="0" :y="textVerticalPosition">
-      {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
-    </text>
-  </svg>
+    </svg>
+  </div>
 </template>
 
 <style scoped>
