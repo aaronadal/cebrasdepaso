@@ -130,4 +130,8 @@ textarea {
   font-family: var(--font-family-mono);
   font-weight: var(--font-weight-mono);
 }
+
+.episode-thumbnail {
+  border-radius: 0;
+}
 </style>
