@@ -6,7 +6,7 @@ import {CONTACT_EMAIL, INSTAGRAM_URL} from "@/config";
 <template>
   <div class="page">
     <section class="container">
-      <h1>¡Contacta con CEBRAS DE PASO!</h1>
+      <h1>¡Contacta con las CEBRAS!</h1>
       <p>¿Quieres contarnos algo? ¿Decirnos que nos quieres? ¿Que nos odias, tal vez? ¿Que te gusta el pódcast?
         ¿Quieres hacernos saber que te caemos bien? ¿Que te gustaría ser nuestro amigo? ¿Quieres proponer algún tema?
         ¿Puntualizar alguna cosa que hayamos dicho? ¿Darnos tu opinión?</p>
