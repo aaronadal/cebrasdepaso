@@ -3,7 +3,7 @@ import AudioPlayer from "@/components/AudioPlayer.vue";
 import Icon from "@/components/Icon.vue";
 import { currentTrack, currentPlaylist, nextTrack, previousTrack, stop, getEpisodeTypeLabel, getEpisodeTypeSymbol } from "@/media";
 import { ref } from "@vue/reactivity";
-import { computed, watch } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
 
 const element = ref();
 const audioPlayer = ref();
@@ -28,7 +28,11 @@ defineExpose({
     </div>
     <div class="inner" v-if="currentTrack !== null">
       <Icon class="close" icon="x" weight="bold" @click="stop()" />
-      <div class="track-info">
+      <div class="track-info" :class="currentTrack.artworkSrc ? 'has-thumbnail' : ''">
+        <img v-if="currentTrack.artworkSrc"
+             class="thumbnail"
+             :src="currentTrack.artworkSrc"
+             alt="Imagen de portada" />
         <div class="season" v-if="'number' in currentTrack">
           {{ typeLabel }} {{ currentTrack.season }}x{{ currentTrack.numberInSeason.toString().padStart(2, '0') }}
         </div>
@@ -36,7 +40,7 @@ defineExpose({
           <template v-if="'number' in currentTrack">
             [{{ typeSymbol }}{{ currentTrack.number.toString().padStart(2, '0') }}]
           </template>
-          {{ currentTrack.title.replace('<br/>', ' ') }}
+          {{ currentTrack.title.replace('<br />', ' ') }}
         </div>
       </div>
       <AudioPlayer class="main-audio-player" ref="audioPlayer" :track="currentTrack" :is-playlist="currentPlaylist.length > 0" :next="nextTrack" :prev="previousTrack" />
