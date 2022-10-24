@@ -11,6 +11,8 @@ const season = ref(0)
 const numberInSeason = ref(0)
 const size = ref(3000)
 
+const htmlTitle = computed(() => title.value.replace(/\r?\n/g, '<br />'))
+
 const targetRef = ref()
 const generating = ref(false)
 const generatedImage = ref<string|null>(null)
@@ -85,11 +87,11 @@ function download() {
       <EpisodeThumbnail
           ref="targetRef"
           :type="type"
-          :title="title.replace(/\r?\n/g, '<br />')"
+          :title="htmlTitle"
           :number="number"
           :season="season"
           :numberInSeason="numberInSeason"
-          is-title-html
+          :is-title-html="htmlTitle.includes('<br />')"
           disable-animations
         />
     </section>

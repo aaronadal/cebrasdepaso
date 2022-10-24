@@ -16,7 +16,7 @@ export const PODCAST_OVERCAST_URL = '';
 export const PODCAST_RSS_URL = 'https://anchor.fm/s/a4e7fe88/podcast/rss' // La Ruina.
 
 export const PODCAST_INTRODUCTION_EPISODE = {
-    title: 'Esto es...<br/>CEBRAS DE PASO',
+    title: 'Esto es... CEBRAS DE PASO',
     episodeType: 'trailer',
     number: 0,
     season: 0,
