@@ -17,6 +17,10 @@
 #page-content {
   margin: 5rem 0;
 
+  > .inner {
+    position: relative;
+  }
+
   &:empty {
     margin: 2rem 0;
   }
