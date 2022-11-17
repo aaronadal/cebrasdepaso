@@ -140,6 +140,10 @@ router.beforeEach((to, from, next) => {
     property: 'og:title',
     content: to.meta.title,
   });
+  addMeta({
+    name: 'twitter:title',
+    content: to.meta.title,
+  });
 
   if(to.meta.description) {
     addMeta({
@@ -149,6 +153,11 @@ router.beforeEach((to, from, next) => {
 
     addMeta({
       property: 'og:description',
+      content: to.meta.description,
+    });
+
+    addMeta({
+      name: 'twitter:description',
       content: to.meta.description,
     });
   }
