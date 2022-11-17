@@ -134,7 +134,12 @@ function addMeta(atts: {[key: string]: string}) {
 
 router.beforeEach((to, from, next) => {
   Array.from(document.querySelectorAll('[data-vue-router-meta]')).map(el => el.remove());
+
   document.title = to.meta.title;
+  addMeta({
+    property: 'og:title',
+    content: to.meta.title,
+  });
 
   if(to.meta.description) {
     addMeta({
@@ -147,27 +152,6 @@ router.beforeEach((to, from, next) => {
       content: to.meta.description,
     });
   }
-
-  addMeta({
-    property: 'og:image',
-    content: 'https://cebrasdepaso.es/cebrasdepaso-og.png',
-  })
-  addMeta({
-    property: 'og:image:width',
-    content: '1200',
-  })
-  addMeta({
-    property: 'og:image:height',
-    content: '627',
-  })
-  addMeta({
-    property: 'og:image:type',
-    content: 'image/png',
-  })
-  addMeta({
-    property: 'og:image:alt',
-    content: 'El logotipo de Cebras de paso',
-  })
 
   next();
 });
