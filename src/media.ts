@@ -201,3 +201,42 @@ export function getEpisodeTypeSymbol(type: EpisodeType) {
   
     return '#'
 }
+
+const forceNewLineMap = {
+  'Esto es... CEBRAS DE PASO': 'Esto es...<br />CEBRAS DE PASO',
+} as {[key: string]: string};
+
+export function newLineEpisodeTitle(title: string): string {
+  if(title in forceNewLineMap) {
+    return forceNewLineMap[title];
+  }
+
+  const length = title.length;
+  if(length < 22) {
+    return title;
+  }
+
+  let formatedTitle = '';
+  let lastChunk: string|null = null;
+  let firstLineEnded = false;
+
+  title.split(' ').forEach((chunk) => {
+    const currentLength = formatedTitle.length;
+    const forwardLength = currentLength + chunk.length + 1;
+
+    if(lastChunk === null || firstLineEnded || currentLength < 10) {
+      formatedTitle += ' ' + chunk;
+    }
+    else if(forwardLength <= 20 && chunk.length > 3) {
+      formatedTitle += ' ' + chunk;
+    }
+    else {
+      formatedTitle += '<br/>' + chunk;
+      firstLineEnded = true;
+    }
+
+    lastChunk = chunk
+  });
+
+  return formatedTitle;
+}

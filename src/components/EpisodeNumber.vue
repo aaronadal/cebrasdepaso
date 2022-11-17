@@ -35,7 +35,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="element">
+  <div ref="element" style="display: contents;">
     <svg xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 265 ${viewBoxHeight}`" class="episode-number">
       <mask :id="`episode-number-${number}`">
         <rect x="0" y="0" width="100" height="100" fill="black" />

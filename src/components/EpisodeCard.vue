@@ -29,7 +29,6 @@ const episodeRef = ref()
           :number="episode.number"
           :season="episode.season"
           :numberInSeason="episode.numberInSeason"
-          is-title-html
           :full-background="fullBackground"
         />
       </template>

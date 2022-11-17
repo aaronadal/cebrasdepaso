@@ -2,7 +2,7 @@
 import { toRefs } from '@vue/reactivity'
 import {computed, ref} from '@vue/runtime-core'
 import EpisodeNumber from '@/components/EpisodeNumber.vue'
-import { EpisodeType, getEpisodeTypeLabel } from '@/media'
+import { EpisodeType, getEpisodeTypeLabel, newLineEpisodeTitle } from '@/media'
 
 interface Props {
     type: EpisodeType;
@@ -62,7 +62,6 @@ defineExpose({
         </template>
       </span>
       <EpisodeNumber :number="number" :type="type" :disable-animations="disableAnimations" />
-      <span v-if="isTitleHtml" class="text" v-html="title"></span>
-      <span v-else class="text">{{ title }}</span>
+      <span class="text" v-html="isTitleHtml ? title : newLineEpisodeTitle(title)"></span>
   </div>
 </template>
