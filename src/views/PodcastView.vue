@@ -11,10 +11,12 @@ import { computed, nextTick, watch } from '@vue/runtime-core'
 import { currentPlaylist, currentTrack } from '@/media'
 
 const podcast = ref<Podcast|null>(null)
-parsePodcastFromFeed(PODCAST_RSS_URL)
-  .then((p) => {
-    podcast.value = p
-  })
+if(PUBLISHED) {
+  parsePodcastFromFeed(PODCAST_RSS_URL)
+      .then((p) => {
+        podcast.value = p
+      })
+}
 
 const allEpisodes = computed<Episode[]>(() => {
   return podcast.value?.episodes || [];
