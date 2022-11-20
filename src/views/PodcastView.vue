@@ -3,24 +3,14 @@ import PlatformLinks from '@/components/PlatformLinks.vue'
 import EpisodeCard from '@/components/EpisodeCard.vue'
 import Paginator from '@/components/Paginator.vue'
 import Hourglass from '@/components/Hourglass.vue'
-import { PUBLISHED, PODCAST_RSS_URL } from '@/config'
-import { Episode, Podcast, Track } from '@/media'
-import { parsePodcastFromFeed } from '@/rss'
-import { ref } from '@vue/reactivity'
-import { computed, nextTick, watch } from '@vue/runtime-core'
-import { currentPlaylist, currentTrack } from '@/media'
+import {PUBLISHED} from '@/config'
+import {Episode, Podcast} from '@/media'
+import {ref} from '@vue/reactivity'
+import {nextTick} from '@vue/runtime-core'
+import {ComputedRef, inject, Ref} from "vue";
 
-const podcast = ref<Podcast|null>(null)
-if(PUBLISHED) {
-  parsePodcastFromFeed(PODCAST_RSS_URL)
-      .then((p) => {
-        podcast.value = p
-      })
-}
-
-const allEpisodes = computed<Episode[]>(() => {
-  return podcast.value?.episodes || [];
-})
+const podcast = inject('podcast') as Ref<Podcast>
+const allEpisodes = inject('allEpisodes') as ComputedRef<Episode[]>
 
 const episodes = ref<Episode[]>([])
 
@@ -43,15 +33,6 @@ function onPaginate (page: number, items: unknown[]) {
     window.scrollTo({ top: scrollTop, behavior: 'smooth' })
   })
 }
-
-watch(currentTrack, (newTrack: Track|Episode|null) => {
-  if(newTrack && 'number' in newTrack && allEpisodes.value.includes(newTrack)) {
-    currentPlaylist.value = allEpisodes.value;
-  }
-  else {
-    currentPlaylist.value = [];
-  }
-});
 </script>
 
 <template>

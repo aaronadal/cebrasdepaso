@@ -57,13 +57,15 @@ onActivated(() => {
   page.value = 1
   emit('init', page.value, getSlicedItems())
 })
+
+
 </script>
 
 <template>
-    <div class="paginator">
+    <div class="paginator" v-if="end > 1">
         <a role="navigation" @click="goTo(1)"><Icon icon="caret-double-left" /></a>
         <a role="navigation" @click="goTo(page - 1)"><Icon icon="caret-left" /></a>
-        <a role="navigation" v-for="i in maxShown" :key="i + start" @click="goTo(i + start)">{{ i + start }}</a>
+        <a role="navigation" v-for="i in end" :key="i + start" @click="goTo(i + start)">{{ i + start }}</a>
         <a role="navigation" @click="goTo(page + 1)"><Icon icon="caret-right" /></a>
         <a role="navigation" @click="goTo(totalPages)"><Icon icon="caret-double-right" /></a>
     </div>

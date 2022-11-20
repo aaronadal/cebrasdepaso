@@ -28,14 +28,14 @@ function parseEpisodes (data: Document): Episode[] {
     counts[episodeType]++
     let number = counts[episodeType];
     let title = item.querySelector('title')?.textContent || '';
-    if(/\[#\d]\s/.test(title.substring(0, 6))) {
+    if(/\[#[0-9]{2}]\s/.test(title.substring(0, 6))) {
       number = parseInt(title.substring(2, 5));
-      title = title.substring(7);
+      title = title.substring(6);
     }
 
     let summary = item.querySelector('description')?.textContent || '';
-    if(title.includes('<p>---</p>')) {
-      summary = title.split('<p>---</p>')[0];
+    if(summary.includes('<p>---</p>')) {
+      summary = summary.split('<p>---</p>')[0];
     }
 
     episodes[i] = {

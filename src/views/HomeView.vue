@@ -3,7 +3,15 @@ import AudioPlayer from '@/components/AudioPlayer.vue'
 import TeamMember from "@/components/TeamMember.vue";
 import Cebra from '@/assets/cebra.mp3'
 import EpisodeCard from "@/components/EpisodeCard.vue";
-import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
+import {PUBLISHED} from "@/config";
+import {ComputedRef, inject, Ref} from "vue";
+import {Episode, Podcast} from "@/media";
+import {computed} from "@vue/runtime-core";
+
+const podcast = inject('podcast') as Ref<Podcast>
+const allEpisodes = inject('allEpisodes') as ComputedRef<Episode[]>
+
+const trailer = computed(() => [...allEpisodes.value].reverse()[0] || null);
 </script>
 
 <template>
@@ -14,12 +22,13 @@ import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
         Si todavía no nos conoces, aquí tienes una breve introducción:</p>
     </section>
 
-    <section v-if="PUBLISHED">
+    <section v-if="PUBLISHED && trailer && trailer.episodeType === 'trailer'">
       <EpisodeCard
-        :episode="PODCAST_INTRODUCTION_EPISODE"
-        class="bordered"
-        style="margin-top: 2rem;"
-        full-background
+          :podcast="podcast"
+          :episode="trailer"
+          class="bordered"
+          style="margin-top: 2rem;"
+          full-background
       />
     </section>
 
@@ -45,7 +54,7 @@ import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
             title:     '¿Qué sonido hacen las cebras?',
             artist:    '',
             album:     '',
-          }" />
+          }"/>
 
       <p>Lo de "DE PASO" es un poco más complejo. La versión corta (y que, probablemente, se aproxima
         más a la realidad) es que somos unos adictos a los juegos de palabras. La versión oficial,
@@ -68,7 +77,9 @@ import {PUBLISHED, PODCAST_INTRODUCTION_EPISODE} from "@/config";
       <p>Además, tenemos la certeza de que <b>sois muchísima más gente con intereses similares a los nuestros</b>
         ahí afuera en la vasta infinidad del Internet y, oye, nos parece una magnífica idea poder conoceros.
         (Si eres una de estas personas, por favor,
-        <router-link href="/contacto" :to="{name: 'contact'}" class="link">contacta con nosotros</router-link>)</p>
+        <router-link href="/contacto" :to="{name: 'contact'}" class="link">contacta con nosotros</router-link>
+        )
+      </p>
     </section>
 
     <section class="container">
