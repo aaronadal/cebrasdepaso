@@ -2,7 +2,7 @@
 import Icon from '@/components/Icon.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { ref, toRefs } from '@vue/reactivity'
-import { computed, nextTick, onMounted, onUnmounted, watch } from '@vue/runtime-core'
+import { computed, onMounted, onUnmounted, watch } from '@vue/runtime-core'
 import { Track, currentTrack, currentPlaying, currentProgress, formatTime, play, pause, goToPosition } from '@/media';
 
 interface Props {
@@ -24,12 +24,12 @@ const audioRef = ref<HTMLAudioElement|null>()
 
 const isCurrentTrack = computed(() => currentTrack.value?.mediaUrl === track.value.mediaUrl);
 const isPlaying = computed(() => isCurrentTrack.value ? currentPlaying.value : false);
-const progressTime = computed(() => formatTime(isCurrentTrack.value ? progress.value : 0));
+const progressTime = computed(() => formatTime(isCurrentTrack.value ? currentProgress.value : 0));
 
 const duration = ref(0);
 const totalTime = computed(() => formatTime(duration.value));
 
-const progress = ref(0);
+const progress = ref(isCurrentTrack.value ? currentProgress.value : 0);
 watch(currentProgress, () => {
   if(isCurrentTrack.value) {
     progress.value = currentProgress.value;
@@ -38,30 +38,30 @@ watch(currentProgress, () => {
 watch(isCurrentTrack, () => {
   if(!isCurrentTrack.value) {
     progress.value = 0;
-  } 
+  }
 })
 
 function updateDuration () {
   duration.value = Math.floor(audioRef.value?.duration || 0)
 }
- 
+
 // function updateMediaPositionState () {
 //   if (isMediaSessionDisabled.value) {
 //     return
 //   }
-// 
+//
 //   navigator.mediaSession.setPositionState({
 //     duration: duration.value,
 //     playbackRate: 1.0,
 //     position: progress.value
 //   })
 // }
-// 
+//
 // function updateMediaSession () {
 //   if (isMediaSessionDisabled.value) {
 //     return
 //   }
-// 
+//
 //   if ('mediaSession' in navigator && playing.value === true) {
 //     navigator.mediaSession.metadata = new MediaMetadata({
 //       title: title.value,
@@ -69,7 +69,7 @@ function updateDuration () {
 //       album: album.value,
 //       artwork: artworks.value
 //     })
-// 
+//
 //     // eslint-disable-next-line no-undef
 //     const actions: Record<MediaSessionAction, (details: MediaSessionActionDetails) => void> = {
 //       play: () => play(),
@@ -91,12 +91,12 @@ function updateDuration () {
 //       togglecamera: () => { /* do nothing */ },
 //       togglemicrophone: () => { /* do nothing */ }
 //     }
-// 
+//
 //     Object.keys(actions).forEach((key) => {
 //     // eslint-disable-next-line no-undef
 //       const action = key as MediaSessionAction
 //       const handler = actions[action]
-// 
+//
 //       try {
 //         navigator.mediaSession.setActionHandler(action, handler)
 //       } catch (error) {
@@ -139,6 +139,10 @@ function onDragEnd () {
 }
 
 onMounted(() => {
+  if(isCurrentTrack.value) {
+    progress.value = currentProgress.value;
+  }
+
   audioRef.value?.addEventListener('loadedmetadata', updateDuration);
   if (audioRef.value?.readyState && audioRef.value?.readyState > 0) {
     updateDuration()
