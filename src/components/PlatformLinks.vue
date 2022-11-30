@@ -23,6 +23,22 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const showMore = ref(!props.more);
+
+const rssCopied = ref(false);
+let rssCopiedTimeout: number|null = null;
+
+function copyRss() {
+  navigator.clipboard.writeText(PODCAST_RSS_URL);
+  rssCopied.value = true;
+
+  if(rssCopiedTimeout) {
+    clearTimeout(rssCopiedTimeout)
+  }
+
+  rssCopiedTimeout = setTimeout(() => {
+    rssCopied.value = false;
+  }, 1000);
+}
 </script>
 
 <template>
@@ -78,8 +94,8 @@ const showMore = ref(!props.more);
         </a>
       </div>
     <div v-if="PODCAST_RSS_URL !== null">
-        <a :href="PODCAST_RSS_URL" target="_blank">
-          <Tooltip message="Feed RSS">
+        <a @click="copyRss()">
+          <Tooltip :message="rssCopied ? '¡Enlace copiado!' : 'Feed RSS'">
             <Icon class="icon-item icon" weight="light" icon="rss" />
           </Tooltip>
         </a>
