@@ -2,8 +2,9 @@
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import Card from '@/components/Card.vue'
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
-import {Episode, Podcast} from '@/media'
-import {ref} from '@vue/reactivity'
+import {Episode, getEpisodeTypeLabel, Podcast} from '@/media'
+import {ref, toRefs} from '@vue/reactivity'
+import {computed} from "@vue/runtime-core";
 
 interface Props {
     podcast?: Podcast|null;
@@ -11,16 +12,29 @@ interface Props {
     fullBackground?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   podcast: null,
   fullBackground: false,
 })
+const { episode } = toRefs(props);
 
 const episodeRef = ref()
+
+const episodeType = computed(() => getEpisodeTypeLabel(episode.value.episodeType))
 </script>
 
 <template>
-    <Card class="episode-card" :class="{'full-background': fullBackground}" :title="episode.title.replace('<br/>', ' ')">
+    <Card class="episode-card" :class="{'full-background': fullBackground}">
+      <template #title>
+        <small>
+          {{ episodeType }}
+          <template v-if="episode.episodeType !== 'trailer'">
+            {{ episode.season }}x{{ `${episode.numberInSeason}`.padStart(2, '0') }}
+          </template>
+        </small>
+        {{ episode.title }}
+      </template>
+
       <template #thumbnail>
         <EpisodeThumbnail
           ref="episodeRef"

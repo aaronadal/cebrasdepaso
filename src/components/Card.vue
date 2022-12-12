@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-    title: string,
+    title?: string,
 }
 
 // eslint-disable-next-line no-undef
@@ -13,7 +13,11 @@ defineProps<Props>()
             <div class="thumbnail">
                 <slot name="thumbnail" />
             </div>
-            <h2 class="title">{{ title }}</h2>
+            <h2 class="title">
+              <slot name="title">
+                {{ title }}
+              </slot>
+            </h2>
             <div class="content">
                 <slot />
             </div>
