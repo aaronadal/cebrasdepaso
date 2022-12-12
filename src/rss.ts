@@ -28,7 +28,7 @@ function parseEpisodes (data: Document): Episode[] {
     counts[episodeType]++
     let number = counts[episodeType];
     let title = item.querySelector('title')?.textContent || '';
-    if(/\[#[0-9]{2}]\s/.test(title.substring(0, 6))) {
+    if(/\[[*#»][0-9]+]\s/.test(title.substring(0, 6))) {
       number = parseInt(title.substring(2, 5));
       title = title.substring(6);
     }
