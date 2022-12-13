@@ -37,14 +37,14 @@ defineExpose({
 <template>
   <div ref="element" style="display: contents;">
     <svg xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 265 ${viewBoxHeight}`" class="episode-number">
-      <mask :id="`episode-number-${number}`">
+      <mask :id="`${type}-number-${number}`">
         <rect x="0" y="0" width="100" height="100" fill="black" />
         <text class="title" x="0" :y="textVerticalPosition" fill="white">
           {{ episodeSymbol }}{{ `${number}`.padStart(2, '0') }}
         </text>
       </mask>
 
-      <g :mask="`url(#episode-number-${number})`" fill="var(--text-color)">
+      <g :mask="`url(#${type}-number-${number})`" fill="var(--text-color)">
         <g>
           <ZebraPattern x="0" y="0" transform="scale(1.5)" />
           <ZebraPattern x="0" y="0" transform="scale(1.5) translate(138)" />
