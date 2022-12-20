@@ -1,0 +1,56 @@
+#page-layout[data-page="episode"] {
+  #page-content {
+    margin-top: 10rem;
+  }
+
+  #page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+
+    &,
+    & > .inner {
+      background: none;
+      border-color: transparent;
+    }
+  }
+}
+
+.page.episode-page {
+  > header {
+    margin: -10rem -2rem 5rem;
+    padding: 3rem 0 1rem;
+
+    .container {
+      max-width: calc(800px + 2rem);
+      padding: 0 2rem;
+    }
+
+    .audio-player {
+      background: transparent;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
+  }
+
+  .episode-thumbnail {
+    max-width: var(--card-thumbnail-size);
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .page.episode-page {
+    > header {
+      margin: -10rem -1rem 5rem;
+
+      .container {
+        max-width: calc(800px + 1rem);
+        padding: 0 1rem;
+      }
+    }
+  }
+}

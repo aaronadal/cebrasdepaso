@@ -1,6 +1,7 @@
 import { nextTick } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import {updateMeta} from "@/router/meta";
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -26,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'podcast',
     component: () => import(/* webpackChunkName: "podcast" */ '../views/PodcastView.vue'),
     meta: {
-      title: 'Todos los episodios · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: 'Todos los episodios · Cebras de paso',
       description: 'Aquí tienes disponibles todos los episodios del pódcast Cebras de paso. Puedes escucharlos ' +
           'directamente en este página o, si lo prefieres, puedes suscribirte en una de las diversas plataformas de ' +
           'pódcasts en las que tenemos publicados nuestros episodios: Spotify, Apple Podcasts, Google Podcasts, ' +
@@ -34,11 +35,21 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/podcast/:type(episodio|avance|extra)/:number(\\d+)',
+    name: 'episode',
+    component: () => import(/* webpackChunkName: "episode" */ '../views/EpisodeView.vue'),
+    props: route => ({ type: route.params.type, number: parseInt(route.params.number as string) }),
+    meta: {
+      title: 'Detalles de episodio · Cebras de paso',
+      description: '',
+    }
+  },
+  {
     path: '/contacto',
     name: 'contact',
     component: () => import(/* webpackChunkName: "contact" */ '../views/ContactView.vue'),
     meta: {
-      title: 'Contacto · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: 'Contacto · Cebras de paso',
       description: '¿Quieres contarnos algo? ¿Decirnos que nos quieres? ¿Que nos odias, tal vez? ' +
           '¿Que te gusta el pódcast? ¿Quieres hacernos saber que te caemos bien? ¿Que te gustaría ser nuestro amigo? ' +
           '¿Quieres proponer algún tema? ¿Puntualizar alguna cosa que hayamos dicho? ¿Darnos tu opinión? ' +
@@ -50,7 +61,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'thumbnail-generator',
     component: () => import(/* webpackChunkName: "thumbnail-generator" */ '../views/ThumbnailGeneratorView.vue'),
     meta: {
-      title: 'Generador de carátulas · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: 'Generador de carátulas · Cebras de paso',
     }
   },
   {
@@ -58,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'logo-generator',
     component: () => import(/* webpackChunkName: "logo-generator" */ '../views/LogoGeneratorView.vue'),
     meta: {
-      title: 'Generador de logotipos · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: 'Generador de logotipos · Cebras de paso',
     }
   },
   {
@@ -66,7 +77,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'gradient-generator',
     component: () => import(/* webpackChunkName: "gradient-generator" */ '../views/GradientGeneratorView.vue'),
     meta: {
-      title: 'Generador de degradados · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: 'Generador de degradados · Cebras de paso',
     }
   },
   {
@@ -74,7 +85,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'legal',
     component: () => import(/* webpackChunkName: "legal" */ '../views/LegalView.vue'),
     meta: {
-      title: 'Aviso legal · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: 'Aviso legal · Cebras de paso',
     }
   },
   {
@@ -82,7 +93,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'notfound',
     component: () => import(/* webpackChunkName: "notfound" */ '../views/NotFoundView.vue'),
     meta: {
-      title: '[404] Página no encontrada · Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
+      title: '[404] Página no encontrada · Cebras de paso',
     }
   }
 ]
@@ -123,54 +134,9 @@ const router = createRouter({
   }
 })
 
-// Meta attributes
-function addMeta(atts: {[key: string]: string}) {
-  const tag = document.createElement('meta');
-  Object.keys(atts).forEach((key) => tag.setAttribute(key, atts[key]));
-  tag.setAttribute('data-vue-router-meta', '');
-
-  document.head.append(tag);
-}
-
 router.beforeEach((to, from, next) => {
-  Array.from(document.querySelectorAll('[data-vue-router-meta]')).map(el => el.remove());
-
-  document.title = to.meta.title;
-  addMeta({
-    property: 'og:title',
-    content: to.meta.title,
-  });
-  addMeta({
-    name: 'twitter:title',
-    content: to.meta.title,
-  });
-
-  if(to.meta.description) {
-    addMeta({
-      name: 'description',
-      content: to.meta.description,
-    });
-
-    addMeta({
-      property: 'og:description',
-      content: to.meta.description,
-    });
-
-    addMeta({
-      name: 'twitter:description',
-      content: to.meta.description,
-    });
-  }
-
+  updateMeta(to.meta.title, to.meta.description);
   next();
 });
-
-// router.afterEach((to) => {
-//   if (to.name !== 'home') {
-//     document.getElementById('page-header')?.classList.add('collapsed')
-//   } else {
-//     document.getElementById('page-header')?.classList.remove('collapsed')
-//   }
-// })
 
 export default router

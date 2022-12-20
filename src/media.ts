@@ -1,6 +1,7 @@
 import { computed, nextTick, ref, watch } from "vue"
 
 export type EpisodeType = 'full'|'bonus'|'trailer'
+export type EpisodeTypeSlug = 'episodio'|'avance'|'extra'
 
 export interface Track {
     mediaUrl: string;
@@ -65,7 +66,7 @@ const currentIndex = computed(() => {
 export const nextTrackIndex = computed(() => {
   if(currentIndex.value >= currentPlaylist.value.length) {
     return null;
-  } 
+  }
 
   return currentIndex.value + 1;
 });
@@ -73,7 +74,7 @@ export const nextTrackIndex = computed(() => {
 export const previousTrackIndex = computed(() => {
   if(currentIndex.value <= 0) {
     return null;
-  } 
+  }
 
   return currentIndex.value - 1;
 });
@@ -81,7 +82,7 @@ export const previousTrackIndex = computed(() => {
 export const nextTrack = computed(() => {
   if(nextTrackIndex.value === null) {
     return null;
-  } 
+  }
 
   return currentPlaylist.value[nextTrackIndex.value];
 });
@@ -89,7 +90,7 @@ export const nextTrack = computed(() => {
 export const previousTrack = computed(() => {
   if(previousTrackIndex.value === null) {
     return null;
-  } 
+  }
 
   return currentPlaylist.value[previousTrackIndex.value];
 });
@@ -140,10 +141,10 @@ function startPlaying() {
       if (!audio) {
         return
       }
-    
+
       audio.currentTime = 0
     }
-    
+
     audioRef.value?.play();
     //updateMediaPositionState();
     currentPlaying.value = true;
@@ -182,11 +183,11 @@ export function getEpisodeTypeLabel(type: EpisodeType) {
     if (type === 'bonus') {
       return 'Extra'
     }
-  
+
     if (type === 'trailer') {
       return 'Avance'
     }
-  
+
     return 'Episodio'
 }
 
@@ -194,12 +195,52 @@ export function getEpisodeTypeSymbol(type: EpisodeType) {
     if (type === 'bonus') {
       return '*'
     }
-  
+
     if (type === 'trailer') {
       return '»'
     }
-  
+
     return '#'
+}
+
+export function getEpisodeBackground(type: EpisodeType, number: number) {
+    if(type === 'trailer') {
+        return 'var(--gradient-gray)';
+    }
+
+    if(type === 'bonus') {
+        return 'var(--full-gradient)';
+    }
+
+    if(number === 0) {
+        return 'var(--gradient-gray)';
+    }
+
+    return `var(--gradient-${((number - 1) % 8) + 1})`
+}
+
+export function getEpisodeTypeSlug(type: EpisodeType): EpisodeTypeSlug {
+    if(type === 'bonus') {
+        return 'extra';
+    }
+
+    if(type === 'trailer') {
+        return 'avance';
+    }
+
+    return 'episodio';
+}
+
+export function getEpisodeTypeBySlug(type: EpisodeTypeSlug): EpisodeType {
+    if(type === 'extra') {
+        return 'bonus';
+    }
+
+    if(type === 'avance') {
+        return 'trailer';
+    }
+
+    return 'full';
 }
 
 const forceNewLineMap = {

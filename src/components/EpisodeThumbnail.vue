@@ -2,7 +2,7 @@
 import { toRefs } from '@vue/reactivity'
 import {computed, ref} from '@vue/runtime-core'
 import EpisodeNumber from '@/components/EpisodeNumber.vue'
-import { EpisodeType, getEpisodeTypeLabel, newLineEpisodeTitle } from '@/media'
+import {EpisodeType, getEpisodeBackground, getEpisodeTypeLabel, newLineEpisodeTitle} from '@/media'
 
 interface Props {
     type: EpisodeType;
@@ -13,36 +13,30 @@ interface Props {
     isTitleHtml?: boolean
     disableAnimations?: boolean;
     fullBackground?: boolean;
+    noBackground?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isTitleHtml: false,
   disableAnimations: false,
   fullBackground: false,
+  noBackground: false,
 })
 
-const { type, number, fullBackground } = toRefs(props)
+const { type, number, fullBackground, noBackground } = toRefs(props)
 
 const episodeType = computed(() => getEpisodeTypeLabel(type.value))
 
 const background = computed(() => {
+  if(noBackground.value) {
+    return 'transparent';
+  }
+
   if(fullBackground.value) {
     return 'var(--full-gradient)';
   }
 
-  if(type.value === 'trailer') {
-    return 'var(--gradient-gray)';
-  }
-
-  if(type.value === 'bonus') {
-    return 'var(--full-gradient)';
-  }
-
-  if(number.value === 0) {
-    return 'var(--gradient-gray)';
-  }
-
-  return `var(--gradient-${((number.value - 1) % 8) + 1})`
+  return getEpisodeBackground(type.value, number.value);
 })
 
 const element = ref();
@@ -61,6 +55,7 @@ defineExpose({
           {{ season }}x{{ `${numberInSeason}`.padStart(2, '0') }}
         </template>
       </span>
+
       <EpisodeNumber :number="number" :type="type" :disable-animations="disableAnimations" />
       <span class="text" v-html="isTitleHtml ? title : newLineEpisodeTitle(title)"></span>
   </div>
