@@ -24,8 +24,13 @@
     margin: -10rem -2rem 5rem;
     padding: 3rem 0 1rem;
     border-bottom: var(--layout-border-style);
+    min-height: 65vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
 
     .container {
+      width: 100%;
       max-width: calc(800px + 4rem);
       padding: 0 2rem;
     }
