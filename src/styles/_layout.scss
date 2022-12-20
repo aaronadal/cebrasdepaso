@@ -1,3 +1,7 @@
+:root {
+  --layout-border-style: solid 3px var(--text-color);
+}
+
 html,
 body,
 #app {
@@ -21,7 +25,7 @@ body,
 
     @extend %full-gradient-animated;
 
-    --border-style: solid 3px var(--text-color);
+    --border-style: var(--layout-border-style);
     --header-max-width: 1200px;
     --footer-max-width: 800px;
 

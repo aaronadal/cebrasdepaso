@@ -5,16 +5,19 @@ import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
 import {Episode, getEpisodeTypeLabel, Podcast} from '@/media'
 import {ref, toRefs} from '@vue/reactivity'
 import {computed} from "@vue/runtime-core";
+import {getEpisodeTypeSlug} from "@/media.js";
 
 interface Props {
     podcast?: Podcast|null;
     episode: Episode;
     fullBackground?: boolean;
+    noLink?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   podcast: null,
   fullBackground: false,
+  noLink: false,
 })
 const { episode } = toRefs(props);
 
@@ -32,7 +35,8 @@ const episodeType = computed(() => getEpisodeTypeLabel(episode.value.episodeType
             {{ episode.season }}x{{ `${episode.numberInSeason}`.padStart(2, '0') }}
           </template>
         </small>
-        {{ episode.title }}
+        <template v-if="noLink">{{ episode.title }}</template>
+        <router-link v-else :to="{name: 'episode', params: {number: episode.number, type: getEpisodeTypeSlug(episode.episodeType)}}">{{ episode.title }}</router-link>
       </template>
 
       <template #thumbnail>

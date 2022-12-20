@@ -29,6 +29,7 @@ const trailer = computed(() => [...allEpisodes.value].reverse()[0] || null);
           class="bordered"
           style="margin-top: 2rem;"
           full-background
+          no-link
       />
     </section>
 

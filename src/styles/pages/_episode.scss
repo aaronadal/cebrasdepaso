@@ -23,9 +23,10 @@
   > header {
     margin: -10rem -2rem 5rem;
     padding: 3rem 0 1rem;
+    border-bottom: var(--layout-border-style);
 
     .container {
-      max-width: calc(800px + 2rem);
+      max-width: calc(800px + 4rem);
       padding: 0 2rem;
     }
 
@@ -48,7 +49,7 @@
       margin: -10rem -1rem 5rem;
 
       .container {
-        max-width: calc(800px + 1rem);
+        max-width: calc(800px + 2rem);
         padding: 0 1rem;
       }
     }
