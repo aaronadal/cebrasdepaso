@@ -33,6 +33,14 @@ function parseEpisodes (data: Document): Episode[] {
       title = title.substring(6);
     }
 
+    let guest = '';
+    if(/\s\(Con .*?\)$/.test(title)) {
+      const match = title.match(/\s\(Con (.*?)\)$/);
+
+      guest = match && match.length >= 2 ? match[1] : '';
+      title = title.replace(/\s\(Con (.*?)\)$/, '');
+    }
+
     let summary = item.querySelector('description')?.textContent || '';
     if(summary.includes('<p>---</p>')) {
       summary = summary.split('<p>---</p>')[0];
@@ -42,6 +50,7 @@ function parseEpisodes (data: Document): Episode[] {
       guid: item.querySelector('guid')?.textContent || '',
       date: parseDate(item.querySelector('pubDate')?.textContent || ''),
       title,
+      guest,
       summary,
       episodeType,
       number,

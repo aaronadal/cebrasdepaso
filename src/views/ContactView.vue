@@ -27,8 +27,8 @@ import {CONTACT_EMAIL, INSTAGRAM_URL} from "@/config";
       </div>
     </section>
     <section class="container">
-      <p><b>Disclaimer:</b> Respondemos a TODOS los mensajes que nos enviáis. No obstante, a veces andamos más liados de lo que nos
-        gustaría y es posible que tardemos. Si contactas con nosotros, por favor, ten paciencia. Y si después de
+      <p><b>Disclaimer:</b> Respondemos a TODOS los mensajes que nos enviáis. No obstante, a veces andamos más liadas de lo que nos
+        gustaría y es posible que tardemos. Si contactas con nosotras, por favor, ten paciencia. Y si después de
         unos días no te hemos dicho nada, no dudes en insistir. Somos CEBRAS y, como tales, es posible que alguna
         vez se nos traspapele algún mensaje.</p>
       <p>Dicho esto, ¡un placer conocerte!</p>

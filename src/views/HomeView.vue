@@ -45,7 +45,7 @@ const trailer = computed(() => [...allEpisodes.value].reverse()[0] || null);
       <p>Bueno, pues muy sencillo: lo de "CEBRAS" es porque nos gusta rayarnos la cabeza. Y todos
         sabemos que, si algún animal se caracteriza por sus rayas, este es la cebra. Además,
         ¡las cebras molan!</p>
-      <p>Por cierto, ¿sabías que este es el sonido que hacen las cebras? (Igualito a nosotros, ¿a que sí?)
+      <p>Por cierto, ¿sabías que este es el sonido que hacen las cebras? (Igualito a nosotras, ¿a que sí?)
         ¡Si es que no podríamos haber elegido un nombre mejor!</p>
 
       <AudioPlayer
@@ -58,11 +58,11 @@ const trailer = computed(() => [...allEpisodes.value].reverse()[0] || null);
           }"/>
 
       <p>Lo de "DE PASO" es un poco más complejo. La versión corta (y que, probablemente, se aproxima
-        más a la realidad) es que somos unos adictos a los juegos de palabras. La versión oficial,
-        por su parte, dice que es porque somos unos nómadas del intelecto (o unos dispersos de manual,
+        más a la realidad) es que somos unas adictas a los juegos de palabras. La versión oficial,
+        por su parte, dice que es porque somos unas nómadas del intelecto (o unas dispersas de manual,
         en términos de andar por casa): no nos centramos en una única temática, sino que vamos "pasando"
         de la una a la otra sin detenernos demasiado. Por último, está la versión antropológica y existencial,
-        que dice todos estamos aquí de paso, algún día nosotros no estaremos y serán otras CEBRAS las que ocupen
+        que dice todos estamos aquí de paso, algún día nosotras no estaremos y serán otras CEBRAS las que ocupen
         nuestro lugar. Puedes quedarte con la que más te guste de las tres.</p>
     </section>
 

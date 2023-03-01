@@ -7,6 +7,7 @@ import {EpisodeType, getEpisodeBackground, getEpisodeTypeLabel, newLineEpisodeTi
 interface Props {
     type: EpisodeType;
     title: string,
+    guest: string,
     number: number,
     season: number,
     numberInSeason: number,
@@ -58,5 +59,6 @@ defineExpose({
 
       <EpisodeNumber :number="number" :type="type" :disable-animations="disableAnimations" />
       <span class="text" v-html="isTitleHtml ? title : newLineEpisodeTitle(title)"></span>
+      <span class="guest" v-if="guest">Con {{ guest }}</span>
   </div>
 </template>

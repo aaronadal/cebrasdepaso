@@ -6,6 +6,7 @@ import html2canvas from "html2canvas";
 
 const type = ref<"full" | "bonus" | "trailer">('full')
 const title = ref('')
+const guest = ref('');
 const number = ref(0)
 const season = ref(0)
 const numberInSeason = ref(0)
@@ -71,6 +72,10 @@ function download() {
         <textarea v-model="title" />
       </label>
       <label>
+        <span>Invitado</span>
+        <input type="text" v-model="guest" />
+      </label>
+      <label>
         <span>Número</span>
         <input type="number" min="0" v-model="number" />
       </label>
@@ -88,6 +93,7 @@ function download() {
           ref="targetRef"
           :type="type"
           :title="htmlTitle"
+          :guest="guest"
           :number="number"
           :season="season"
           :numberInSeason="numberInSeason"

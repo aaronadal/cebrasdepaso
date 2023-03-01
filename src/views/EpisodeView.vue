@@ -52,6 +52,7 @@ watchEffect(() => {
               ref="episodeRef"
               :type="episode.episodeType"
               :title="episode.title"
+              :guest="episode.guest || ''"
               :number="episode.number"
               :season="episode.season"
               :numberInSeason="episode.numberInSeason"

@@ -18,6 +18,7 @@ export interface Track {
 export interface Episode extends Track {
     guid?: string;
     date?: Date;
+    guest?: string;
     summary?: string;
     episodeType: EpisodeType;
     number: number;
@@ -216,7 +217,7 @@ export function getEpisodeBackground(type: EpisodeType, number: number) {
         return 'var(--gradient-gray)';
     }
 
-    return `var(--gradient-${((number - 1) % 8) + 1})`
+    return `var(--gradient-${((number - 1) % 9) + 1})`
 }
 
 export function getEpisodeTypeSlug(type: EpisodeType): EpisodeTypeSlug {
