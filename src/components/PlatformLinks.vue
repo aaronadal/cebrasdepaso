@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 const showMore = ref(!props.more);
 
 const rssCopied = ref(false);
-let rssCopiedTimeout: number|null = null;
+let rssCopiedTimeout: ReturnType<typeof setTimeout>|null = null;
 
 function copyRss() {
   navigator.clipboard.writeText(PODCAST_RSS_URL);
