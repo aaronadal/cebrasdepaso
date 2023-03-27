@@ -1,7 +1,7 @@
 import type {VercelRequest, VercelResponse} from '@vercel/node';
-import {parsePodcastFromFeed} from "../src/rss";
-import {PODCAST_RSS_URL} from "../src/config";
-import {getEpisodeTypeSlug, Podcast} from "../src/media";
+import {parsePodcastFromFeed} from "./rss";
+import {PODCAST_RSS_URL} from "./config";
+import {getEpisodeTypeSlug, Podcast} from "./media-types";
 
 function formatDate(date: Date | undefined): string {
     if (!date) {

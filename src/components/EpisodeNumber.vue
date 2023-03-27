@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ZebraPattern from '@/components/ZebraPattern.vue'
-import { EpisodeType, getEpisodeTypeSymbol } from '@/media'
+import { EpisodeType, getEpisodeTypeSymbol } from '@/media-types'
 import { toRefs } from '@vue/reactivity'
 import {computed, ref} from '@vue/runtime-core'
 

@@ -2,10 +2,9 @@
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import Card from '@/components/Card.vue'
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
-import {Episode, getEpisodeTypeLabel, Podcast} from '@/media'
+import {Episode, getEpisodeTypeLabel, getEpisodeTypeSlug, Podcast} from '@/media-types'
 import {ref, toRefs} from '@vue/reactivity'
 import {computed} from "@vue/runtime-core";
-import {getEpisodeTypeSlug} from "@/media.js";
 
 interface Props {
     podcast?: Podcast|null;

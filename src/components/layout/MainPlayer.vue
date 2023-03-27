@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import AudioPlayer from "@/components/AudioPlayer.vue";
 import Icon from "@/components/Icon.vue";
-import { currentTrack, currentPlaylist, nextTrack, previousTrack, stop, getEpisodeTypeLabel, getEpisodeTypeSymbol } from "@/media";
+import { currentTrack, currentPlaylist, nextTrack, previousTrack, stop } from "@/media";
+import { getEpisodeTypeLabel, getEpisodeTypeSymbol } from "@/media-types";
 import { ref } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
 

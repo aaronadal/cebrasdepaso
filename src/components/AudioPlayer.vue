@@ -3,7 +3,8 @@ import Icon from '@/components/Icon.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { ref, toRefs } from '@vue/reactivity'
 import { computed, onMounted, onUnmounted, watch } from '@vue/runtime-core'
-import { Track, currentTrack, currentPlaying, currentProgress, formatTime, play, pause, goToPosition } from '@/media';
+import { currentTrack, currentPlaying, currentProgress, formatTime, play, pause, goToPosition } from '@/media';
+import { Track } from '@/media-types';
 
 interface Props {
   track: Track;

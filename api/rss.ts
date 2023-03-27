@@ -1,4 +1,4 @@
-import {Episode, Podcast, EpisodeType} from "./media-types";
+import {Episode, Podcast, EpisodeType} from "@/media-types";
 
 function parseDate (date: string): Date {
   return new Date(date)

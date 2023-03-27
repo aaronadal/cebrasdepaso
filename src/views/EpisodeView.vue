@@ -6,7 +6,7 @@ import {
   getEpisodeTypeLabel,
   getEpisodeTypeSymbol,
   Podcast
-} from "@/media";
+} from "@/media-types";
 import {ComputedRef, inject, Ref, watchEffect} from "vue"
 import {computed} from "@vue/runtime-core";
 import {toRefs} from "@vue/reactivity";

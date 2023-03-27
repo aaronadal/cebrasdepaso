@@ -2,7 +2,8 @@
 import { toRefs } from '@vue/reactivity'
 import {computed, ref} from '@vue/runtime-core'
 import EpisodeNumber from '@/components/EpisodeNumber.vue'
-import {EpisodeType, getEpisodeBackground, getEpisodeTypeLabel, newLineEpisodeTitle} from '@/media'
+import {newLineEpisodeTitle} from '@/media'
+import {EpisodeType, getEpisodeBackground, getEpisodeTypeLabel} from '@/media-types'
 
 interface Props {
     type: EpisodeType;

@@ -4,7 +4,7 @@ import EpisodeCard from '@/components/EpisodeCard.vue'
 import Paginator from '@/components/Paginator.vue'
 import Hourglass from '@/components/Hourglass.vue'
 import {PUBLISHED} from '@/config'
-import {Episode, Podcast} from '@/media'
+import {Episode, Podcast} from '@/media-types'
 import {ref} from '@vue/reactivity'
 import {nextTick} from '@vue/runtime-core'
 import {ComputedRef, inject, Ref} from "vue";

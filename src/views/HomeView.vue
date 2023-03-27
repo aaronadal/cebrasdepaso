@@ -5,7 +5,7 @@ import Cebra from '@/assets/cebra.mp3'
 import EpisodeCard from "@/components/EpisodeCard.vue";
 import {PUBLISHED} from "@/config";
 import {ComputedRef, inject, Ref} from "vue";
-import {Episode, Podcast} from "@/media";
+import {Episode, Podcast} from "@/media-types";
 import {computed} from "@vue/runtime-core";
 
 const podcast = inject('podcast') as Ref<Podcast>
