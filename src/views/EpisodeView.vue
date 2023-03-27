@@ -61,7 +61,7 @@ watchEffect(() => {
           <AudioPlayer :track="episode" />
         </div>
       </header>
-      <section class="container" v-html="episode.summary" />
+      <section class="container" v-html="episode.fullSummary" />
     </template>
     <section v-else>{{ typeLabel }} número {{ number }} no encontrado.</section>
   </div>

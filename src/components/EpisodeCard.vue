@@ -37,6 +37,7 @@ const episodeType = computed(() => getEpisodeTypeLabel(episode.value.episodeType
         </small>
         <template v-if="noLink">{{ episode.title }}</template>
         <router-link v-else :to="{name: 'episode', params: {number: episode.number, type: getEpisodeTypeSlug(episode.episodeType)}}">{{ episode.title }}</router-link>
+        <span v-if="episode.guest" class="guest">{{ episode.guest }}</span>
       </template>
 
       <template #thumbnail>

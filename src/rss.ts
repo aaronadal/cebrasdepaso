@@ -41,7 +41,8 @@ function parseEpisodes (data: Document): Episode[] {
       title = title.replace(/\s\(Con (.*?)\)$/, '');
     }
 
-    let summary = item.querySelector('description')?.textContent || '';
+    const fullSummary = item.querySelector('description')?.textContent || '';
+    let summary = fullSummary;
     if(summary.includes('<p>---</p>')) {
       summary = summary.split('<p>---</p>')[0];
     }
@@ -52,6 +53,7 @@ function parseEpisodes (data: Document): Episode[] {
       title,
       guest,
       summary,
+      fullSummary,
       episodeType,
       number,
       season: parseInt(item.getElementsByTagNameNS(itunesNS, 'season')?.[0]?.textContent || '0'),

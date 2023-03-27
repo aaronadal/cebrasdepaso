@@ -20,6 +20,7 @@ export interface Episode extends Track {
     date?: Date;
     guest?: string;
     summary?: string;
+    fullSummary?: string;
     episodeType: EpisodeType;
     number: number;
     season: number;
