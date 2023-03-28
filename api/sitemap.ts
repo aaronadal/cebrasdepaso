@@ -1,11 +1,16 @@
 import type {VercelRequest, VercelResponse} from '@vercel/node';
 
-export const PODCAST_RSS_URL = 'https://anchor.fm/s/c0099e38/podcast/rss'
+export const config = {
+    runtime: 'edge',
+};
 
-export type EpisodeType = 'full'|'bonus'|'trailer'
-export type EpisodeTypeSlug = 'episodio'|'avance'|'extra'
+const PODCAST_RSS_URL = 'https://anchor.fm/s/c0099e38/podcast/rss'
 
-export interface Track {    mediaUrl: string;
+type EpisodeType = 'full'|'bonus'|'trailer'
+type EpisodeTypeSlug = 'episodio'|'avance'|'extra'
+
+interface Track {
+    mediaUrl: string;
     mediaType: string;
     title: string;
     artist: string;
@@ -16,7 +21,7 @@ export interface Track {    mediaUrl: string;
     artworkHeight?: number;
 }
 
-export interface Episode extends Track {
+interface Episode extends Track {
     guid?: string;
     date?: Date;
     guest?: string;
@@ -31,7 +36,7 @@ export interface Episode extends Track {
     relatedUrl?: string;
 }
 
-export interface Podcast {
+interface Podcast {
     title: string,
     author: string;
     summary: string;
@@ -39,47 +44,7 @@ export interface Podcast {
     episodes: Episode[];
 }
 
-export function getEpisodeTypeLabel(type: EpisodeType) {
-    if (type === 'bonus') {
-        return 'Extra'
-    }
-
-    if (type === 'trailer') {
-        return 'Avance'
-    }
-
-    return 'Episodio'
-}
-
-export function getEpisodeTypeSymbol(type: EpisodeType) {
-    if (type === 'bonus') {
-        return '*'
-    }
-
-    if (type === 'trailer') {
-        return '»'
-    }
-
-    return '#'
-}
-
-export function getEpisodeBackground(type: EpisodeType, number: number) {
-    if(type === 'trailer') {
-        return 'var(--gradient-gray)';
-    }
-
-    if(type === 'bonus') {
-        return 'var(--full-gradient)';
-    }
-
-    if(number === 0) {
-        return 'var(--gradient-gray)';
-    }
-
-    return `var(--gradient-${((number - 1) % 9) + 1})`
-}
-
-export function getEpisodeTypeSlug(type: EpisodeType): EpisodeTypeSlug {
+function getEpisodeTypeSlug(type: EpisodeType): EpisodeTypeSlug {
     if(type === 'bonus') {
         return 'extra';
     }
@@ -89,18 +54,6 @@ export function getEpisodeTypeSlug(type: EpisodeType): EpisodeTypeSlug {
     }
 
     return 'episodio';
-}
-
-export function getEpisodeTypeBySlug(type: EpisodeTypeSlug): EpisodeType {
-    if(type === 'extra') {
-        return 'bonus';
-    }
-
-    if(type === 'avance') {
-        return 'trailer';
-    }
-
-    return 'full';
 }
 
 
