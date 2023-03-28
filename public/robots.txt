@@ -1,0 +1,3 @@
+user-agent: *
+disallow: /aviso-legal
+sitemap: https://cebrasdepaso.es/sitemap.xml
