@@ -1,55 +1,42 @@
-import {getEpisodeTypeSlug, Podcast} from "../src/media-types";
-import {PODCAST_RSS_URL} from "../src/config";
-import {parsePodcastFromFeed} from "../src/rss";
+import {getEpisodeTypeSlug} from "../src/media-types";
 
 export const config = {
     runtime: 'edge',
 };
 
-function formatDate(date: Date | undefined): string {
-    if (!date) {
-        return '';
-    }
+function createSitemap(json) {
+    const baseUrl = json.link;
 
-    const YYYY = date.getFullYear();
-    const MM = (date.getMonth() + 1).toString().padStart(2, '0');
-    const DD = date.getDate().toString().padStart(2, '0');
-
-    return `${YYYY}-${MM}-${DD}`;
-}
-
-function createSitemap(podcast: Podcast) {
-
-    const last = formatDate(podcast.episodes[0].date);
-
-    const episodes = podcast.episodes.reduce((xml, episode) => {
+    const episodes = json.episodes.reduce((xml, episode) => {
         return xml + '\n' + `  <url>
-    <loc>https://cebrasdepaso.es/podcast/${getEpisodeTypeSlug(episode.episodeType)}/${episode.number}</loc>
-    <lastmod>${formatDate(episode.date)}</lastmod>
+    <loc>${baseUrl}/podcast/${getEpisodeTypeSlug(episode.type)}/${episode.number}</loc>
+    <lastmod>${episode.date}</lastmod>
   </url>`;
     }, '');
 
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cebrasdepaso.es</loc>
-    <lastmod>2023-03-27</lastmod>
+    <loc>${baseUrl}</loc>
+    <lastmod>${json.date}</lastmod>
   </url>
   <url>
-    <loc>https://cebrasdepaso.es/contacto</loc>
-    <lastmod>2023-03-27</lastmod>
+    <loc>${baseUrl}/contacto</loc>
+    <lastmod>${json.date}</lastmod>
   </url>
   <url>
-    <loc>https://cebrasdepaso.es/podcast</loc>
-    <lastmod>${last}</lastmod>
+    <loc>${baseUrl}/podcast</loc>
+    <lastmod>${json.date}</lastmod>
   </url>${episodes}
 </urlset>`;
 }
 
 export default async (request: Request) => {
-    const podcast = await parsePodcastFromFeed(PODCAST_RSS_URL);
+    const sitemap = await fetch(process.env.JSON_EPISODES_URL || '')
+        .then((r) => r.json())
+        .then((json) => createSitemap(json));
 
-    return new Response(createSitemap(podcast), {
+    return new Response(sitemap, {
         status: 200,
         headers: {
             'Content-Type': 'text/xml',
