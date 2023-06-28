@@ -12,7 +12,7 @@ const guest = ref('');
 const number = ref(0)
 const season = ref(0)
 const numberInSeason = ref(0)
-const size = ref(3000)
+const size = computed(() => target.value === 'youtube' ? 1080 : 3000);
 
 const htmlTitle = computed(() => title.value.replace(/\r?\n/g, '<br />'))
 
@@ -36,12 +36,14 @@ const generating = ref(false)
 const generatedImage = ref<string | null>(null)
 
 const scale = computed(() => {
-  const target = targetRef.value
-  if (!target) {
+  const targetElement = targetRef.value
+  if (!targetElement) {
     return 1
   }
 
-  return size.value / parseInt(getComputedStyle(target.element).getPropertyValue('--card-thumbnail-size'))
+  const thumbnailSize = parseInt(getComputedStyle(targetElement).getPropertyValue('--card-thumbnail-size'));
+
+  return size.value / thumbnailSize;
 })
 
 function download() {
@@ -52,7 +54,7 @@ function download() {
   generating.value = true
 
   setTimeout(() => {
-    html2canvas(targetRef.value.element, {
+    html2canvas(targetRef.value, {
       backgroundColor: null,
       scale: scale.value,
     })
@@ -112,20 +114,23 @@ function download() {
         <input type="number" min="0" v-model="numberInSeason"/>
       </label>
     </section>
-    <section class="container" :style="{width: containerWidth, padding: 0, background}">
-      <div style="width: var(--card-thumbnail-size);">
-        <EpisodeThumbnail
-            ref="targetRef"
-            :type="type"
-            :title="htmlTitle"
-            :guest="guest"
-            :number="number"
-            :season="season"
-            :numberInSeason="numberInSeason"
-            :is-title-html="htmlTitle.includes('<br />')"
-            :no-background="target === 'youtube'"
-            disable-animations
-        />
+    <section class="container" :style="{width: containerWidth, padding: 0}">
+      <div ref="targetRef">
+        <div :style="{width: containerWidth, background}">
+          <div style="width: var(--card-thumbnail-size);">
+            <EpisodeThumbnail
+                :type="type"
+                :title="htmlTitle"
+                :guest="guest"
+                :number="number"
+                :season="season"
+                :numberInSeason="numberInSeason"
+                :is-title-html="htmlTitle.includes('<br />')"
+                :no-background="target === 'youtube'"
+                disable-animations
+            />
+          </div>
+        </div>
       </div>
     </section>
     <section class="container" style="text-align:center;">
