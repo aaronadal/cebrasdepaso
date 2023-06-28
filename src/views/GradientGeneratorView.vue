@@ -63,6 +63,7 @@ function download() {
           <optgroup label="Degradados">
             <option value="--gradient-gray">Neutro</option>
             <option value="--full-gradient">Completo</option>
+            <option value="--four-gradient">4 esquinas</option>
             <option value="--gradient-1">Orange/Pink</option>
             <option value="--gradient-2">Red/Purple</option>
             <option value="--gradient-3">Pink/Blue</option>

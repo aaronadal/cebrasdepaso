@@ -73,7 +73,11 @@ export function getEpisodeBackground(type: EpisodeType, number: number) {
         return 'var(--gradient-gray)';
     }
 
-    return `var(--gradient-${((number - 1) % 9) + 1})`
+    if((number % 10) === 0) {
+        return 'var(--four-gradient)';
+    }
+
+    return `var(--gradient-${((number - 1) % 10) + 1})`
 }
 
 export function getEpisodeTypeSlug(type: EpisodeType): EpisodeTypeSlug {

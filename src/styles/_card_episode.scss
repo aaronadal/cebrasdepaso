@@ -106,11 +106,12 @@
   }
 
   .guest {
-    font-family:  var(--font-family-logo);
-    font-weight: var(--font-weight-logo-sub);
-    font-size: calc(var(--episode-thumbnail-title-size) * .65);
-    line-height: 1.15;
-    opacity: .75;
+    @extend .season;
+    // font-family:  var(--font-family-logo);
+    // font-weight: var(--font-weight-logo-sub);
+    // font-size: calc(var(--episode-thumbnail-title-size) * .65);
+    // line-height: 1.15;
+    // opacity: .75;
     padding-top: 7px;
   }
 }

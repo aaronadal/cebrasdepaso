@@ -50,16 +50,16 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="element" class="episode-thumbnail" :style="{backgroundImage: background}">
+  <div ref="element" class="episode-thumbnail" :style="`background-image: ${background}`">
       <span class="season">
         {{ episodeType }}
         <template v-if="type !== 'trailer'">
           {{ season }}x{{ `${numberInSeason}`.padStart(2, '0') }}
         </template>
       </span>
+      <span class="guest" v-if="guest">Con {{ guest }}</span>
 
       <EpisodeNumber :number="number" :type="type" :disable-animations="disableAnimations" />
       <span class="text" v-html="isTitleHtml ? title : newLineEpisodeTitle(title)"></span>
-      <span class="guest" v-if="guest">Con {{ guest }}</span>
   </div>
 </template>

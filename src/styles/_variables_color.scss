@@ -32,8 +32,14 @@ $full-gradient: linear-gradient(
     var(--color-cyan) 66.66%,
     var(--color-teal) 77.77%,
     var(--color-green) 88.88%,
-    var(--color-yellow) 99.99%,
+    var(--color-yellow) 99.99%
 );
+
+$four-gradient: radial-gradient(circle at 0% 0%, var(--color-orange), transparent 70%),
+                radial-gradient(circle at 100% 100%, var(--color-pink), transparent 70%),
+                radial-gradient(circle at 100% 0%, var(--color-blue), transparent 80%),
+                radial-gradient(circle at 0% 100%, var(--color-yellow), transparent 80%),
+                radial-gradient(circle at 50% 50%, var(--color-purple), transparent 80%);
 
 :root {
     --text-color: #{$text-color};
@@ -48,8 +54,9 @@ $full-gradient: linear-gradient(
     --color-teal: #{$color-teal};
     --color-green: #{$color-green};
     --color-yellow: #{$color-yellow};
-    
+
     --full-gradient: #{$full-gradient};
+    --four-gradient: #{$four-gradient};
 
     --gradient-1: #{build-gradient(var(--color-orange), var(--color-pink))};
     --gradient-2: #{build-gradient(var(--color-red), var(--color-purple))};

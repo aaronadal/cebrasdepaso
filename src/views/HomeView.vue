@@ -62,7 +62,7 @@ const trailer = computed(() => [...allEpisodes.value].reverse()[0] || null);
         por su parte, dice que es porque somos unas nómadas del intelecto (o unas dispersas de manual,
         en términos de andar por casa): no nos centramos en una única temática, sino que vamos "pasando"
         de la una a la otra sin detenernos demasiado. Por último, está la versión antropológica y existencial,
-        que dice todos estamos aquí de paso, algún día nosotras no estaremos y serán otras CEBRAS las que ocupen
+        que dice todos estamos aquí de paso: algún día nosotras no estaremos y serán otras CEBRAS las que ocupen
         nuestro lugar. Puedes quedarte con la que más te guste de las tres.</p>
     </section>
 
@@ -96,12 +96,27 @@ const trailer = computed(() => [...allEpisodes.value].reverse()[0] || null);
         <TeamMember avatar="/cebrasdepaso-laia-lopez.jpg" name="Laia López">
           <p><b>Teacher a tiempo completo (excepto en verano) y cabecita loca.</b></p>
           <p>Le encanta fijarse en los detalles que nadie más ve, las sombras y los reflejos, el mar
-            y el ronroneo de su gata cuando ambas se quedan dormidas en el sofá.</p>
+            y el ronroneo de sus gatos cuando se quedan dormidos en el sofá.</p>
           <p>En cambio, le disgustan las personas que no son lo que parecen, lo superficial
             y las cosas que no están en su lugar.
           </p>
         </TeamMember>
       </div>
+    </section>
+
+    <section class="container">
+      <h2>Y ahora, ¿qué?</h2>
+      <p>Bueno, ya nos conoces un poco mejor, sabes de qué va el proyecto y te has empapado de todos los porqués
+        que nos han traído hasta aquí.</p>
+      <p>Ahora te falta lo más importante:</p>
+      <p style="text-align: center">
+        <router-link href="/podcast"
+                     :to="{name: 'podcast'}"
+                     class="button"
+                     @click.prevent>
+          ¡Escucha a las cebras!
+        </router-link>
+      </p>
     </section>
   </div>
 </template>
