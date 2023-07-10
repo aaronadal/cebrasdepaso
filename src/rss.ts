@@ -34,11 +34,11 @@ function parseEpisodes (data: Document): Episode[] {
     }
 
     let guest = '';
-    if(/\s\(Con .*?\)$/.test(title)) {
-      const match = title.match(/\s\(Con (.*?)\)$/);
+    if(/\s\(con .*?\)$/.test(title)) {
+      const match = title.match(/\s\(con (.*?)\)$/);
 
       guest = match && match.length >= 2 ? match[1] : '';
-      title = title.replace(/\s\(Con (.*?)\)$/, '');
+      title = title.replace(/\s\(con (.*?)\)$/, '');
     }
 
     const fullSummary = item.querySelector('description')?.textContent || '';
