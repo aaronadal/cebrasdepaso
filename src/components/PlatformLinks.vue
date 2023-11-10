@@ -79,14 +79,14 @@ function copyRss() {
           </Tooltip>
         </a>
       </div>
-      <div>
+      <div v-if="PODCAST_IVOOX_URL !== null">
         <a :href="PODCAST_IVOOX_URL" target="_blank">
           <Tooltip message="En Ivoox">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M49.67,26.44a4,4,0,1,1-2.93,6.83,4,4,0,0,1-1.1-2.91,3.89,3.89,0,0,1,4-3.92m0-4a8,8,0,1,0,7.93,8,7.87,7.87,0,0,0-7.93-8Z" transform="translate(0)"/><path d="M50,14.33a36,36,0,0,1,11.3,70.23V67c0-2.77,0-4.36,0-5.94s0-3.23,0-6.07c0-4.54-2.2-6.76-4.07-7.83a11,11,0,0,0-4.89-1.48h-.14c-3.08,0-6.36-.07-10.66-.07H31a4.76,4.76,0,0,0-4.95,5v0c.05,4,.05,8,0,12v0a4.69,4.69,0,0,0,4.95,5h.06c1.15,0,2.3,0,3.45,0h4.25c0,4.44,0,6.8,0,9.16,0,2.09,0,4.19,0,7.73a36,36,0,0,1,6.65-70A38.32,38.32,0,0,1,50,14.33m0-4a42.52,42.52,0,0,0-5,.3A40,40,0,0,0,10.15,53.92C11.86,73.71,27.6,87.38,42.92,89.61a3.36,3.36,0,0,0-.11-1c0-12.44-.05-11.14-.05-23.64,0-1.28,0-1.28-1.23-1.28l-7,0c-1.17,0-2.34,0-3.51,0-.74,0-.95-.21-.95-1q.07-6.06,0-12.12c0-.75.21-1,.95-1l10.57,0c3.53,0,7.07,0,10.6.07a7,7,0,0,1,3.09,1c1.59.9,2.07,2.55,2.07,4.36,0,5.64,0,6.42,0,12V88.76c0,.32,0,.59,0,.91A40,40,0,0,0,50,10.33Z" transform="translate(0)"/></svg>
           </Tooltip>
         </a>
       </div>
-      <div>
+      <div v-if="PODCAST_POCKETCASTS_URL !== null">
         <a :href="PODCAST_POCKETCASTS_URL" target="_blank">
           <Tooltip message="En PocketCasts">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,14A36,36,0,1,1,14,50,36,36,0,0,1,50,14m0-4A40,40,0,1,0,90,50,40,40,0,0,0,50,10Z" transform="translate(0)"/><path d="M50,77.05A27.05,27.05,0,1,1,77.05,50h-4a23,23,0,1,0-23,23Z" transform="translate(0)"/><path d="M50,64.69A14.69,14.69,0,1,1,64.69,50h-4A10.69,10.69,0,1,0,50,60.69Z" transform="translate(0)"/></svg>
@@ -100,7 +100,7 @@ function copyRss() {
           </Tooltip>
         </a>
       </div>
-    <div v-if="PODCAST_RSS_URL !== null">
+    <div>
         <a @click="copyRss()">
           <Tooltip :message="rssCopied ? '¡Enlace copiado!' : 'Feed RSS'">
             <Icon class="icon-item icon" weight="light" icon="rss" />

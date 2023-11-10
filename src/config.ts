@@ -9,7 +9,7 @@ export const PODCAST_GOOGLE_PODCASTS_URL: string|null = 'https://podcasts.google
 export const PODCAST_IVOOX_URL: string|null = 'https://go.ivoox.com/sq/1740244';
 export const PODCAST_POCKETCASTS_URL: string|null = 'https://pca.st/106f084z';
 export const PODCAST_OVERCAST_URL: string|null = null; //'https://overcast.fm/itunes1655554658';
-export const PODCAST_RSS_URL: string|null = 'https://anchor.fm/s/c0099e38/podcast/rss'
+export const PODCAST_RSS_URL: string = 'https://anchor.fm/s/c0099e38/podcast/rss'
 
-export const CONTACT_EMAIL: string|null = 'somos@cebrasdepaso.es'
-export const INSTAGRAM_URL: string|null = 'https://instagram.com/cebrasdepaso'
+export const CONTACT_EMAIL: string = 'somos@cebrasdepaso.es'
+export const INSTAGRAM_URL: string = 'https://instagram.com/cebrasdepaso'
