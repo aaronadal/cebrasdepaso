@@ -40,8 +40,10 @@ function onPaginate (page: number, items: unknown[]) {
     <template v-if="PUBLISHED">
       <section class="container">
         <h1>¡Escucha CEBRAS DE PASO!</h1>
-        <p>Como sabemos que tener que acceder a esta página cada vez que quieras escucharnos es un rollazo,
-          quizá prefieras suscribirte en cualquiera de estas plataformas:</p>
+        <p>Lo bueno de un pódcast es que se puede escuchar en cualquier momento y desde cualquier lugar. Nos hemos
+          colado en diversas plataformas para que te sea muy sencillo encontrarnos, suscribirte y enterarte antes
+          que nadie de la publicación los nuevos episodios. Además, te vamos a confesar que <b>si nos buscas en
+          Spotify o YouTube ¡también podrás vernos en vídeo!</b></p>
         <PlatformLinks />
         <p>Y si no te mola eso de suscribirte o simplemente quieres saber a qué sonamos antes de hacerlo, a continuación
           te dejamos la lista de episodios. ¡Buen provecho!
