@@ -1,0 +1,33 @@
+.c-icon {
+  width: 1em;
+}
+
+.icon-items {
+  font-size: 1.75rem;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  a {
+    @extend %link;
+    display: block;
+  }
+}
+
+#page-content {
+  .icon-items {
+    display: flex;
+    width: auto;
+    margin: 2rem auto;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 650px) {
+  #page-content {
+    .icon-items {
+      width: 10rem;
+    }
+  }
+}
+
