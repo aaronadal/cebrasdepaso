@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import {PhEnvelopeSimple, PhInstagramLogo} from "@phosphor-icons/vue";
+import {definePageMeta, useCustomMeta} from "#imports";
+import {useConfig} from '~/composables/config';
 
-const {instagramUrl, contactEmail} = useAppConfig();
+const {instagramUrl, contactEmail} = useConfig();
 
 definePageMeta({
   pageKey: 'contact',

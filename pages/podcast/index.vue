@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import type {Episode, Podcast} from "~/composables/media";
+import {definePageMeta, useCustomMeta} from "#imports";
+import {useConfig} from '~/composables/config';
+import {ComputedRef, inject, nextTick, Ref, ref} from "vue";
+import {computed} from "@vue/runtime-core";
 
-const { published } = useAppConfig();
+definePageMeta({
+  pageKey: 'podcast',
+});
+
+const { published } = useConfig();
 
 const podcast = inject<Ref<Podcast|null>>('podcast', ref(null));
 const allEpisodes = inject<ComputedRef<Episode[]>>('allEpisodes', computed(() => []));
@@ -28,17 +36,13 @@ function onPaginate (page: number, items: unknown[]) {
   })
 }
 
-definePageMeta({
-  pageKey: 'podcast',
-});
-
 useCustomMeta({
   title: 'Todos los episodios del pódcast · Cebras de paso',
   description: 'Aquí tienes disponibles todos los episodios del pódcast Cebras de paso. Puedes escucharlos ' +
       'directamente en este página o, si lo prefieres, puedes suscribirte en una de las diversas plataformas de ' +
       'pódcasts en las que tenemos publicados nuestros episodios: Spotify, Apple Podcasts, Google Podcasts, ' +
       'Amazon Music, PocketCasts, etc.',
-})
+});
 </script>
 
 <template>

@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import type {Episode, Podcast} from "~/composables/media";
+import {computed, definePageMeta, inject, useCustomMeta} from "#imports";
+import {useConfig} from '~/composables/config';
+import type {ComputedRef, Ref} from "vue";
+import {AudioPlayer, EpisodeCard, TeamMember} from "#components";
 
-const { published } = useAppConfig();
+definePageMeta({
+  pageKey: 'index',
+});
+
+const { published } = useConfig();
 
 const podcast = inject('podcast') as Ref<Podcast>
 const allEpisodes = inject('allEpisodes') as ComputedRef<Episode[]>
 
 const trailer = computed<Episode|null>(() => [...allEpisodes.value].reverse()[0] || null);
-
-definePageMeta({
-  pageKey: 'index',
-});
 
 useCustomMeta({
   title: 'Cebras de paso · El pódcast donde hablamos de las cosas de la vida',
@@ -30,7 +34,7 @@ useCustomMeta({
 
     <section v-if="published && trailer && trailer.episodeType === 'trailer'">
       <EpisodeCard
-          :podcast="podcast.value"
+          :podcast="podcast"
           :episode="trailer"
           class="bordered"
           style="margin-top: 2rem;"

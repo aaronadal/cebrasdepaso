@@ -4,6 +4,8 @@ import {ref} from '@vue/reactivity'
 import {computed} from '@vue/runtime-core'
 import html2canvas from "html2canvas";
 import {useEpisodeBackground} from "~/composables/media/episodeBackground";
+import {usePropertyValue} from "~/composables/propertyValue";
+import {definePageMeta, useCustomMeta} from "#imports";
 
 const target = ref<"podcast" | "youtube">('podcast');
 const type = ref<"full" | "bonus" | "trailer">('full');

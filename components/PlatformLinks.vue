@@ -7,6 +7,8 @@ import {
   PhSpotifyLogo,
   PhYoutubeLogo
 } from "@phosphor-icons/vue";
+import {ref} from "@vue/reactivity";
+import {useConfig} from '~/composables/config';
 
 interface Props {
   more?: boolean;
@@ -27,7 +29,7 @@ const {
   podcastIvooxUrl,
   podcastPocketcastsUrl,
   podcastOvercastUrl,
-} = useAppConfig();
+} = useConfig();
 
 const showMore = ref(!props.more);
 

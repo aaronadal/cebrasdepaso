@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import html2canvas from "html2canvas"
+import {ref} from "@vue/reactivity";
+import {computed} from "@vue/runtime-core";
+import {definePageMeta, useCustomMeta} from "#imports";
 
 const gradient = ref('--gradient-gray');
 const width = ref(1080);

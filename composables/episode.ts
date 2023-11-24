@@ -4,6 +4,10 @@ import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
 import {useEpisodeTypeSymbol} from "~/composables/media/episodeTypeSymbol";
 import {useEpisodeTypeSlug} from "~/composables/media/episodeTypeSlug";
 import {isEpisode} from "~/composables/media";
+import type {MaybeRef} from "vue";
+import {useRef} from "~/composables/ref";
+import {useTrack} from "~/composables/track";
+import {computed} from "@vue/runtime-core";
 
 export function useEpisode(episode: MaybeRef<Track|Episode|null>) {
     const episodeRef = useRef(episode);

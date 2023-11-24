@@ -1,3 +1,6 @@
+import type {MaybeRef, Ref} from "vue";
+import {useRef} from "~/composables/ref";
+
 export type EpisodeType = 'full' | 'bonus' | 'trailer';
 export type EpisodeTypeSlug = 'episodio' | 'avance' | 'extra';
 

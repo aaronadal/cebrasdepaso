@@ -2,7 +2,10 @@
 
 export default defineNuxtConfig({
     devtools: {
-        enabled: true
+        enabled: false
+    },
+    imports: {
+        autoImport: false
     },
     app: {
         pageTransition: {

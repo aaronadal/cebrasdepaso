@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import {ref} from "@vue/reactivity";
+import {definePageMeta, useCustomMeta} from "#imports";
+import {useConfig} from '~/composables/config';
+import {TableOfContents} from "#components";
+
 const toc = ref()
-const { contactEmail } = useAppConfig();
+const { contactEmail } = useConfig();
 
 definePageMeta({
   pageKey: 'legal',

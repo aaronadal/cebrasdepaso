@@ -2,11 +2,14 @@
 import type {Track, Episode} from "~/composables/media";
 
 import '~/assets/styles/app.scss';
+import {fetchPodcast, useMainPlayer, useRoute} from "#imports";
+import {useConfig} from '~/composables/config';
+import {computed} from "@vue/runtime-core";
+import {provide, watch} from "vue";
 
-const { published, podcastRssUrl } = useAppConfig();
+const { podcastRssUrl } = useConfig();
 const route = useRoute();
-const {currentTrack, playlist} = useMainPlayer();
-
+const {currentTrack, playlist} = useMainPlayer()
 const layoutCollapsed = computed(() => {
   return route.path !== '/';
 });

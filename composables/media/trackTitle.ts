@@ -1,4 +1,7 @@
 import type {Track} from "~/composables/media";
+import type {ComputedRef, MaybeRef} from "vue";
+import {useRef} from "~/composables/ref";
+import {computed} from "@vue/runtime-core";
 
 const customTitlesMap: {[key: string]: string} = {
     'Esto es... CEBRAS DE PASO': 'Esto es...<br />CEBRAS DE PASO',
@@ -29,7 +32,7 @@ export function useTrackTitle(track: MaybeRef<Track|null>): ComputedRef<string> 
         let lastChunk: string|null = null;
         let firstLineEnded = false;
 
-        title.split(' ').forEach((chunk) => {
+        title.split(' ').forEach((chunk: string) => {
             const currentLength = formatedTitle.length;
             const forwardLength = currentLength + chunk.length + 1;
 

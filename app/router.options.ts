@@ -1,4 +1,5 @@
 import type { RouterConfig } from "@nuxt/schema";
+import {nextTick} from "vue";
 
 export default <RouterConfig>{
     scrollBehavior (to, from, savedPosition) {

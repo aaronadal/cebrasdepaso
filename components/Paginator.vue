@@ -1,5 +1,10 @@
 <script setup lang="ts">
 // eslint-disable-next-line
+import {PhCaretDoubleLeft, PhCaretDoubleRight, PhCaretLeft, PhCaretRight} from "@phosphor-icons/vue";
+import {onActivated, onMounted, toRefs} from "vue";
+import {ref} from "@vue/reactivity";
+import {computed} from "@vue/runtime-core";
+
 const emit = defineEmits<{
   (e: 'init', page: number, items: any[]): void,
   (e: 'paginate', page: number, items: any[]): void,
@@ -59,10 +64,10 @@ onActivated(() => {
 
 <template>
     <div class="paginator" v-if="end > 1">
-        <a role="navigation" @click="goTo(1)"><Icon icon="caret-double-left" /></a>
-        <a role="navigation" @click="goTo(page - 1)"><Icon icon="caret-left" /></a>
+        <a role="navigation" @click="goTo(1)"><PhCaretDoubleLeft class="c-icon" /></a>
+        <a role="navigation" @click="goTo(page - 1)"><PhCaretLeft class="c-icon" /></a>
         <a role="navigation" v-for="i in end" :key="i + start" @click="goTo(i + start)">{{ i + start }}</a>
-        <a role="navigation" @click="goTo(page + 1)"><Icon icon="caret-right" /></a>
-        <a role="navigation" @click="goTo(totalPages)"><Icon icon="caret-double-right" /></a>
+        <a role="navigation" @click="goTo(page + 1)"><PhCaretRight class="c-icon" /></a>
+        <a role="navigation" @click="goTo(totalPages)"><PhCaretDoubleRight class="c-icon" /></a>
     </div>
 </template>

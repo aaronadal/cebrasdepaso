@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <header id="main-menu">
     <div class="item">
@@ -17,5 +20,3 @@
     </div>
   </header>
 </template>
-<script setup lang="ts">
-</script>

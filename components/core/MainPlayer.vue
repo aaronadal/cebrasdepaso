@@ -3,6 +3,8 @@ import {PhCaretDown, PhMusicNoteSimple, PhX} from "@phosphor-icons/vue";
 import {isEpisode} from "~/composables/media";
 import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
 import {useEpisodeTypeSymbol} from "~/composables/media/episodeTypeSymbol";
+import {useMainPlayer} from "~/composables/mainPlayer";
+import {ref, computed} from "vue";
 
 const player = useMainPlayer();
 const { component, currentTrack } = player;

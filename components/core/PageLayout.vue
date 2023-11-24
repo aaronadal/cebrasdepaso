@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {useOnResize} from "~/composables/onResize";
+import {ref} from "@vue/reactivity";
+import {inject, nextTick, watch} from "vue";
 
 interface Props {
   collapsed?: boolean;
@@ -31,7 +33,7 @@ watch(() => mainPlayer.value?.isCollapsed, () => calculatePaddingBottom());
 
 useOnResize(calculatePaddingBottom);
 
-const layoutCollapsed = inject<boolean>('layoutCollapsed');
+const layoutCollapsed = inject<boolean>('layoutCollapsed', false);
 </script>
 
 <template>

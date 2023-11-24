@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import {definePageMeta, useCustomMeta} from "#imports";
+import {NotFound} from "#components";
+
 definePageMeta({
   pageKey: 'notfound',
 });

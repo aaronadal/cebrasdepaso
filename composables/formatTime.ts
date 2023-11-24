@@ -1,3 +1,7 @@
+import type {ComputedRef, MaybeRef} from "vue";
+import {useRef} from "~/composables/ref";
+import {computed} from "@vue/runtime-core";
+
 export function useFormatTime(seconds: MaybeRef<number|undefined>): ComputedRef<string> {
     const secondsRef = useRef(seconds);
 

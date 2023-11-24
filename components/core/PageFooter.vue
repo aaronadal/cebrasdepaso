@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import {PhArrowSquareOut, PhEnvelopeSimple, PhInstagramLogo} from "@phosphor-icons/vue";
+import {useConfig} from '~/composables/config';
+import {PlatformLinks, Tooltip} from "#components";
 
-const { instagramUrl, contactEmail } = useAppConfig();
+const { instagramUrl, contactEmail } = useConfig();
 </script>
 
 <template>

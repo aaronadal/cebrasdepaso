@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type {Track} from "~/composables/media";
 import {PhPause, PhPlay, PhSkipBack, PhSkipForward} from "@phosphor-icons/vue";
+import {toRefs} from "vue";
+import {useMainPlayer} from "~/composables/mainPlayer";
+import {ref} from "@vue/reactivity";
+import {useAudio} from "~/composables/audio";
+import {computed} from "@vue/runtime-core";
+import {useFormatTime} from "~/composables/formatTime";
 
 const emit = defineEmits<{
   (evt: 'next'): void;

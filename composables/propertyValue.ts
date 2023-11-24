@@ -1,4 +1,6 @@
 import type {ComputedRef, MaybeRef} from "vue";
+import {useRef} from "~/composables/ref";
+import {computed} from "@vue/runtime-core";
 
 export function usePropertyValue(element: MaybeRef<Element|null|(() => Element|null)>, property: MaybeRef<string>, valueIfElementNull: MaybeRef<string> = ''): ComputedRef<string> {
     const elementRef = useRef(element);
