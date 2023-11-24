@@ -20,7 +20,6 @@ export default defineNuxtConfig({
         '/': { prerender: true },
         '/contacto': { prerender: true },
         '/aviso-legal': { prerender: true },
-        '/podcast/**': { swr: 3600 },
         '/generador-de-caratulas': { ssr: false },
         '/generador-de-logotipos': { ssr: false },
         '/generador-de-degradados': { ssr: false },
