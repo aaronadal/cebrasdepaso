@@ -1,15 +1,29 @@
-import {useEpisodeTypeSlug} from "~/composables/media/episodeTypeSlug";
-
 export const config = {
     runtime: 'edge',
 };
 
-function createSitemap(json) {
+function slugByType(type: string) {
+    if(!type) {
+        return '';
+    }
+
+    if (type === 'bonus') {
+        return 'extra'
+    }
+
+    if (type === 'trailer') {
+        return 'avance'
+    }
+
+    return 'episodio'
+}
+
+function createSitemap(json: any) {
     const baseUrl = json.link;
 
-    const episodes = json.episodes.reduce((xml, episode) => {
+    const episodes = json.episodes.reduce((xml: string, episode: any) => {
         return xml + '\n' + `  <url>
-    <loc>${baseUrl}/podcast/${useEpisodeTypeSlug(episode.type).value}/${episode.number}</loc>
+    <loc>${baseUrl}/podcast/${slugByType(episode.type)}/${episode.number}</loc>
     <lastmod>${episode.date}</lastmod>
   </url>`;
     }, '');
