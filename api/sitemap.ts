@@ -1,4 +1,4 @@
-import {getEpisodeTypeSlug} from "../src/media-types";
+import {useEpisodeTypeSlug} from "~/composables/media/episodeTypeSlug";
 
 export const config = {
     runtime: 'edge',
@@ -9,7 +9,7 @@ function createSitemap(json) {
 
     const episodes = json.episodes.reduce((xml, episode) => {
         return xml + '\n' + `  <url>
-    <loc>${baseUrl}/podcast/${getEpisodeTypeSlug(episode.type)}/${episode.number}</loc>
+    <loc>${baseUrl}/podcast/${useEpisodeTypeSlug(episode.type).value}/${episode.number}</loc>
     <lastmod>${episode.date}</lastmod>
   </url>`;
     }, '');
