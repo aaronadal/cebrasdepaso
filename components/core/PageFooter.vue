@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import {PhArrowSquareOut, PhEnvelopeSimple, PhInstagramLogo} from "@phosphor-icons/vue";
 import {useConfig} from '~/composables/config';
-import {PlatformLinks, Tooltip} from "#components";
+import {ArrowSquareOutLight, EnvelopeSimpleLight, InstagramLogoLight, PlatformLinks, Tooltip} from "#components";
 
 const { instagramUrl, contactEmail } = useConfig();
 </script>
@@ -24,21 +23,21 @@ const { instagramUrl, contactEmail } = useConfig();
               <div>
                 <a :href="instagramUrl" target="_blank">
                   <Tooltip message="Por Instagram">
-                    <PhInstagramLogo class="icon-item icon" weight="light" />
+                    <instagram-logo-light class="icon-item icon" />
                   </Tooltip>
                 </a>
               </div>
               <div>
                 <a :href="`mailto://${contactEmail}`" target="_blank">
                   <Tooltip message="Por Email">
-                    <PhEnvelopeSimple class="icon-item icon" weight="light" />
+                    <envelope-simple-light class="icon-item icon" />
                   </Tooltip>
                 </a>
               </div>
               <div>
                 <NuxtLink to="/contacto">
                   <Tooltip message="Contacto">
-                    <PhArrowSquareOut class="icon-item icon" weight="light" />
+                    <arrow-square-out-light class="icon-item icon" />
                   </Tooltip>
                 </NuxtLink>
               </div>

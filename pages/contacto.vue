@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {PhEnvelopeSimple, PhInstagramLogo} from "@phosphor-icons/vue";
 import {definePageMeta, useCustomMeta} from "#imports";
 import {useConfig} from '~/composables/config';
+import {EnvelopeSimpleLight, InstagramLogoLight} from "#components";
 
 const {instagramUrl, contactEmail} = useConfig();
 
@@ -30,12 +30,12 @@ useCustomMeta({
     <section class="container">
       <div class="contact-channels">
         <div>
-          <PhInstagramLogo class="c-icon" weight="light" />
+          <instagram-logo-light class="c-icon" />
           <p>Envíanos un mensaje<br />a nuestra cuenta<br />de Instagram.</p>
           <a class="button" :href="instagramUrl" target="_blank">Ir a Instagram</a>
         </div>
         <div>
-          <PhEnvelopeSimple class="c-icon" weight="light" />
+          <envelope-simple-light class="c-icon" />
           <p>O, si lo prefieres,<br />contacta con nosotros<br />por email.</p>
           <a class="button" :href="`mailto:${contactEmail}`">Enviar email</a>
         </div>

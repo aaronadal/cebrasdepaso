@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type {Track} from "~/composables/media";
-import {PhPause, PhPlay, PhSkipBack, PhSkipForward} from "@phosphor-icons/vue";
 import {toRefs, ref, computed} from "vue";
 import {useMainPlayer} from "~/composables/mainPlayer";
 import {useAudio} from "~/composables/audio";
@@ -85,14 +84,14 @@ defineExpose({
     <audio ref="audioRef" :src="track.mediaUrl" :type="track.mediaType" preload="metadata" />
     <div class="play">
       <button v-if="isPlaylist" :class="{disabled: !hasPrev}" @click="onClickPrev">
-        <PhSkipBack weight="regular"/>
+        <skip-back />
       </button>
       <button @click="onClickPlay">
-        <PhPause v-if="isPlaying" weight="fill"/>
-        <PhPlay v-else weight="fill"/>
+        <pause-fill v-if="isPlaying" weight="fill"/>
+        <play-fill v-else weight="fill"/>
       </button>
       <button v-if="isPlaylist" :class="{disabled: !hasNext}" @click="onClickNext">
-        <PhSkipForward weight="regular"/>
+        <skip-forward weight="regular"/>
       </button>
     </div>
     <div class="time current-time">{{ progressTime }}</div>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {PhCaretDown, PhMusicNoteSimple, PhX} from "@phosphor-icons/vue";
 import {ref, computed} from "vue";
 import {isEpisode} from "~/composables/media";
 import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
 import {useEpisodeTypeSymbol} from "~/composables/media/episodeTypeSymbol";
 import {useMainPlayer} from "~/composables/mainPlayer";
+import {CaretDown, MusicNoteSimple} from "#components";
 
 const player = useMainPlayer();
 const { component, currentTrack } = player;
@@ -28,11 +28,11 @@ defineExpose({
 <template>
   <aside ref="element" v-show="currentTrack !== null" id="main-player" :class="{collapsed: player.isCollapsed.value}">
     <div class="toggle" @click.stop="player.toggleCollapsed()">
-      <PhMusicNoteSimple class="icon hidden" />
-      <PhCaretDown class="icon visible" />
+      <music-note-simple class="icon hidden" />
+      <caret-down class="icon visible" />
     </div>
     <div class="inner" v-if="currentTrack !== null">
-      <PhX class="close" weight="bold" @click="player.stop()" />
+      <x-bold class="close" @click="player.stop()" />
       <div class="track-info" :class="currentTrack.artworkSrc ? 'has-thumbnail' : ''">
         <img v-if="currentTrack.artworkSrc"
              class="thumbnail"
