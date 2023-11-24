@@ -1,9 +1,13 @@
 import type {Episode, Podcast, EpisodeType} from "@/composables/media"
 
-if(!process.browser) {
-    const { JSDOM } = require("jsdom");
-    global.DOMParser = new JSDOM().window.DOMParser;
-}
+const replaceDomParserPromise = new Promise(async (resolve) => {
+    if(!process.browser) {
+        const { JSDOM } = await import("jsdom");
+        global.DOMParser = new JSDOM().window.DOMParser;
+    }
+
+    resolve(undefined);
+});
 
 const itunesNS = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
 
@@ -101,7 +105,9 @@ export async function fetchPodcast(rssUrl: string): Promise<Podcast|null> {
         });
 }
 
-export function parsePodcast(xml: string): Podcast {
+async function parsePodcast(xml: string): Promise<Podcast> {
+    await replaceDomParserPromise;
+
     const data = new DOMParser().parseFromString(xml, 'text/xml');
 
     return {
