@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type {Episode, Podcast} from "~/composables/media";
-import {toRefs} from "vue";
-import {ref} from "@vue/reactivity";
+import {toRefs, ref} from "vue";
 import {useEpisode} from "~/composables/episode";
 
 interface Props {

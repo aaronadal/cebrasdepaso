@@ -2,7 +2,8 @@
 import type {Episode, Podcast} from "~/composables/media";
 import {definePageMeta, useCustomMeta} from "#imports";
 import {useConfig} from '~/composables/config';
-import {ComputedRef, inject, nextTick, Ref, ref} from "vue";
+import type {ComputedRef, Ref} from "vue";
+import {inject, nextTick, ref} from "vue";
 import {computed} from "@vue/runtime-core";
 
 definePageMeta({

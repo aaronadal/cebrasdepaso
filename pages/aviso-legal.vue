@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import {ref} from "@vue/reactivity";
+import {ref} from "vue";
 import {definePageMeta, useCustomMeta} from "#imports";
 import {useConfig} from '~/composables/config';
 import {TableOfContents} from "#components";
 
-const toc = ref()
-const { contactEmail } = useConfig();
-
 definePageMeta({
   pageKey: 'legal',
 });
+
+const toc = ref()
+const { contactEmail } = useConfig();
 
 useCustomMeta({
   title: 'Aviso legal · Cebras de paso',

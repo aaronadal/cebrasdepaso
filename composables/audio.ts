@@ -1,8 +1,6 @@
 import type {MaybeRef} from "vue";
+import {watch, ref, computed} from "vue";
 import {useRef} from "~/composables/ref";
-import {ref} from "@vue/reactivity";
-import {watch} from "vue";
-import {computed} from "@vue/runtime-core";
 
 export type OnEndReachedListener = () => void;
 

@@ -1,8 +1,7 @@
 import type {RouteLocationNormalizedLoaded} from "vue-router";
-import {ref} from "@vue/reactivity";
 import type {MaybeRef, Ref} from "vue";
+import {watch, ref} from "vue";
 import {useRef} from "~/composables/ref";
-import {watch} from "vue";
 
 export function useSingleRouteParam<T extends string>(route: RouteLocationNormalizedLoaded, param: MaybeRef<string>): Ref<T|null> {
     const value = ref<string|null>(null);

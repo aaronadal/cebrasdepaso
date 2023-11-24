@@ -1,9 +1,7 @@
 <script setup lang="ts">
 // eslint-disable-next-line
 import {PhCaretDoubleLeft, PhCaretDoubleRight, PhCaretLeft, PhCaretRight} from "@phosphor-icons/vue";
-import {onActivated, onMounted, toRefs} from "vue";
-import {ref} from "@vue/reactivity";
-import {computed} from "@vue/runtime-core";
+import {onActivated, onMounted, toRefs, ref, computed} from "vue";
 
 const emit = defineEmits<{
   (e: 'init', page: number, items: any[]): void,

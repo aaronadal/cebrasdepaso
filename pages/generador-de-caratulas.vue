@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import EpisodeThumbnail from '@/components/EpisodeThumbnail.vue'
-import {ref} from '@vue/reactivity'
-import {computed} from '@vue/runtime-core'
+import {ref, computed} from 'vue'
 import html2canvas from "html2canvas";
 import {useEpisodeBackground} from "~/composables/media/episodeBackground";
 import {usePropertyValue} from "~/composables/propertyValue";

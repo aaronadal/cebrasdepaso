@@ -1,8 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line
-import {toRefs} from "vue";
-import {ref} from "@vue/reactivity";
-import {computed} from "@vue/runtime-core";
+import {toRefs, ref, computed} from "vue";
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void,

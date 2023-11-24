@@ -4,13 +4,8 @@ import {nextTick} from "vue";
 export default <RouterConfig>{
     scrollBehavior (to, from, savedPosition) {
         if (to.hash) {
-            if (from.name !== 'home') {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-
-                        resolve({ el: to.hash, behavior: 'smooth' })
-                    }, 300)
-                })
+            if (from.name === to.name) {
+                return { el: to.hash, behavior: 'smooth' };
             }
 
             return new Promise((resolve) => {

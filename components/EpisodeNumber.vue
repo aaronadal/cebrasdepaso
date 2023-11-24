@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import {useEpisodeTypeSymbol} from "~/composables/media/episodeTypeSymbol";
 import type {EpisodeType} from "~/composables/media";
-import {toRefs} from "vue";
-import {ref} from "@vue/reactivity";
+import {toRefs, ref, computed} from "vue";
 import {usePropertyValue} from "~/composables/propertyValue";
 import {useOnResize} from "~/composables/onResize";
-import {computed} from "@vue/runtime-core";
 
 interface Props {
   type: EpisodeType;

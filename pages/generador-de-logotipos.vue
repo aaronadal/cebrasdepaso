@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import html2canvas from "html2canvas";
-import {ref} from "@vue/reactivity";
-import {computed} from "@vue/runtime-core";
+import {ref, computed} from 'vue'
 import {definePageMeta, useCustomMeta} from "#imports";
 import {Logo, ProgressBar} from "#components";
 

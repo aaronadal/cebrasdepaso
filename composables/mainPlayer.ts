@@ -1,8 +1,6 @@
+import {nextTick, ref, computed} from "vue";
 import type {Track} from "~/composables/media";
-import {ref} from "@vue/reactivity";
-import {computed} from "@vue/runtime-core";
 import {useAudio} from "~/composables/audio";
-import {nextTick} from "vue";
 
 const player = ref();
 const audioRef = computed(() => player.value?.audioRef || null);

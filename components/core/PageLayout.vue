@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {useOnResize} from "~/composables/onResize";
-import {ref} from "@vue/reactivity";
-import {inject, nextTick, watch} from "vue";
+import {inject, nextTick, watch, ref} from "vue";
 
 interface Props {
   collapsed?: boolean;

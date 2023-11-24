@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {PhCaretDown, PhMusicNoteSimple, PhX} from "@phosphor-icons/vue";
+import {ref, computed} from "vue";
 import {isEpisode} from "~/composables/media";
 import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
 import {useEpisodeTypeSymbol} from "~/composables/media/episodeTypeSymbol";
 import {useMainPlayer} from "~/composables/mainPlayer";
-import {ref, computed} from "vue";
 
 const player = useMainPlayer();
 const { component, currentTrack } = player;

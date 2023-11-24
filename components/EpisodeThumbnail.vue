@@ -3,9 +3,7 @@ import type {Episode} from "~/composables/media";
 import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
 import {useEpisodeBackground} from "~/composables/media/episodeBackground";
 import {useTrackTitle} from "~/composables/media/trackTitle";
-import {ref} from "@vue/reactivity";
-import {toRefs} from "vue";
-import {computed} from "@vue/runtime-core";
+import {toRefs, ref, computed} from "vue";
 
 interface Props {
   episode: Episode;

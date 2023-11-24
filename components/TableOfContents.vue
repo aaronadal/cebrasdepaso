@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {ref, toRefs, watch} from "vue";
+
 interface Props {
   target: HTMLElement | undefined;
 }

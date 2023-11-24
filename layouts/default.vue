@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
+import {watch, ref} from "vue";
 import {useNotFoundState} from "~/composables/notFoundState";
-import {ref} from "@vue/reactivity";
-import {watch} from "vue";
 
 const route = useRoute();
 

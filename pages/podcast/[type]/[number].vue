@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import type {Episode, EpisodeTypeSlug, Podcast} from "~/composables/media";
+import {useParseInt} from "~/composables/parseInt";
+import {useSingleRouteParam} from "~/composables/routeParamSingle";
 import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
-import {
-  definePageMeta, useCustomMeta,
-  useEpisode,
-  useEpisodeTypeBySlug,
-  useNotFoundState,
-  useParseInt,
-  useSingleRouteParam
-} from "#imports";
+import {useEpisodeTypeBySlug} from "~/composables/episodeTypeBySlug";
+import {useEpisode} from "~/composables/episode";
+import {useNotFoundState} from "~/composables/notFoundState";
 import {useRoute} from "vue-router";
-import {ComputedRef, inject, Ref, watch} from "vue";
-import {computed} from "@vue/runtime-core";
+import type {ComputedRef, Ref} from "vue";
+import {inject, watch, computed} from "vue";
 import {AudioPlayer, EpisodeThumbnail, NotFound} from "#components";
+import {definePageMeta, useCustomMeta} from "#imports";
 
 definePageMeta({
   pageKey: 'episode',
+  name: 'episode',
 });
 
 const route = useRoute();
@@ -34,7 +33,9 @@ const {typeSymbol, background} = useEpisode(episode);
 watch(
     episode,
     () => {
-      useNotFoundState().value = episode.value === null;
+      if(route.name === 'episode') {
+        useNotFoundState().value = episode.value === null;
+      }
     },
     {immediate: true});
 
@@ -46,7 +47,7 @@ useCustomMeta((defaults) => ({
 
     return `[${typeSymbol.value}${`${number.value}`.padStart(2, '0')}] ${episode.value.title}`;
   },
-  description: () => episode.value?.summary || '',
+  description: () => episode.value?.summary?.replace(/(<([^>]+)>)/gi, "") || '',
   type: () => episode.value ? 'article' : 'website',
   image: () => `${episode.value?.artworkSrc || defaults.image}`,
   imageWidth: () => episode.value?.artworkWidth || defaults.imageWidth,

@@ -7,7 +7,7 @@ import {
   PhSpotifyLogo,
   PhYoutubeLogo
 } from "@phosphor-icons/vue";
-import {ref} from "@vue/reactivity";
+import {ref} from "vue";
 import {useConfig} from '~/composables/config';
 
 interface Props {
