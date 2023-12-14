@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 const {episode, isTitleHtml, fullBackground, noBackground} = toRefs(props)
 const type = computed(() => episode.value.episodeType);
 const title = computed(() => {
-  if(isTitleHtml.value) {
+  if(!isTitleHtml.value) {
     return useTrackTitle(episode.value).value;
   }
 
