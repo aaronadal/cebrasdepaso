@@ -5,7 +5,6 @@ import {computed} from "@vue/runtime-core";
 
 const customTitlesMap: {[key: string]: string} = {
     'Esto es... CEBRAS DE PASO': 'Esto es...<br />CEBRAS DE PASO',
-    'De la Navidad y otros compromisos': 'De la Navidad<br />y otros compromisos',
 };
 
 export function useTrackTitle(track: MaybeRef<Track|null>): ComputedRef<string> {
