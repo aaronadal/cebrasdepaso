@@ -35,11 +35,27 @@ export function useConfig() {
                 url: instagramUrl,
                 external: true,
             },
+            '/ig': {
+                url: instagramUrl,
+                external: true,
+            },
+            '/sociali': {
+                url: instagramUrl,
+                external: true,
+            },
             '/spotify': {
                 url: podcastSpotifyUrl,
                 external: true,
             },
             '/youtube': {
+                url: podcastYoutubeUrl,
+                external: true,
+            },
+            '/yt': {
+                url: podcastYoutubeUrl,
+                external: true,
+            },
+            '/socialy': {
                 url: podcastYoutubeUrl,
                 external: true,
             },
