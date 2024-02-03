@@ -53,6 +53,9 @@ function parseEpisodes(data: Document): Episode[] {
         if (summary.includes('<p>---</p>')) {
             summary = summary.split('<p>---</p>')[0];
         }
+        else if (summary.includes('<br>---<br>')) {
+            summary = summary.split('<br>---<br>')[0];
+        }
 
         episodes[i] = {
             guid: item.querySelector('guid')?.textContent || '',
