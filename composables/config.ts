@@ -12,5 +12,16 @@ export function useConfig() {
         podcastIvooxUrl: 'https://go.ivoox.com/sq/1740244',
         podcastPocketcastsUrl: 'https://pca.st/106f084z',
         podcastOvercastUrl: null, //'https://overcast.fm/itunes1655554658'
-    }
+
+        redirects: {
+            '/instagram': {
+                url: 'https://instagram.com/cebrasdepaso',
+                external: true,
+            },
+            '/avance': {
+                url: '/podcast/avance/0',
+                external: false,
+            },
+        } as {[path: string]: {url: string, external: boolean}},
+    };
 }
