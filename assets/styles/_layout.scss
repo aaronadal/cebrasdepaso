@@ -41,7 +41,7 @@ body,
     --footer-max-width: 800px;
 
     > .inner {
-      padding: 2rem 0 0;
+      padding: 2rem 0 1rem;
 
       > .container {
         height: 100%;
@@ -81,6 +81,8 @@ body,
     border-top: var(--border-style);
 
     > .inner {
+      padding-bottom: 0;
+
       > .container {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr min-content;
