@@ -1,10 +1,9 @@
 import {defineNuxtRouteMiddleware, navigateTo, useConfig} from "#imports";
 
-const { redirects } = useConfig();
-
 export default defineNuxtRouteMiddleware(({ path  }) => {
+    const { redirects } = useConfig();
+
     const redirect = redirects[path]
-    console.log(redirect);
     if(redirect) {
         return navigateTo(
             redirect.url,
