@@ -17,7 +17,12 @@ export default defineNuxtRouteMiddleware(({path}) => {
                     return navigateTo('/') as Promise<void>;
                 }
 
-                return navigateTo(`/podcast/${typeSlug.value}/${last.number}`) as Promise<void>;
+                return navigateTo(
+                    `https://cebrasdepaso.es/podcast/${typeSlug.value}/${last.number}`,
+                    {
+                        external: true,
+                    }
+                ) as Promise<void>;
             })
             .catch(() => {
                 return navigateTo('/') as Promise<void>;
