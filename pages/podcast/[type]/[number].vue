@@ -45,7 +45,7 @@ useCustomMeta((defaults) => ({
       return `[404] El ${typeLabel.value.toLowerCase()} número ${number.value} no se ha encontrado.`;
     }
 
-    return `[${typeSymbol.value}${`${number.value}`.padStart(2, '0')}] ${episode.value.title}`;
+    return `[${typeSymbol.value}${`${number.value}`.padStart(2, '0')}] ${episode.value.title} · Cebras de paso`;
   },
   description: () => episode.value?.summary?.replace(/(<([^>]+)>)/gi, "") || '',
   type: () => episode.value ? 'article' : 'website',

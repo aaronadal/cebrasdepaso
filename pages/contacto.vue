@@ -10,7 +10,7 @@ definePageMeta({
 });
 
 useCustomMeta({
-  title: 'Contacto · Cebras de paso',
+  title: 'Contacta con nosotras · Cebras de paso',
   description: '¿Quieres contarnos algo? ¿Decirnos que nos quieres? ¿Que nos odias, tal vez? ' +
       '¿Que te gusta el pódcast? ¿Quieres hacernos saber que te caemos bien? ¿Que te gustaría ser nuestro amigo? ' +
       '¿Quieres proponer algún tema? ¿Puntualizar alguna cosa que hayamos dicho? ¿Darnos tu opinión? ' +

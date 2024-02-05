@@ -10,7 +10,7 @@ definePageMeta({
 });
 
 useCustomMeta({
-  title: 'Enlaces · Cebras de paso',
+  title: 'Enlaces de interés · Cebras de paso',
   description: 'En esta página te dejamos los enlaces más útiles e interesantes de Cebras de paso para ' +
       'que lo tengas todo al alcance de un click.',
 });
