@@ -48,13 +48,14 @@ function parseEpisodes(data: Document): Episode[] {
             title = title.replace(/\s\(con (.*?)\)$/, '');
         }
 
-        const fullSummary = item.querySelector('description')?.textContent || '';
+        let fullSummary = item.querySelector('description')?.textContent || '';
+        fullSummary = fullSummary.replace(/<p><br><\/p>/g, '');
+        fullSummary = fullSummary.replace(/<p>---<\/p>/g, '<hr>');
+        fullSummary = fullSummary.replace(/<br>---<br>/g, '<hr>');
+
         let summary = fullSummary;
-        if (summary.includes('<p>---</p>')) {
-            summary = summary.split('<p>---</p>')[0];
-        }
-        else if (summary.includes('<br>---<br>')) {
-            summary = summary.split('<br>---<br>')[0];
+        if (summary.includes('<hr>')) {
+            summary = summary.split('<hr>')[0];
         }
 
         episodes[i] = {

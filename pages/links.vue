@@ -27,6 +27,9 @@ useCustomMeta({
       <NuxtLink to="/ultimo" class="link-item">
         Escucha el último episodio
       </NuxtLink>
+      <NuxtLink to="/podcast" class="link-item">
+        Explora todos los episodios
+      </NuxtLink>
       <NuxtLink :to="instagramUrl" class="link-item">
         Síguenos en Instagram
       </NuxtLink>
