@@ -30,14 +30,17 @@ useCustomMeta({
       <NuxtLink to="/podcast" class="link-item">
         Explora todos los episodios
       </NuxtLink>
-      <NuxtLink :to="instagramUrl" class="link-item">
-        Síguenos en Instagram
+      <NuxtLink to="/contacto" class="link-item">
+        Contacta con nosotros
       </NuxtLink>
       <NuxtLink :to="podcastSpotifyUrl" class="link-item">
         Escúchanos en Spotify
       </NuxtLink>
       <NuxtLink :to="podcastYoutubeUrl" class="link-item">
         Míranos en YouTube
+      </NuxtLink>
+      <NuxtLink :to="instagramUrl" class="link-item">
+        Síguenos en Instagram
       </NuxtLink>
     </section>
     <section class="container">
