@@ -2,8 +2,9 @@
 import {definePageMeta, useCustomMeta} from "#imports";
 import {useConfig} from '~/composables/config';
 import {EnvelopeSimpleLight, InstagramLogoLight} from "#components";
+import YoutubeLogoLight from "~/components/icons/youtube-logo-light.vue";
 
-const {instagramUrl, contactEmail} = useConfig();
+const {instagramUrl, podcastYoutubeUrl, contactEmail} = useConfig();
 
 definePageMeta({
   pageKey: 'contact',
@@ -35,6 +36,11 @@ useCustomMeta({
           <a class="button" :href="instagramUrl" target="_blank">Ir a Instagram</a>
         </div>
         <div>
+          <youtube-logo-light class="c-icon" />
+          <p>Coméntanos<br />en un vídeo<br />de YouTube.</p>
+          <a class="button" :href="podcastYoutubeUrl" target="_blank">Ir a YouTube</a>
+        </div>
+        <div>
           <envelope-simple-light class="c-icon" />
           <p>O, si lo prefieres,<br />contacta con nosotros<br />por email.</p>
           <a class="button" :href="`mailto:${contactEmail}`">Enviar email</a>
@@ -42,10 +48,10 @@ useCustomMeta({
       </div>
     </section>
     <section class="container">
-      <p><b>Disclaimer:</b> Respondemos a TODOS los mensajes que nos enviáis. No obstante, a veces andamos más liadas de lo que nos
-        gustaría y es posible que tardemos. Si contactas con nosotras, por favor, ten paciencia. Y si después de
-        unos días no te hemos dicho nada, no dudes en insistir. Somos CEBRAS y, como tales, es posible que alguna
-        vez se nos traspapele algún mensaje.</p>
+      <p><b>Nota:</b> Intentamos responder siempre a todos los mensajes que nos enviáis. No obstante, a veces
+        andamos más liadas de lo que nos gustaría y es posible que tardemos más de la cuenta. Si contactas con nosotras,
+        por favor, ten paciencia. Y si después de unos días no te hemos dicho nada, no dudes en insistir. Somos CEBRAS
+        y, como tales, es posible que alguna vez se nos traspapele algún mensaje.</p>
       <p>Dicho esto, ¡un placer conocerte!</p>
     </section>
   </div>

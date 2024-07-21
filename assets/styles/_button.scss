@@ -14,4 +14,8 @@
   &:hover {
     background-position: 100% 0;
   }
+
+  &.neutral {
+    background-image: var(--gradient-gray);
+  }
 }

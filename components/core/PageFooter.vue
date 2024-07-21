@@ -2,8 +2,9 @@
 import {useConfig} from '~/composables/config';
 import {ArrowSquareOutLight, EnvelopeSimpleLight, InstagramLogoLight, PlatformLinks, Tooltip} from "#components";
 import LegalLinks from "~/components/core/LegalLinks.vue";
+import YoutubeLogoLight from "~/components/icons/youtube-logo-light.vue";
 
-const { instagramUrl, contactEmail } = useConfig();
+const { instagramUrl, podcastYoutubeUrl, contactEmail } = useConfig();
 </script>
 
 <template>
@@ -25,6 +26,13 @@ const { instagramUrl, contactEmail } = useConfig();
                 <a :href="instagramUrl" target="_blank">
                   <Tooltip message="Por Instagram">
                     <instagram-logo-light class="icon-item icon" />
+                  </Tooltip>
+                </a>
+              </div>
+              <div>
+                <a :href="podcastYoutubeUrl" target="_blank">
+                  <Tooltip message="Por comentarios de YouTube">
+                    <youtube-logo-light class="icon-item icon" />
                   </Tooltip>
                 </a>
               </div>
