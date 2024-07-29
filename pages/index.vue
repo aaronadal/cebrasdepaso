@@ -15,7 +15,9 @@ const podcast = inject('podcast') as Ref<Podcast>
 const allEpisodes = inject('allEpisodes') as ComputedRef<Episode[]>
 
 const trailer = computed<Episode|null>(() => [...allEpisodes.value].reverse()[0] || null);
-const lastEpisode = computed<Episode|null>(() => [...allEpisodes.value].find((e) => e.episodeType === 'full') || null);
+const lastEpisode = computed<Episode|null>(() =>
+    [...allEpisodes.value].find((e) =>
+        e.episodeType === 'full' && e.number % 10 !== 0) || null);
 
 const yearsFromTrailer = computed<number>(() => {
   const trailerDate = trailer.value?.date;
