@@ -32,10 +32,6 @@
   }
 
   .title > span {
-    &::before {
-      content: 'Con ';
-    }
-
     display: block;
     font-size: 60%;
     font-weight: var(--font-weight-logo-sub);
@@ -43,6 +39,10 @@
     line-height: 1;
     opacity: .7;
     margin-top: .25em;
+
+    &::before {
+      content: 'Con ';
+    }
   }
 
   .content {

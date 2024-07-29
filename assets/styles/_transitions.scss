@@ -1,14 +1,14 @@
 .fade-enter-active,
 .fade-leave-active {
+  min-height: 100vh;
+  transition: opacity 0.5s ease;
+
   > .page {
     position: absolute;
     left: 0; 
     right: 0;
     width: 100%;
   }
-
-  min-height: 100vh;
-  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
