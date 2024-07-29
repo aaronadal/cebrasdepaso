@@ -26,6 +26,5 @@ export default defineNuxtConfig({
         '/generador-de-caratulas': { ssr: false },
         '/generador-de-logotipos': { ssr: false },
         '/generador-de-degradados': { ssr: false },
-        '/podcast': { ssr: false },
     }
 })
