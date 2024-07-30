@@ -30,8 +30,8 @@ export default defineNuxtConfig({
       '/generador-de-caratulas': { prerender: true },
       '/generador-de-logotipos': { prerender: true },
       '/generador-de-degradados': { prerender: true },
-      '/podcast': { swr: true },
-      '/podcast/': { ssr: false },
+      '/podcast': { isr: true },
+      '/podcast/**': { isr: true },
       '/ultimo': { ssr: false },
   },
 
