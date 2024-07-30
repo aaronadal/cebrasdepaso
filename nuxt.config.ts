@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       '/generador-de-degradados': { prerender: true },
       '/links': { prerender: true },
       '/podcast': { isr: 7200 },
-      '/podcast/**': { isr: false },
+      '/podcast/**': { ssr: false },
       '/ultimo': { ssr: false },
   },
 
