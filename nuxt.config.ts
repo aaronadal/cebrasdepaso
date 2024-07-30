@@ -27,11 +27,12 @@ export default defineNuxtConfig({
       '/': { prerender: true },
       '/aviso-legal': { prerender: true },
       '/contacto': { prerender: true },
-      '/generador-de-caratulas': { swr: false },
-      '/generador-de-logotipos': { swr: false },
-      '/generador-de-degradados': { swr: false },
+      '/generador-de-caratulas': { prerender: true },
+      '/generador-de-logotipos': { prerender: true },
+      '/generador-de-degradados': { prerender: true },
       '/podcast': { swr: true },
-      '/ultimo': { swr: false },
+      '/podcast/': { ssr: false },
+      '/ultimo': { ssr: false },
   },
 
   compatibilityDate: '2024-07-30'
