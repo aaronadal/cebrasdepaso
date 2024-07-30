@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
+      '/**': { ssr: false },
       '/': { prerender: true },
       '/aviso-legal': { prerender: true },
       '/contacto': { prerender: true },
@@ -32,7 +33,6 @@ export default defineNuxtConfig({
       '/generador-de-degradados': { prerender: true },
       '/links': { prerender: true },
       '/podcast': { isr: 7200 },
-      '/podcast/**': { ssr: false },
       '/ultimo': { ssr: false },
   },
 
