@@ -36,7 +36,7 @@ watch(currentTrack, (newTrack: Track|Episode|null) => {
 <template>
   <Head>
     <Meta charset="utf-8" />
-    <Meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <Meta http-equiv="x-ua-compatible" content="IE=edge" />
     <Meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <Link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
