@@ -38,12 +38,12 @@ defineExpose({
              class="thumbnail"
              :src="currentTrack.artworkSrc"
              alt="Imagen de portada" />
-        <div class="season" v-if="'number' in currentTrack">
-          {{ typeLabel }} {{ currentTrack.season }}x{{ currentTrack.numberInSeason.toString().padStart(2, '0') }}
+        <div class="season" v-if="'season' in currentTrack && 'numberInSeason' in currentTrack">
+          {{ typeLabel }} {{ currentTrack.season }}x{{ `${currentTrack.numberInSeason}`.padStart(2, '0') }}
         </div>
         <div class="title">
           <template v-if="'number' in currentTrack">
-            [{{ typeSymbol }}{{ currentTrack.number.toString().padStart(2, '0') }}]
+            [{{ typeSymbol }}{{ `${currentTrack.number}`.toString().padStart(2, '0') }}]
           </template>
           {{ currentTrack.title.replace('<br />', ' ') }}
         </div>

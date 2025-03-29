@@ -6,7 +6,7 @@ const player = ref();
 const audioRef = computed(() => player.value?.audioRef || null);
 const audio = useAudio(audioRef);
 
-const isCollapsed = ref(false);
+const isCollapsed = ref(true);
 
 const playlist = ref<Track[]>([]);
 const currentTrack = ref<Track | null>(null);
@@ -91,6 +91,7 @@ const mainPlayer = {
     progress,
     duration,
     play: (track: Track, playImmediately = true) => {
+        isCollapsed.value = false;
         currentTrack.value = track;
         if(playImmediately) {
             nextTick(() => {
@@ -101,6 +102,7 @@ const mainPlayer = {
     pause,
     stop: () => {
         stop();
+        isCollapsed.value = true;
         currentTrack.value = null;
     },
     goToPosition,

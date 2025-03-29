@@ -1,24 +1,25 @@
 <script setup lang="ts">
 import {useOnResize} from "~/composables/onResize";
 import {inject, nextTick, watch, ref} from "vue";
+import {useMainPlayer} from "#imports";
 
 interface Props {
   collapsed?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   collapsed: false,
 })
 
-//const {component: mainPlayer} = useMainPlayer();
-const mainPlayer = ref();
+const { isCollapsed } = useMainPlayer();
+const mainPlayerElementRef = ref();
 
 const paddingBottom = ref(0);
 function calculatePaddingBottom() {
   nextTick(() => {
-    const mainPlayerElement = mainPlayer.value?.element as HTMLElement|undefined;
+    const mainPlayerElement = mainPlayerElementRef.value?.element as HTMLElement|undefined;
     if(mainPlayerElement) {
-      if(mainPlayer.value?.isCollapsed) {
+      if(isCollapsed.value) {
         paddingBottom.value = 0;
       }
       else {
@@ -28,7 +29,7 @@ function calculatePaddingBottom() {
   });
 }
 
-watch(() => mainPlayer.value?.isCollapsed, () => calculatePaddingBottom());
+watch(isCollapsed, calculatePaddingBottom);
 
 useOnResize(calculatePaddingBottom);
 
@@ -44,6 +45,6 @@ const layoutCollapsed = inject<boolean>('layoutCollapsed', false);
     </main>
 
     <PageFooter />
-    <MainPlayer ref="mainPlayer" />
+    <MainPlayer ref="mainPlayerElementRef" />
   </div>
 </template>
