@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const {type} = toRefs(props)
 
-const typeSymbol = useEpisodeTypeSymbol(type.value)
+const typeSymbol = useEpisodeTypeSymbol(type)
 
 const viewBoxHeight = ref(0);
 function updateViewBoxHeight() {
