@@ -26,7 +26,7 @@ useCustomMeta({
       <p>¿Quieres contarnos algo? ¿Decirnos que nos quieres? ¿Que nos odias, tal vez? ¿Que te gusta el pódcast?
         ¿Quieres hacernos saber que te caemos bien? ¿Que te gustaría ser nuestro amigo? ¿Quieres proponer algún tema?
         ¿Puntualizar alguna cosa que hayamos dicho? ¿Darnos tu opinión?</p>
-      <p>Pues para eso y todo lo que se te ocurra, nos ponemos a tu disposición a través de estos dos canales:</p>
+      <p>Pues para eso y todo lo que se te ocurra, nos ponemos a tu disposición a través de estos canales:</p>
     </section>
     <section class="container">
       <div class="contact-channels">
