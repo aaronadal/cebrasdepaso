@@ -1,6 +1,7 @@
 import type {Episode, Podcast, EpisodeType} from "@/composables/media"
 import {useAsyncData} from "#app/composables/asyncData";
 import {watch} from "vue";
+import {sanitizeHtml} from "~/composables/sanitizeHtml";
 
 const replaceDomParserPromise = new Promise(async (resolve) => {
     if(!process.browser) {
@@ -48,7 +49,7 @@ function parseEpisodes(data: Document): Episode[] {
             title = title.replace(/\s\(con (.*?)\)$/, '');
         }
 
-        let fullSummary = item.querySelector('description')?.textContent || '';
+        let fullSummary = sanitizeHtml(item.querySelector('description')?.textContent || '');
         fullSummary = fullSummary.replace(/<p><br><\/p>/g, '');
         fullSummary = fullSummary.replace(/<p>---<\/p>/g, '<hr>');
         fullSummary = fullSummary.replace(/<br>---<br>/g, '<hr>');
