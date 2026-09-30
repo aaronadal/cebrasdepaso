@@ -37,7 +37,7 @@ const { instagramUrl, podcastYoutubeUrl, contactEmail } = useConfig();
                 </a>
               </div>
               <div>
-                <a :href="`mailto://${contactEmail}`" target="_blank">
+                <a :href="`mailto:${contactEmail}`" target="_blank">
                   <Tooltip message="Por Email">
                     <envelope-simple-light class="icon-item icon" />
                   </Tooltip>
