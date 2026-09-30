@@ -3,6 +3,16 @@ import type {ComputedRef, MaybeRef} from "vue";
 import {useRef} from "~/composables/ref";
 import {computed} from "@vue/runtime-core";
 
+function escapeHtml(text: string): string {
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+// Values are trusted HTML.
 const customTitlesMap: {[key: string]: string} = {
     'Esto es... CEBRAS DE PASO': 'Esto es...<br />CEBRAS DE PASO',
 };
@@ -25,7 +35,7 @@ export function useTrackTitle(track: MaybeRef<Track|null>): ComputedRef<string> 
 
         const length = title.length;
         if(length < 22) {
-            return title;
+            return escapeHtml(title);
         }
 
         let formatedTitle = '';
@@ -43,13 +53,13 @@ export function useTrackTitle(track: MaybeRef<Track|null>): ComputedRef<string> 
                 formatedTitle += ' ' + chunk;
             }
             else {
-                formatedTitle += '<br/>' + chunk;
+                formatedTitle += '\n' + chunk;
                 firstLineEnded = true;
             }
 
             lastChunk = chunk
         });
 
-        return formatedTitle;
+        return escapeHtml(formatedTitle).replace(/\n/g, '<br/>');
     });
 }
