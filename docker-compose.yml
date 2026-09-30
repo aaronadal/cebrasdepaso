@@ -1,0 +1,43 @@
+# Development:      docker compose up            (host port: APP_PORT, default 3000)
+# Production build: docker compose --profile prod up prod   (host port: PROD_PORT, default 3001)
+
+x-node: &node
+  image: node:22-slim
+  working_dir: /app
+  environment:
+    NUXT_TELEMETRY_DISABLED: 1
+  volumes:
+    - .:/app
+    # Keep container dependencies and build artifacts apart from the host ones.
+    - node_modules:/app/node_modules
+    - nuxt:/app/.nuxt
+
+services:
+  app:
+    <<: *node
+    command: sh -c "yarn install --frozen-lockfile && yarn dev --host 0.0.0.0 --port 3000"
+    ports:
+      - "${APP_PORT:-3000}:3000"
+      - "24678:24678" # Vite HMR websocket
+
+  prod:
+    <<: *node
+    profiles: [prod]
+    command: sh -c "yarn install --frozen-lockfile && yarn build && node .output/server/index.mjs"
+    environment:
+      NUXT_TELEMETRY_DISABLED: 1
+      HOST: 0.0.0.0
+      PORT: 3001
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+      - nuxt_prod:/app/.nuxt
+      - output_prod:/app/.output
+    ports:
+      - "${PROD_PORT:-3001}:3001"
+
+volumes:
+  node_modules:
+  nuxt:
+  nuxt_prod:
+  output_prod:
