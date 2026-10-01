@@ -14,6 +14,8 @@
                                         target="_blank">Vecteezy</a>.
     </div>
 
+    <!-- The illustration weighs ~1 MB, so it is only rendered in the browser. -->
+    <ClientOnly>
     <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -8669,5 +8671,6 @@
             s-35,7.5-40,8.5S1770,944,1752,946s-42.5,3.5-45,4.5S1691,953,1691,953z"
       />
     </svg>
+    </ClientOnly>
   </div>
 </template>
