@@ -1,5 +1,7 @@
 # Development:      docker compose up            (host port: APP_PORT, default 3000)
 # Production build: docker compose --profile prod up prod   (host port: PROD_PORT, default 3001)
+# Unit tests:       docker compose run --rm --no-deps app yarn test
+# Browser tests:    docker compose --profile test run --rm e2e
 
 x-node: &node
   image: node:22-slim
@@ -22,7 +24,7 @@ services:
 
   prod:
     <<: *node
-    profiles: [prod]
+    profiles: [prod, test]
     working_dir: /build
     # Builds from a copy of the sources, so nothing is written to the host checkout.
     command: >
@@ -37,6 +39,26 @@ services:
       - node_modules:/build/node_modules
     ports:
       - "${PROD_PORT:-3001}:3001"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3001/contacto').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 5s
+      start_period: 10m
+
+  e2e:
+    # Must match the @playwright/test version in package.json.
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    profiles: [test]
+    working_dir: /app
+    command: npx playwright test
+    environment:
+      BASE_URL: http://prod:3001
+      PLAYWRIGHT_OUTPUT_DIR: /tmp/test-results
+    volumes:
+      - .:/app:ro
+      - node_modules:/app/node_modules
+    depends_on:
+      prod:
+        condition: service_healthy
 
 volumes:
   node_modules:
