@@ -10,9 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.6",
     "html2canvas": "^1.4.1",
-    "jsdom": "^24.1.1",
     "nuxt": "^3.21.11",
     "sass": "^1.105.1",
     "typescript": "^5.9.0",
@@ -20,6 +18,7 @@
     "vue-router": "^4.6.4"
   },
   "dependencies": {
+    "fast-xml-parser": "^5.11.2",
     "xss": "^1.0.15"
   }
 }
