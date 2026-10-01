@@ -1,5 +1,5 @@
 import type {ComputedRef, Ref} from "vue";
-import {useSeoMeta} from "@unhead/vue";
+import {useSeoMeta} from "#imports";
 
 type Meta<T> = T|Ref<T>|ComputedRef<T>|(() => T);
 
