@@ -11,7 +11,6 @@ const isCollapsed = ref(true);
 const playlist = ref<Track[]>([]);
 const currentTrack = ref<Track | null>(null);
 
-const isPlaying = ref(false);
 const progress = computed(() => audio.currentTime.value);
 const duration = computed(() => audio.duration.value);
 
@@ -21,12 +20,10 @@ function start() {
     }
 
     audio.play();
-    isPlaying.value = true;
 }
 
 function pause() {
     audio.pause();
-    isPlaying.value = false;
 }
 
 function stop() {
@@ -81,24 +78,27 @@ const previousTrack = computed(() => {
     return playlist.value[previousTrackIndex.value];
 });
 
+function play(track: Track, playImmediately = true) {
+    isCollapsed.value = false;
+    currentTrack.value = track;
+    if(playImmediately) {
+        nextTick(() => {
+            start();
+        });
+    }
+}
+
 const mainPlayer = {
     component: player,
     isCollapsed: computed(() => isCollapsed.value),
     toggleCollapsed: () => isCollapsed.value = !isCollapsed.value,
     playlist,
     currentTrack,
-    isPlaying,
+    // Follows the audio element, so pauses from media keys or the OS are reflected too.
+    isPlaying: computed(() => !audio.paused.value),
     progress,
     duration,
-    play: (track: Track, playImmediately = true) => {
-        isCollapsed.value = false;
-        currentTrack.value = track;
-        if(playImmediately) {
-            nextTick(() => {
-                start();
-            });
-        }
-    },
+    play,
     pause,
     stop: () => {
         stop();
@@ -110,12 +110,12 @@ const mainPlayer = {
     hasPrev: computed(() => previousTrack.value !== null),
     playNext: () => {
         if(nextTrack.value) {
-            currentTrack.value = nextTrack.value;
+            play(nextTrack.value);
         }
     },
     playPrev: () => {
         if(previousTrack.value) {
-            currentTrack.value = previousTrack.value;
+            play(previousTrack.value);
         }
     },
 };

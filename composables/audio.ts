@@ -10,6 +10,7 @@ export function useAudio(audio: MaybeRef<HTMLAudioElement | null>) {
 
     const duration = ref(0);
     const currentTime = ref(0);
+    const paused = ref(true);
 
     function play() {
         const audio = audioRef.value;
@@ -17,7 +18,8 @@ export function useAudio(audio: MaybeRef<HTMLAudioElement | null>) {
             return;
         }
 
-        audio.play();
+        // The play() promise rejects when playback is interrupted; the pause event already keeps the state right.
+        audio.play()?.catch(() => {});
     }
 
     function pause() {
@@ -39,50 +41,50 @@ export function useAudio(audio: MaybeRef<HTMLAudioElement | null>) {
     }
 
     function updateCurrentTimeRef() {
-        const audio = audioRef.value;
-        if (!audio) {
-            return;
-        }
-
-        currentTime.value = audio.currentTime || 0;
-        notifyListenersIfEndReached();
+        currentTime.value = audioRef.value?.currentTime || 0;
     }
 
     function updateDurationRef() {
-        const audio = audioRef.value;
-        if (!audio) {
-            return;
-        }
+        duration.value = audioRef.value?.duration || 0;
+    }
 
-        duration.value = audio.duration || 0;
-        notifyListenersIfEndReached();
+    function updatePausedRef() {
+        paused.value = audioRef.value?.paused ?? true;
     }
 
     function onEndReached(listener: OnEndReachedListener) {
         listeners.value = [...listeners.value, listener];
     }
 
-    function notifyListenersIfEndReached() {
-        if(duration.value <= currentTime.value) {
-            listeners.value.forEach((listener) => listener());
-        }
+    function notifyEndReached() {
+        listeners.value.forEach((listener) => listener());
     }
 
-    watch(audioRef, () => {
-        const audio = audioRef.value;
+    watch(audioRef, (audio, _, onCleanup) => {
+        updateDurationRef();
+        updateCurrentTimeRef();
+        updatePausedRef();
 
-        if(audio) {
-            updateDurationRef();
-            updateCurrentTimeRef();
-
-            audio.addEventListener('durationchange', () => updateDurationRef());
-            audio.addEventListener('timeupdate', () => updateCurrentTimeRef());
+        if(!audio) {
+            return;
         }
+
+        const events: [string, () => void][] = [
+            ['durationchange', updateDurationRef],
+            ['timeupdate', updateCurrentTimeRef],
+            ['play', updatePausedRef],
+            ['pause', updatePausedRef],
+            ['ended', updatePausedRef],
+            ['ended', notifyEndReached],
+        ];
+        events.forEach(([name, listener]) => audio.addEventListener(name, listener));
+        onCleanup(() => events.forEach(([name, listener]) => audio.removeEventListener(name, listener)));
     });
 
     return {
         duration: computed(() => duration.value),
         currentTime: computed(() => currentTime.value),
+        paused: computed(() => paused.value),
         setCurrentTime: setAudioCurrentTime,
         onEndReached,
         play,
