@@ -27,6 +27,14 @@ test.describe('server-rendered html', () => {
         expect(html.match(/class="card episode-card/g)?.length).toBe(10);
     });
 
+    test('the home page features the latest episode, season closings included', async ({request}) => {
+        const podcast = await (await request.get('/podcast')).text();
+        const latest = podcast.match(/href="\/podcast\/episodio\/(\d+)"/)?.[1];
+        const home = await (await request.get('/')).text();
+        expect(latest).toBeTruthy();
+        expect(home.match(/el #(\d+) ya/)?.[1]).toBe(latest);
+    });
+
     test('unknown pages and episodes return 404', async ({request}) => {
         expect((await request.get('/no-existe')).status()).toBe(404);
         expect((await request.get('/podcast/episodio/999')).status()).toBe(404);
