@@ -1,31 +1,31 @@
-@import "variables";
-@import "gradients";
+@use "variables";
+@use "gradients";
 
-@import "reset";
-@import "typography";
-@import "transitions";
+@use "reset";
+@use "typography";
+@use "transitions";
 
-@import "layout";
-@import "layout_main_player";
-@import "layout_transitions";
-@import "content";
-@import "logo";
-@import "button";
-@import "card";
-@import "card_episode";
-@import "contact_channels";
-@import "audio_player";
-@import "progress_bar";
-@import "paginator";
-@import "team";
-@import "tooltip";
-@import "icon_items";
+@use "layout";
+@use "layout_main_player";
+@use "layout_transitions";
+@use "content";
+@use "logo";
+@use "button";
+@use "card";
+@use "card_episode";
+@use "contact_channels";
+@use "audio_player";
+@use "progress_bar";
+@use "paginator";
+@use "team";
+@use "tooltip";
+@use "icon_items";
 
-@import "pages/index";
-@import "pages/podcast";
-@import "pages/notfound";
-@import "pages/episode";
-@import "pages/links";
+@use "pages/index";
+@use "pages/podcast";
+@use "pages/notfound";
+@use "pages/episode";
+@use "pages/links";
 
 svg.icon {
   width: 1em;

@@ -1,3 +1,7 @@
+@use "variables_color";
+@use "gradients";
+@use "typography";
+
 :root {
   --layout-border-style: solid 3px var(--text-color);
 }
@@ -57,7 +61,7 @@ body,
   border-bottom: var(--border-style);
 
   > .inner {
-    background-color: $body-color;
+    background-color: variables_color.$body-color;
 
     > .container {
       grid-template-columns: 1fr;

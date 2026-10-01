@@ -1,3 +1,5 @@
+@use "variables_color";
+
 .progress-bar {
   width: 100%;
   position: relative;
@@ -7,7 +9,7 @@
   &::before {
     content: '';
     display: block;
-    background-color: $text-color;
+    background-color: variables_color.$text-color;
     height: 2px;
     width: 100%;
   }
@@ -15,8 +17,8 @@
   .value {
     width: 1em;
     height: 1em;
-    border: 2px solid $text-color;
-    background-color: $body-color;
+    border: 2px solid variables_color.$text-color;
+    background-color: variables_color.$body-color;
     border-radius: 50%;
     position: absolute;
     top: 1px;
