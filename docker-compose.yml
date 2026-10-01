@@ -23,21 +23,21 @@ services:
   prod:
     <<: *node
     profiles: [prod]
-    command: sh -c "yarn install --frozen-lockfile && yarn build && node .output/server/index.mjs"
+    working_dir: /build
+    # Builds from a copy of the sources, so nothing is written to the host checkout.
+    command: >
+      sh -c "tar -C /src --exclude=./node_modules --exclude=./.nuxt --exclude=./.output --exclude=./.git -cf - . | tar -C /build -xf -
+      && yarn install --frozen-lockfile && yarn build && node .output/server/index.mjs"
     environment:
       NUXT_TELEMETRY_DISABLED: 1
       HOST: 0.0.0.0
       PORT: 3001
     volumes:
-      - .:/app
-      - node_modules:/app/node_modules
-      - nuxt_prod:/app/.nuxt
-      - output_prod:/app/.output
+      - .:/src:ro
+      - node_modules:/build/node_modules
     ports:
       - "${PROD_PORT:-3001}:3001"
 
 volumes:
   node_modules:
   nuxt:
-  nuxt_prod:
-  output_prod:
