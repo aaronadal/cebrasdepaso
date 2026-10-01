@@ -41,6 +41,11 @@ function attribute(value: unknown, name: string): string {
     return '';
 }
 
+// itunes:duration may be "HH:MM:SS", "MM:SS" or plain seconds.
+function parseDuration(value: string): number {
+    return value.split(':').reduce((seconds, part) => seconds * 60 + (parseInt(part) || 0), 0);
+}
+
 function parseEpisodes(items: XmlNode[]): Episode[] {
     const episodes: Episode[] = []
 
@@ -96,7 +101,7 @@ function parseEpisodes(items: XmlNode[]): Episode[] {
             number,
             season: parseInt(text(item['itunes:season']) || '0'),
             numberInSeason: parseInt(text(item['itunes:episode']) || '0'),
-            duration: parseInt(text(item['itunes:duration']) || '0'),
+            duration: parseDuration(text(item['itunes:duration'])),
             mediaUrl: attribute(media, 'url'),
             mediaType: attribute(media, 'type'),
             relatedUrl,
