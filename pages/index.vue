@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type {Episode, Podcast} from "~/composables/media";
-import {computed, definePageMeta, inject, useCustomMeta} from "#imports";
+import type {Episode} from "~/composables/media";
+import {computed, definePageMeta, useCustomMeta, usePodcast} from "#imports";
 import {useConfig} from '~/composables/config';
-import type {ComputedRef, Ref} from "vue";
 import {AudioPlayer, EpisodeCard, TeamMember} from "#components";
 
 definePageMeta({
@@ -11,8 +10,8 @@ definePageMeta({
 
 const { published } = useConfig();
 
-const podcast = inject('podcast') as Ref<Podcast>
-const allEpisodes = inject('allEpisodes') as ComputedRef<Episode[]>
+const {data: podcast} = await usePodcast();
+const allEpisodes = computed<Episode[]>(() => podcast.value?.episodes || []);
 
 const trailer = computed<Episode|null>(() => [...allEpisodes.value].reverse()[0] || null);
 const lastEpisode = computed<Episode|null>(() =>

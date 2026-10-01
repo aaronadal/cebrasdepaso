@@ -114,7 +114,14 @@ function parseEpisodes(items: XmlNode[]): Episode[] {
 export function usePodcast() {
     const {podcastRssUrl} = useConfig();
 
-    return useAsyncData<Podcast>('podcast', () => $fetch<string>(podcastRssUrl, {responseType: 'text'}).then(parsePodcast));
+    return useAsyncData<Podcast>(
+        'podcast',
+        () => $fetch<string>(podcastRssUrl, {responseType: 'text'}).then(parsePodcast),
+        {
+            // Reuse the feed already loaded by another page instead of fetching it again on every navigation.
+            getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key] ?? nuxtApp.static.data[key],
+        },
+    );
 }
 
 export async function fetchPodcast(rssUrl: string): Promise<Podcast|null> {

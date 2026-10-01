@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Episode, EpisodeTypeSlug, Podcast} from "~/composables/media";
+import type {Episode, EpisodeTypeSlug} from "~/composables/media";
 import {useParseInt} from "~/composables/parseInt";
 import {useSingleRouteParam} from "~/composables/routeParamSingle";
 import {useEpisodeTypeLabel} from "~/composables/media/episodeTypeLabel";
@@ -7,10 +7,9 @@ import {useEpisodeTypeBySlug} from "~/composables/episodeTypeBySlug";
 import {useEpisode} from "~/composables/episode";
 import {useNotFoundState} from "~/composables/notFoundState";
 import {useRoute} from "vue-router";
-import type {ComputedRef, Ref} from "vue";
-import {inject, watch, computed, ref} from "vue";
+import {watch, computed} from "vue";
 import {AudioPlayer, EpisodeThumbnail, NotFound} from "#components";
-import {definePageMeta, useCustomMeta} from "#imports";
+import {definePageMeta, setResponseStatus, useCustomMeta, usePodcast, useRequestEvent} from "#imports";
 
 definePageMeta({
   pageKey: 'episode',
@@ -22,9 +21,8 @@ const route = useRoute();
 const number = useParseInt(useSingleRouteParam(route, 'number'));
 const typeSlug = useSingleRouteParam<EpisodeTypeSlug>(route, 'type');
 
-const podcast = inject('podcast') as Ref<Podcast|null>;
-const podcastError = inject<Ref<unknown>>('podcastError', ref(null));
-const episodes = inject('allEpisodes') as ComputedRef<Episode[]>;
+const {data: podcast, error: podcastError} = await usePodcast();
+const episodes = computed<Episode[]>(() => podcast.value?.episodes || []);
 
 const type = useEpisodeTypeBySlug(typeSlug);
 const typeLabel = useEpisodeTypeLabel(type);
@@ -39,6 +37,10 @@ watch(
       }
     },
     {immediate: true});
+
+if (import.meta.server && !episode.value) {
+  setResponseStatus(useRequestEvent()!, podcastError.value ? 503 : 404);
+}
 
 useCustomMeta((defaults) => ({
   title: () => {

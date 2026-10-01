@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type {Episode, Podcast} from "~/composables/media";
-import {definePageMeta, useCustomMeta} from "#imports";
+import type {Episode} from "~/composables/media";
+import {definePageMeta, setResponseStatus, useCustomMeta, usePodcast, useRequestEvent} from "#imports";
 import {useConfig} from '~/composables/config';
-import type {ComputedRef, Ref} from "vue";
-import {inject, nextTick, ref} from "vue";
+import {nextTick, ref} from "vue";
 import {computed} from "@vue/runtime-core";
 
 definePageMeta({
@@ -12,11 +11,16 @@ definePageMeta({
 
 const { published } = useConfig();
 
-const podcast = inject<Ref<Podcast|null>>('podcast', ref(null));
-const podcastError = inject<Ref<unknown>>('podcastError', ref(null));
-const allEpisodes = inject<ComputedRef<Episode[]>>('allEpisodes', computed(() => []));
+const {data: podcast, error: podcastError} = await usePodcast();
+const allEpisodes = computed<Episode[]>(() => podcast.value?.episodes || []);
 
-const episodes = ref<Episode[]>([])
+if (import.meta.server && podcastError.value) {
+  setResponseStatus(useRequestEvent()!, 503);
+}
+
+const itemsPerPage = 10;
+// Start with the first page so it is part of the server-rendered HTML.
+const episodes = ref<Episode[]>(allEpisodes.value.slice(0, itemsPerPage))
 
 function setEpisodes (array: Episode[]) {
   episodes.value = array
@@ -63,7 +67,7 @@ useCustomMeta({
       </section>
       <section v-if="podcast" ref="episodesSectionRef">
         <EpisodeCard v-for="episode in episodes" :key="episode.guid" :podcast="podcast" :episode="episode" />
-        <Paginator :items="allEpisodes" :items-per-page="10" @init="onInit" @paginate="onPaginate" />
+        <Paginator :items="allEpisodes" :items-per-page="itemsPerPage" @init="onInit" @paginate="onPaginate" />
       </section>
       <section v-else-if="podcastError" class="container">
         Vaya, no hemos podido cargar la lista de episodios. Mientras lo arreglamos, puedes escucharnos en cualquiera

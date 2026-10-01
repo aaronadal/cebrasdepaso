@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useEpisodeTypeSymbol} from "~/composables/media/episodeTypeSymbol";
 import type {EpisodeType} from "~/composables/media";
-import {toRefs, ref, computed} from "vue";
+import {toRefs, ref, computed, onMounted} from "vue";
 import {usePropertyValue} from "~/composables/propertyValue";
 import {useOnResize} from "~/composables/onResize";
 
@@ -18,18 +18,20 @@ const {type} = toRefs(props)
 
 const typeSymbol = useEpisodeTypeSymbol(type)
 
-const viewBoxHeight = ref(0);
+const defaultViewBoxHeight = '125';
+const viewBoxHeight = ref(parseInt(defaultViewBoxHeight));
 function updateViewBoxHeight() {
   let doc = null;
   if (typeof window !== 'undefined') {
     doc = window.document.body;
   }
 
-  viewBoxHeight.value = parseInt(usePropertyValue(doc, '--episode-thumbnail-number-size', '125').value);
+  viewBoxHeight.value = parseInt(usePropertyValue(doc, '--episode-thumbnail-number-size', defaultViewBoxHeight).value);
 }
 
 useOnResize(updateViewBoxHeight);
-updateViewBoxHeight();
+// Measured after mounting so the server and the first client render agree.
+onMounted(updateViewBoxHeight);
 
 const textVerticalPosition = computed(() => viewBoxHeight.value - 4);
 

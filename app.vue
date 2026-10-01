@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type {Track, Episode} from "~/composables/media";
+import type {Track, Episode, Podcast} from "~/composables/media";
 
 import '~/assets/styles/app.scss';
-import {useMainPlayer, usePodcast, useRoute} from "#imports";
+import {useMainPlayer, useNuxtData, useRoute} from "#imports";
 import {useConfig} from '~/composables/config';
 import {computed} from "@vue/runtime-core";
 import {provide, watch} from "vue";
@@ -14,15 +14,13 @@ const layoutCollapsed = computed(() => {
   return route.path !== '/';
 });
 
-const {data: podcast, error: podcastError} = await usePodcast();
+// Pages load the feed themselves; the player only uses it once it is available.
+const {data: podcast} = useNuxtData<Podcast>('podcast');
 const allEpisodes = computed<Episode[]>(() => {
   return podcast.value?.episodes || [];
 });
 
 provide('layoutCollapsed', layoutCollapsed);
-provide('podcast', podcast);
-provide('podcastError', podcastError);
-provide('allEpisodes', allEpisodes);
 
 watch(currentTrack, (newTrack: Track|Episode|null) => {
   if(newTrack && 'number' in newTrack && allEpisodes.value.includes(newTrack)) {

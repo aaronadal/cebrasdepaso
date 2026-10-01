@@ -24,15 +24,17 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
-      '/**': { ssr: false },
-      '/': { prerender: true },
+      // Pages that show episodes are rendered on the server and refreshed hourly.
+      '/': { isr: 3600 },
+      '/podcast': { isr: 3600 },
+      '/podcast/**': { isr: 3600 },
       '/aviso-legal': { prerender: true },
       '/contacto': { prerender: true },
-      '/generador-de-caratulas': { prerender: true },
-      '/generador-de-logotipos': { prerender: true },
-      '/generador-de-degradados': { prerender: true },
       '/links': { prerender: true },
-      '/podcast': { isr: 7200 },
+      // html2canvas tools only work in the browser.
+      '/generador-de-caratulas': { ssr: false, prerender: true },
+      '/generador-de-logotipos': { ssr: false, prerender: true },
+      '/generador-de-degradados': { ssr: false, prerender: true },
       '/ultimo': { ssr: false },
   },
 
