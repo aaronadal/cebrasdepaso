@@ -1,31 +1,24 @@
 import {defineNuxtRouteMiddleware, fetchPodcast, navigateTo, useConfig} from "#imports";
 import {useEpisodeTypeSlug} from "~/composables/media/episodeTypeSlug";
 
-export default defineNuxtRouteMiddleware(({path}) => {
+// Uses await rather than .then() so Nuxt keeps its context for navigateTo() when running on the server.
+export default defineNuxtRouteMiddleware(async ({path}) => {
     const {lastEpisodePath, podcastRssUrl} = useConfig();
 
-    if(path === lastEpisodePath) {
-        return fetchPodcast(podcastRssUrl)
-            .then((podcast) => {
-                if(podcast === null) {
-                    return navigateTo('/') as Promise<void>;
-                }
-
-                const last = podcast.episodes[0];
-                const typeSlug = useEpisodeTypeSlug(last.episodeType);
-                if(typeSlug.value === '') {
-                    return navigateTo('/') as Promise<void>;
-                }
-
-                return navigateTo(
-                    `https://cebrasdepaso.es/podcast/${typeSlug.value}/${last.number}`,
-                    {
-                        external: true,
-                    }
-                ) as Promise<void>;
-            })
-            .catch(() => {
-                return navigateTo('/') as Promise<void>;
-            })
+    if(path !== lastEpisodePath) {
+        return;
     }
+
+    const podcast = await fetchPodcast(podcastRssUrl);
+    const last = podcast?.episodes[0];
+    if(!last) {
+        return navigateTo('/');
+    }
+
+    const typeSlug = useEpisodeTypeSlug(last.episodeType);
+    if(typeSlug.value === '') {
+        return navigateTo('/');
+    }
+
+    return navigateTo(`/podcast/${typeSlug.value}/${last.number}`);
 })

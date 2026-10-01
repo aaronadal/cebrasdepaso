@@ -35,7 +35,6 @@ export default defineNuxtConfig({
       '/generador-de-caratulas': { ssr: false, prerender: true },
       '/generador-de-logotipos': { ssr: false, prerender: true },
       '/generador-de-degradados': { ssr: false, prerender: true },
-      '/ultimo': { ssr: false },
   },
 
   compatibilityDate: '2024-07-30'
