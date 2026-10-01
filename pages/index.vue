@@ -24,10 +24,13 @@ const yearsFromTrailer = computed<number>(() => {
     return 0;
   }
 
-  const ageDifMs = Date.now() - new Date(trailerDate).getTime();
-  const ageDate = new Date(ageDifMs);
+  // Completed years since the trailer was published.
+  const from = new Date(trailerDate);
+  const now = new Date();
+  const anniversaryPending = now.getUTCMonth() < from.getUTCMonth()
+      || (now.getUTCMonth() === from.getUTCMonth() && now.getUTCDate() < from.getUTCDate());
 
-  return Math.abs(ageDate.getUTCFullYear() - 1970) + 1;
+  return now.getUTCFullYear() - from.getUTCFullYear() - (anniversaryPending ? 1 : 0);
 });
 
 useCustomMeta({
