@@ -4,6 +4,7 @@ import {toRefs, ref, computed} from "vue";
 import {useMainPlayer} from "~/composables/mainPlayer";
 import {useAudio} from "~/composables/audio";
 import {useFormatTime} from "~/composables/formatTime";
+import {isEpisode} from "~/composables/media";
 
 const emit = defineEmits<{
   (evt: 'next'): void;
@@ -44,7 +45,9 @@ const isPlaying = computed(() => isCurrentTrack.value ? isCurrentTrackPlaying.va
 const progress = computed(() => isCurrentTrack.value ? currentTrackProgress.value : 0);
 const progressTime = useFormatTime(progress);
 
-const duration = computed(() => isCurrentTrack.value ? currentTrackDuration.value : audio.duration.value);
+// Episodes carry their duration in the feed, so their audio is not preloaded just to show it.
+const feedDuration = computed(() => (isEpisode(track.value) && track.value.duration) || 0);
+const duration = computed(() => (isCurrentTrack.value ? currentTrackDuration.value : audio.duration.value) || feedDuration.value);
 const totalTime = useFormatTime(duration);
 
 function onClickPlay() {
@@ -81,7 +84,7 @@ defineExpose({
 
 <template>
   <aside class="audio-player">
-    <audio ref="audioRef" :src="track.mediaUrl" :type="track.mediaType" preload="metadata" />
+    <audio ref="audioRef" :src="track.mediaUrl" :type="track.mediaType" :preload="feedDuration ? 'none' : 'metadata'" />
     <div class="play">
       <button v-if="isPlaylist" :class="{disabled: !hasPrev}" @click="onClickPrev">
         <skip-back />
