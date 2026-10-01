@@ -2,7 +2,7 @@
 import type {Track, Episode} from "~/composables/media";
 
 import '~/assets/styles/app.scss';
-import {fetchPodcast, useMainPlayer, useRoute} from "#imports";
+import {useMainPlayer, usePodcast, useRoute} from "#imports";
 import {useConfig} from '~/composables/config';
 import {computed} from "@vue/runtime-core";
 import {provide, watch} from "vue";
@@ -14,13 +14,14 @@ const layoutCollapsed = computed(() => {
   return route.path !== '/';
 });
 
-const podcast = await fetchPodcast(podcastRssUrl);
+const {data: podcast, error: podcastError} = await usePodcast();
 const allEpisodes = computed<Episode[]>(() => {
-  return podcast?.episodes || [];
+  return podcast.value?.episodes || [];
 });
 
 provide('layoutCollapsed', layoutCollapsed);
 provide('podcast', podcast);
+provide('podcastError', podcastError);
 provide('allEpisodes', allEpisodes);
 
 watch(currentTrack, (newTrack: Track|Episode|null) => {

@@ -8,7 +8,7 @@ import {useEpisode} from "~/composables/episode";
 import {useNotFoundState} from "~/composables/notFoundState";
 import {useRoute} from "vue-router";
 import type {ComputedRef, Ref} from "vue";
-import {inject, watch, computed} from "vue";
+import {inject, watch, computed, ref} from "vue";
 import {AudioPlayer, EpisodeThumbnail, NotFound} from "#components";
 import {definePageMeta, useCustomMeta} from "#imports";
 
@@ -22,7 +22,8 @@ const route = useRoute();
 const number = useParseInt(useSingleRouteParam(route, 'number'));
 const typeSlug = useSingleRouteParam<EpisodeTypeSlug>(route, 'type');
 
-const podcast = inject('podcast') as Ref<Podcast>;
+const podcast = inject('podcast') as Ref<Podcast|null>;
+const podcastError = inject<Ref<unknown>>('podcastError', ref(null));
 const episodes = inject('allEpisodes') as ComputedRef<Episode[]>;
 
 const type = useEpisodeTypeBySlug(typeSlug);
@@ -34,13 +35,17 @@ watch(
     episode,
     () => {
       if(route.name === 'episode') {
-        useNotFoundState().value = episode.value === null;
+        useNotFoundState().value = episode.value === null && !podcastError.value;
       }
     },
     {immediate: true});
 
 useCustomMeta((defaults) => ({
   title: () => {
+    if (!episode.value && podcastError.value) {
+      return defaults.title;
+    }
+
     if (!episode.value) {
       return `[404] El ${typeLabel.value.toLowerCase()} número ${number.value} no se ha encontrado.`;
     }
@@ -72,6 +77,10 @@ useCustomMeta((defaults) => ({
       </header>
       <section class="container" v-html="episode.fullSummary"/>
     </template>
+    <section v-else-if="podcastError" class="container">
+      <p>Vaya, no hemos podido cargar este episodio. Vuelve a intentarlo en un rato o escúchanos en tu plataforma
+        de pódcasts favorita.</p>
+    </section>
     <NotFound v-else/>
   </div>
 </template>

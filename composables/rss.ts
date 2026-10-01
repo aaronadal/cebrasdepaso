@@ -1,8 +1,8 @@
 import type {Episode, Podcast, EpisodeType} from "@/composables/media"
 import {useAsyncData} from "#app/composables/asyncData";
-import {watch} from "vue";
 import {XMLParser} from "fast-xml-parser";
 import {sanitizeHtml} from "~/composables/sanitizeHtml";
+import {useConfig} from "~/composables/config";
 
 type XmlNode = Record<string, unknown>;
 
@@ -111,30 +111,19 @@ function parseEpisodes(items: XmlNode[]): Episode[] {
     return episodes
 }
 
+export function usePodcast() {
+    const {podcastRssUrl} = useConfig();
+
+    return useAsyncData<Podcast>('podcast', () => $fetch<string>(podcastRssUrl, {responseType: 'text'}).then(parsePodcast));
+}
+
 export async function fetchPodcast(rssUrl: string): Promise<Podcast|null> {
-    return await useAsyncData<string>('rss', () => $fetch<Blob>(rssUrl).then((value) => value.text()))
-        .then(({ data, error, pending }) => {
-            return new Promise<string>((resolve, reject) => {
-                watch(pending, () => {
-                    if(!pending.value) {
-                        if (error.value) {
-                            return reject(error.value);
-                        }
-
-                        if (!data.value) {
-                            return reject('Data es null');
-                        }
-
-                        return resolve(data.value);
-                    }
-                }, {immediate: true});
-            });
-        })
-        .then((xml) => parsePodcast(xml))
+    return $fetch<string>(rssUrl, {responseType: 'text'})
+        .then(parsePodcast)
         .catch((error) => {
             console.error(error);
 
-            return null
+            return null;
         });
 }
 

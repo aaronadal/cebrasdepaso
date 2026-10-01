@@ -1,8 +1,5 @@
-const now = new Date();
-const rssHash = `${now.getFullYear()}${now.getMonth()}${now.getDate()}`
-
 const instagramUrl = 'https://instagram.com/cebrasdepaso';
-const podcastRssUrl = `https://anchor.fm/s/c0099e38/podcast/rss?${rssHash}`;
+const podcastRssUrl = 'https://anchor.fm/s/c0099e38/podcast/rss';
 const podcastSpotifyUrl = 'https://open.spotify.com/show/2PzTJfAK2kIXXrVaBAqhTp';
 const podcastYoutubeUrl = 'https://youtube.com/@cebrasdepaso';
 const podcastApplePodcastsUrl = 'https://podcasts.apple.com/us/podcast/cebras-de-paso/id1655554658';

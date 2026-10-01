@@ -13,6 +13,7 @@ definePageMeta({
 const { published } = useConfig();
 
 const podcast = inject<Ref<Podcast|null>>('podcast', ref(null));
+const podcastError = inject<Ref<unknown>>('podcastError', ref(null));
 const allEpisodes = inject<ComputedRef<Episode[]>>('allEpisodes', computed(() => []));
 
 const episodes = ref<Episode[]>([])
@@ -60,9 +61,13 @@ useCustomMeta({
           te dejamos la lista de episodios. ¡Buen provecho!
         </p>
       </section>
-      <section v-if="podcast !== null" ref="episodesSectionRef">
+      <section v-if="podcast" ref="episodesSectionRef">
         <EpisodeCard v-for="episode in episodes" :key="episode.guid" :podcast="podcast" :episode="episode" />
         <Paginator :items="allEpisodes" :items-per-page="10" @init="onInit" @paginate="onPaginate" />
+      </section>
+      <section v-else-if="podcastError" class="container">
+        Vaya, no hemos podido cargar la lista de episodios. Mientras lo arreglamos, puedes escucharnos en cualquiera
+        de las plataformas de arriba.
       </section>
       <section v-else class="container">
         Cargando lista de episodios<span class="loading-ellipsis"><span>.</span><span>.</span><span>.</span></span>
