@@ -50,7 +50,7 @@ const currentTrackIndex = computed(() => {
 });
 
 const nextTrackIndex = computed(() => {
-    if(currentTrackIndex.value >= playlist.value.length) {
+    if(currentTrackIndex.value < 0 || currentTrackIndex.value >= playlist.value.length - 1) {
         return null;
     }
 
