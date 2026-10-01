@@ -4,7 +4,7 @@
 # Browser tests:    docker compose --profile test run --rm e2e
 
 x-node: &node
-  image: node:22-slim
+  image: node:24-slim
   working_dir: /app
   environment:
     NUXT_TELEMETRY_DISABLED: 1
