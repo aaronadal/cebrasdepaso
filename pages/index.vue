@@ -8,7 +8,7 @@ definePageMeta({
   pageKey: 'index',
 });
 
-const { published } = useConfig();
+const { published, lastEpisodeBeforeBreak } = useConfig();
 
 const {data: podcast} = await usePodcast();
 const allEpisodes = computed<Episode[]>(() => podcast.value?.episodes || []);
@@ -46,7 +46,15 @@ useCustomMeta({
       <p>El pódcast donde hablamos —con poco criterio, pero mucha voluntad— de las cosas de la vida.
         <template v-if="published && lastEpisode">
           En nuestro último episodio —¡el #{{ lastEpisode?.number }} ya!— tratamos el tema
-          {{ lastEpisode?.title?.toLowerCase() }}. A continuación te lo dejamos. Esperamos que te guste.
+          {{ lastEpisode?.title?.toLowerCase() }}.
+          <template v-if="lastEpisode.number === lastEpisodeBeforeBreak">
+            Y no es un episodio cualquiera: es el último antes de decirte hasta pronto. ¿Por qué? Te lo contamos todo
+            en el propio episodio, que te dejamos a continuación. Esperamos que te guste (y que nos eches
+            un poquito de menos).
+          </template>
+          <template v-else>
+            A continuación te lo dejamos. Esperamos que te guste.
+          </template>
         </template>
       </p>
     </section>

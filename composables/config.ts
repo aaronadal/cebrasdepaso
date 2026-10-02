@@ -25,6 +25,8 @@ export function useConfig() {
         podcastOvercastUrl,
 
         lastEpisodePath: '/ultimo',
+        // Number of the last full episode before a break; the home page mentions it. Set to null when we are back.
+        lastEpisodeBeforeBreak: 41 as number|null,
 
         redirects: {
             '/avance': {
