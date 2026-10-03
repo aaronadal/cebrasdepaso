@@ -141,6 +141,30 @@ test.describe('pages in the browser', () => {
             await expect(page.locator('img[src^="data:image/png"]')).toBeVisible({timeout: 30_000});
         });
     }
+
+    test('the generated logo includes the zebra pattern', async ({page, problems}) => {
+        await page.goto('/generador-de-logotipos');
+        await page.getByText('Descargar').click();
+        const image = page.locator('img[src^="data:image/png"]');
+        await expect(image).toBeVisible({timeout: 30_000});
+
+        // Without the pattern only the bar outlines and the text are painted (~8% of the pixels).
+        const coverage = await image.evaluate(async (img: HTMLImageElement) => {
+            await img.decode();
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const context = canvas.getContext('2d')!;
+            context.drawImage(img, 0, 0);
+            const {data} = context.getImageData(0, 0, canvas.width, canvas.height);
+            let opaque = 0;
+            for (let i = 3; i < data.length; i += 4) {
+                if (data[i] > 0) opaque++;
+            }
+            return opaque / (data.length / 4);
+        });
+        expect(coverage).toBeGreaterThan(0.1);
+    });
 });
 
 test('injected inline scripts and handlers are blocked', async ({page, baseURL}) => {

@@ -2,6 +2,7 @@
 import html2canvas from "html2canvas";
 import {ref, computed} from 'vue'
 import {definePageMeta, useCustomMeta} from "#imports";
+import {inlineZebraPattern} from "~/composables/zebraPattern";
 import {Logo, ProgressBar} from "#components";
 
 const background = ref('transparent');
@@ -33,6 +34,7 @@ function download() {
   html2canvas(targetRef.value, {
     backgroundColor: null,
     scale: scale.value,
+    onclone: inlineZebraPattern,
   })
       .then((canvas) => {
         generatedImage.value = canvas.toDataURL("image/png")

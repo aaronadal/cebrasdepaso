@@ -5,6 +5,7 @@ import html2canvas from "html2canvas";
 import {useEpisodeBackground} from "~/composables/media/episodeBackground";
 import {usePropertyValue} from "~/composables/propertyValue";
 import {definePageMeta, useCustomMeta} from "#imports";
+import {inlineZebraPattern} from "~/composables/zebraPattern";
 
 const target = ref<"podcast" | "youtube">('podcast');
 const type = ref<"full" | "bonus" | "trailer">('full');
@@ -56,6 +57,7 @@ function download() {
     html2canvas(targetRef.value, {
       backgroundColor: null,
       scale: scale.value,
+      onclone: inlineZebraPattern,
     })
         .then((canvas) => {
           generatedImage.value = canvas.toDataURL("image/png")
